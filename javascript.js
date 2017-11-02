@@ -18,6 +18,7 @@ var updateInterval;
 var drawInterval;
 
 var snake;
+var food;
 
 window.onload = () => {
     canvas = document.getElementsByTagName("canvas")[0];
@@ -33,7 +34,9 @@ window.onload = () => {
 
     state = 0;
 
-    snake = new Snake(canvas.width/2 - 7.5, canvas.height/2 - 7.5, 15, "Black");
+    snake = new Snake(canvas.width / 2 - 7.5, canvas.height / 2 - 7.5, 15, "Black");
+    food = new Food(0, 0, 15, "Red");
+    food.SpawnFood();
 
     updateInterval = setInterval(Update, 30);
     drawInterval = setInterval(Draw, 30);
@@ -54,7 +57,6 @@ function Update() {
             rightPaddle.y = canvas.height - rightPaddle.height - 15;
         }
 
-        //console.log(ball.x, leftPaddle.x + leftPaddle.width);
         if ((ball.y > leftPaddle.y && ball.y + ball.height < leftPaddle.y + leftPaddle.height) && ball.x <= leftPaddle.x + leftPaddle.width) {
             ball.x = leftPaddle.x + leftPaddle.width;
             ball.xSpeed *= -1;
@@ -72,6 +74,15 @@ function Update() {
     }
     else if (state == 2) {
         snake.Update();
+
+        if (snake.CheckCollision()) {
+            alert("Game Over!");
+            snake.Reset();
+        }
+        if (food.Collided(snake.body[0].x, snake.body[0].y, snake.body[0].width, snake.body[0].height)) {
+            snake.AddPiece();
+            food.SpawnFood();
+        }
     }
 }
 
@@ -91,6 +102,7 @@ function Draw() {
     else if (state == 2) {
         back.Draw();
         snake.Draw();
+        food.Draw();
     }
 }
 
@@ -160,8 +172,7 @@ function keyDown(event) {
             }
             break;
         case 32:
-            if (state == 2){
-                snake.AddPiece();
+            if (state == 2) {
             }
             break;
     }

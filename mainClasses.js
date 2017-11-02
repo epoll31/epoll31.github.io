@@ -102,22 +102,52 @@ class Snake {
     }
 
     Update() {
-        console.log(this.body.length);
+        var prevX = this.body[0].x;
+        var prevY = this.body[0].y;
+
         this.body[0].Move();
         for (var i = 1; i < this.body.length; i++) {
             var piece = this.body[i];
 
-            piece.direction = this.body[i - 1].direction;
+            var tempx = this.body[i].x;
+            var tempy = this.body[i].y;
+
+            piece.x = prevX;
+            piece.y = prevY;
+
+            prevX = tempx;
+            prevY = tempy;
 
             piece.Move();
         }
     }
 
-    Draw() {
-        for (var i = 0; i < this.body.length; i++) {
+    CheckCollision() {
+        for (var i = 1; i < this.body.length; i++) {
             var piece = this.body[i];
 
-            piece.Draw();
+            if (this.body[0].x == piece.x && this.body[0].y == piece.y) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Reset()
+    {
+        var temp = this.body[0];
+
+        temp.x = (canvas.width/2) - (temp.width / 2);
+        temp.y = (canvas.height/2) - (temp.height / 2);
+
+        this.body = [];
+
+        this.body.push(temp);
+    }
+
+    Draw() {
+        for (var i = 0; i < this.body.length; i++) {
+            this.body[i].Draw();
         }
     }
 
@@ -125,7 +155,7 @@ class Snake {
         var newPiece;
         if (this.body.length > 0) {
             newPiece = this.body[this.body.length - 1];
-            newPiece = new SnakePiece(newPiece.x, newPiece.y, newPiece.width, newPiece.height, newPiece.color, newPiece.direction);
+            newPiece = new SnakePiece(canvas.width / 2, canvas.height / 2, newPiece.width, newPiece.height, newPiece.color, newPiece.direction);
         }
         this.body[this.body.length] = newPiece;
     }
@@ -162,4 +192,36 @@ class SnakePiece extends Sprite {
                 break;
         }
     }
+}
+
+class Food extends Sprite {
+    constructor(x = number, y = number, size = number, color) {
+        super(x, y, size, size, color);
+    }
+
+    Collided(newX = number, newY = number, newWidth = number, newHeight = number)
+    {
+        var rect1 = {x: newX, y: newY, width: newWidth, height: newHeight}
+        var rect2 = {x: this.x, y: this.y, width: this.width, height: this.height}
+        
+        if (rect1.x < rect2.x + rect2.width &&
+           rect1.x + rect1.width > rect2.x &&
+           rect1.y < rect2.y + rect2.height &&
+           rect1.height + rect1.y > rect2.y) {
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    }
+
+    SpawnFood()
+    {
+        //this.width + this.width / 7.5
+        
+        this.x = Math.floor((Math.random() * canvas.width - (this.width + this.width / 7.5)) + 0);
+        this.y = Math.floor((Math.random() * canvas.height - (this.width + this.width / 7.5)) + 0);
+    }
+    
 }
