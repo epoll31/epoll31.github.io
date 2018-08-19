@@ -23,16 +23,16 @@ class SnakePart{
             switch (this.CurrentDirection)
             {
                 case Directions.up:
-                    this.Y -= this.Height + 1;
+                    this.Y -= this.Height;// + 1;
                     break;
                 case Directions.right:
-                    this.X += this.Width + 1;
+                    this.X += this.Width;// + 1;
                     break;
                 case Directions.down:
-                    this.Y += this.Height - 1;
+                    this.Y += this.Height;// - 1;
                     break;
                 case Directions.left:
-                    this.X -= this.Width - 1;
+                    this.X -= this.Width;// - 1;
                     break;
                 default:
                     break;
@@ -49,18 +49,18 @@ class SnakePart{
         {
             case Directions.up:
                 prev.X = this.X;
-                prev.Y = this.Y - this.Height - 1;
+                prev.Y = this.Y - this.Height;// - 1;
                 break;
             case Directions.right:
-                prev.X = this.X + this.Width + 1;
+                prev.X = this.X + this.Width;// + 1;
                 prev.Y = this.Y;
                 break;
             case Directions.down:
                 prev.X = this.X;
-                prev.Y = this.Y + this.Height + 1;
+                prev.Y = this.Y + this.Height;// + 1;
                 break;
             case Directions.left:
-                prev.X = this.X - this.Width - 1;
+                prev.X = this.X - this.Width;// - 1;
                 prev.Y = this.Y;
                 break;
             default:
@@ -73,8 +73,8 @@ class SnakePart{
         return this.Next;
     }
 
-    Draw(graphics){
-        graphics.fillStyle = "#000000";
+    Draw(graphics, color){
+        graphics.fillStyle = color;
         graphics.fillRect(this.X, this.Y, this.Width, this.Height);
     }
 }
