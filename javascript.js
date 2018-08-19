@@ -3,176 +3,91 @@
 
 var canvas;
 var graphics;
+var snakePart;
+var scoreLabel;
+var count = 1;
+var speed = 400;
 
-var ball;
-var leftPaddle;
-var rightPaddle;
+var KeyCodes = Object.freeze({"upArrow": 38, "rightArrow" : 39, "downArrow": 40, "leftArrow" : 37, "space" : 32});
 
-var pong;
-var snakeButton;
-var back;
-
-var state;
-
-var updateInterval;
-var drawInterval;
-
-var snake;
-var food;
-
-window.onload = () => {
-    canvas = document.getElementsByTagName("canvas")[0];
-    graphics = canvas.getContext("2d");
-
-    ball = new BouncySprite((canvas.width / 2) - 12.5, (canvas.height / 2) - 12.5, 25, 25, 4, "Black");
-    leftPaddle = new Paddle(15, canvas.height / 2 - 50, 25, 100, "Red");
-    rightPaddle = new Paddle(canvas.width - 40, canvas.height / 2 - 50, 25, 100, "Red");
-
-    pong = new Button(50, 50, 150, 50, "Pong", 32.5, 12.5, 40, "Red", "Black");
-    snakeButton = new Button(225, 50, 150, 50, "Snake", 20, 10, 40, "Red", "Black");
-    back = new Button(25, 25, 75, 25, "Back", 15, 5, 20, "Red", "Black");
-
-    state = 0;
-
-    snake = new Snake(canvas.width / 2 - 7.5, canvas.height / 2 - 7.5, 15, "Black");
-    food = new Food(0, 0, 15, "Red");
-    food.SpawnFood();
-
-    updateInterval = setInterval(Update, 30);
-    drawInterval = setInterval(Draw, 30);
-
-    canvas.addEventListener("mousedown", mouseClickPosition, false);
-    window.addEventListener("keydown", keyDown, false);
+function Draw() {
+    snakePart.Draw(graphics);
 }
 
 function Update() {
-    if (state == 1) {
-        ball.Update();
-        rightPaddle.y = ball.y - (rightPaddle.height / 2) + (ball.height / 2);
+    //alert("update");
+    snakePart = snakePart.Update();
 
-        if (rightPaddle.y <= 15) {
-            rightPaddle.y = 15;
-        }
-        else if (rightPaddle.y + rightPaddle.height + 15 >= canvas.height) {
-            rightPaddle.y = canvas.height - rightPaddle.height - 15;
-        }
+    graphics.fillStyle = "#d3d3d3";
+    graphics.fillRect(0, 0, 800, 480);
+    //graphics.fillStyle = "#000000";
 
-        if ((ball.y > leftPaddle.y && ball.y + ball.height < leftPaddle.y + leftPaddle.height) && ball.x <= leftPaddle.x + leftPaddle.width) {
-            ball.x = leftPaddle.x + leftPaddle.width;
-            ball.xSpeed *= -1;
-        }
-        else if (ball.x <= 0) {
-            alert("Game Over!");
-            ResetBall();
-            leftPaddle.y = (canvas.height / 2) - leftPaddle.height / 2;
-        }
+    var current = snakePart;
+    do
+    {
+        current.Draw(graphics);
+        current = current.Previous;
+    }while (current != null);
 
-        if (ball.x + ball.width >= rightPaddle.x) {
-            ball.x = rightPaddle.x - ball.width;
-            ball.xSpeed *= -1;
-        }
-    }
-    else if (state == 2) {
-        snake.Update();
-
-        if (snake.CheckCollision()) {
-            alert("Game Over!");
-            snake.Reset();
-        }
-        if (food.Collided(snake.body[0].x, snake.body[0].y, snake.body[0].width, snake.body[0].height)) {
-            snake.AddPiece();
-            food.SpawnFood();
-        }
-    }
+    setTimeout(Update, speed);
 }
 
-function Draw() {
-    graphics.fillStyle = "CornflowerBlue";
-    graphics.fillRect(0, 0, canvas.width, canvas.height);
-    if (state == 0) {
-        pong.Draw();
-        snakeButton.Draw();
-    }
-    else if (state == 1) {
-        back.Draw();
-        ball.Draw();
-        leftPaddle.Draw(graphics);
-        rightPaddle.Draw(graphics);
-    }
-    else if (state == 2) {
-        back.Draw();
-        snake.Draw();
-        food.Draw();
-    }
-}
+window.onload = () => {
+    canvas = document.getElementById("Canvas1");
+    graphics = canvas.getContext("2d");
+    scoreLabel = document.getElementById("score");
 
-function ResetBall() {
-    ball.x = canvas.width / 2 + ball.width / 2;
-    ball.y = canvas.height / 2 + ball.height / 2;
-    ball.SpeedX = (Math.floor((Math.random() * 2) + 0) - 1) * 2;
-    ball.SpeedY = (Math.floor((Math.random() * 2) + 0) - 1) * 2;
+    snakePart = new SnakePart(Directions.right, 20, 20, 20, 20);
+
+    //alert("X: " + snakePart.Y + " | Y: " + snakePart.Y + " | Width: " + snakePart.Width + " | Height: " + snakePart.Height);
+
+    //canvas.addEventListener("mousedown", mouseClickPosition, false);
+    window.addEventListener("keydown", keyDown, false);
+
+    Update();
+    //setInterval(Draw, 1);
 }
 
 
 function mouseClickPosition(event) {
-    var x = event.x - canvas.offsetLeft;
-    var y = event.y - canvas.offsetTop;
 
-    if (state == 0) {
-        if (pong.Clicked(x, y)) {
-            clearInterval(updateInterval);
-            updateInterval = setInterval(Update, 30);
-            clearInterval(drawInterval);
-            drawInterval = setInterval(Draw, 30);
-            state = 1;
-        }
-        else if (snakeButton.Clicked(x, y)) {
-            clearInterval(updateInterval);
-            updateInterval = setInterval(Update, 150);
-            clearInterval(drawInterval);
-            drawInterval = setInterval(Draw, 150);
-            state = 2;
-        }
-    }
-    else if (state != 0 && back.Clicked(x, y)) {
-        clearInterval(updateInterval);
-        updateInterval = setInterval(Update, 30);
-        clearInterval(drawInterval);
-        drawInterval = setInterval(Draw, 30);
-        state = 0;
-    }
 }
 
 function keyDown(event) {
     switch (event.keyCode) {
-        case 37:
-            if (state == 2) {
-                snake.ChangeDirection(2);
+        case KeyCodes.space:
+            var temp = snakePart;
+            while (temp.Previous!= null)
+            {
+                temp = temp.Previous;
+            }
+            temp.Previous = new SnakePart(temp.CurrentDirection, temp.X, temp.Y, temp.Width, temp.Height);
+            temp.Previous.Next = temp;
+            count++;
+            if (count % 5 == 0 && speed > 50){
+                speed -= 25;
+            }
+            scoreLabel.innerHTML = "Score: " + (count-1)*5 + "\nSpeed: " + speed;
+
+            break;
+        case KeyCodes.upArrow:
+            if (snakePart.Previous == null || snakePart.CurrentDirection != Directions.down){
+                snakePart.SetDirection(Directions.up)
             }
             break;
-        case 39:
-            if (state == 2) {
-                snake.ChangeDirection(0);
+        case KeyCodes.rightArrow:
+            if (snakePart.Previous == null || snakePart.CurrentDirection != Directions.left){
+                snakePart.SetDirection(Directions.right)
             }
             break;
-        case 38:
-            if (state == 1) {
-                leftPaddle.MoveUp();
-            }
-            else if (state == 2) {
-                snake.ChangeDirection(3);
+        case KeyCodes.downArrow:
+            if (snakePart.Previous == null || snakePart.CurrentDirection != Directions.up){
+                snakePart.SetDirection(Directions.down)
             }
             break;
-        case 40:
-            if (state == 1) {
-                leftPaddle.MoveDown();
-            }
-            else if (state == 2) {
-                snake.ChangeDirection(1);
-            }
-            break;
-        case 32:
-            if (state == 2) {
+        case KeyCodes.leftArrow:
+            if (snakePart.Previous == null || snakePart.CurrentDirection != Directions.right){
+                snakePart.SetDirection(Directions.left)
             }
             break;
     }
