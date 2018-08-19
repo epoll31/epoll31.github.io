@@ -178,7 +178,7 @@ function keyDown(event) {
                 snakePart.SetDirection(Directions.up);
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'SnakeHeadUp.png';
+                snakeHeadImage.src = 'assets/SnakeHeadUp.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
@@ -189,7 +189,7 @@ function keyDown(event) {
                 snakePart.SetDirection(Directions.right);
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'SnakeHeadRight.png';
+                snakeHeadImage.src = 'assets/SnakeHeadRight.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
@@ -200,7 +200,7 @@ function keyDown(event) {
                 snakePart.SetDirection(Directions.down);
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'SnakeHeadDown.png';
+                snakeHeadImage.src = 'assets/SnakeHeadDown.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
@@ -212,7 +212,7 @@ function keyDown(event) {
                 snakeHeadImage.style.transform = "rotate(180deg)";
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'SnakeHeadLeft.png';
+                snakeHeadImage.src = 'assets/SnakeHeadLeft.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
