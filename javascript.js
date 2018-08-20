@@ -80,15 +80,16 @@ function Update() {
         var current = snakePart;
         var color = 0xff;
         var decrementValue = parseInt(0xff / count);
+        if (decrementValue == 0)
+        {
+            decrementValue = 1;
+        }
 
         graphics.drawImage(snakeHeadImage, current.X, current.Y);
 
         while (current.Previous != null) {
             current = current.Previous;
             var hexVal = "#00" + "" + parseInt(color).toString(16) + "00";
-            if (decrementValue == 0) {
-                hexVal += "0"
-            }
             color -= decrementValue;
 
             current.Draw(graphics, hexVal);
