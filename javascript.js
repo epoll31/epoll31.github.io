@@ -118,7 +118,7 @@ window.onload = () => {
     graphics = canvas.getContext("2d");
 
     snakeHeadImage = new Image(20, 20);
-    snakeHeadImage.src = 'SnakeHeadRight.png';
+    snakeHeadImage.src = 'Assets/SnakeheadRight.png';
     document.body.appendChild(snakeHeadImage);
     snakeHeadImage.hidden = true;
 
@@ -141,7 +141,7 @@ function Restart() {
     speed = 150;
     partsToAdd = 0;
     snakeHeadImage = new Image(20, 20);
-    snakeHeadImage.src = 'SnakeHeadRight.png';
+    snakeHeadImage.src = 'Assets/SnakeheadRight.png';
     document.body.appendChild(snakeHeadImage);
     snakeHeadImage.hidden = true;
     paused = false;
@@ -178,7 +178,7 @@ function keyDown(event) {
                 snakePart.SetDirection(Directions.up);
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'Assets/SnakeHeadUp.png';
+                snakeHeadImage.src = 'Assets/SnakeheadUp.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
@@ -189,7 +189,7 @@ function keyDown(event) {
                 snakePart.SetDirection(Directions.right);
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'Assets/SnakeHeadRight.png';
+                snakeHeadImage.src = 'Assets/SnakeheadRight.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
@@ -200,7 +200,7 @@ function keyDown(event) {
                 snakePart.SetDirection(Directions.down);
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'Assets/SnakeHeadDown.png';
+                snakeHeadImage.src = 'Assets/SnakeheadDown.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
@@ -212,7 +212,7 @@ function keyDown(event) {
                 snakeHeadImage.style.transform = "rotate(180deg)";
                 clearInterval(update);
                 snakeHeadImage = new Image(20, 20);
-                snakeHeadImage.src = 'Assets/SnakeHeadLeft.png';
+                snakeHeadImage.src = 'Assets/SnakeheadLeft.png';
                 document.body.appendChild(snakeHeadImage);
                 snakeHeadImage.hidden = true;
                 Update();
