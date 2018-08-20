@@ -52,6 +52,22 @@ function Update() {
         graphics.fillText("Score: " + (count - 1) * 5, 25, 40);
         //graphics.fillText("Speed: " + speed, 25, 65);
 
+        var currentY = canvas.height - 35;
+        for (var i = 10; i > 0; i--) {
+            if (localStorage.getItem("" + i) == "undefined") {
+                localStorage.removeItem("" + i);
+            }
+            if (localStorage.getItem("" + i) == null) {
+                continue;
+            }
+            graphics.fillText(i + ": " + localStorage.getItem("" + i), 25, currentY);
+            currentY -= 30;
+        }
+        if (localStorage.getItem("1") != null)
+        {
+            graphics.fillText("High Scores:", 25, currentY);
+        }
+
         food.Draw(graphics);
 
         AddPart();
@@ -70,20 +86,16 @@ function Update() {
         while (current.Previous != null) {
             current = current.Previous;
             var hexVal = "#00" + "" + parseInt(color).toString(16) + "00";
-            if (decrementValue == 0){
+            if (decrementValue == 0) {
                 hexVal += "0"
             }
             color -= decrementValue;
 
             current.Draw(graphics, hexVal);
-        } ;
+        };
 
         if (snakePart.X < 0 || snakePart.Y < 0 || snakePart.X + snakePart.Width - 1 > canvas.width || snakePart.Y + snakePart.Height - 1 > canvas.height) {
-            graphics.font = "30px Arial";
-            graphics.fillStyle = "#000000";
-            graphics.textAlign = "center";
-            graphics.fillText("You Lost. Press Any Key To Restart.", canvas.width / 2, canvas.height / 2);
-            waitingForReset = true;
+            GameOver();
             return;
         }
 
@@ -92,11 +104,7 @@ function Update() {
             var temp2 = temp.Previous;
             while (temp2.Previous != null) {
                 if (temp.X == temp2.X && temp.Y == temp2.Y) {
-                    graphics.font = "30px Arial";
-                    graphics.fillStyle = "#000000";
-                    graphics.textAlign = "center";
-                    graphics.fillText("You Lost. Press Any Key To Restart.", canvas.width / 2, canvas.height / 2);
-                    waitingForReset = true;
+                    GameOver();
                     return;
                 }
 
@@ -112,7 +120,8 @@ function Update() {
 window.onload = () => {
     canvas = document.getElementById("Canvas1");
 
-    canvas.width = document.body.clientWidth - (document.body.clientWidth % 20) - 5;
+    canvas.width = document.body.clientWidth - 5;
+    canvas.width -= (canvas.width % 20) - 1;
     canvas.height = window.innerHeight - 25 - (window.innerHeight - 25) % 20;
 
     graphics = canvas.getContext("2d");
@@ -131,6 +140,33 @@ window.onload = () => {
     graphics.fillText("Press space to start.", canvas.width / 2, canvas.height / 2);
 
     Restart();
+}
+
+function GameOver() {
+    graphics.font = "30px Arial";
+    graphics.fillStyle = "#000000";
+    graphics.textAlign = "center";
+    graphics.fillText("You Lost. Press Any Key To Restart.", canvas.width / 2, canvas.height / 2);
+    var valueToAdd = (count - 1) * 5;
+
+    for (var i = 1; i <= 10; i++) {
+        if (localStorage.getItem("" + i) != null) {
+            if (parseInt(localStorage.getItem("" + i)) < valueToAdd) {
+                var temp = valueToAdd;
+                valueToAdd = parseInt(localStorage.getItem("" + i));
+                localStorage.setItem("" + i, "" + temp);
+            }
+            else {
+                continue;
+            }
+        }
+        else {
+            localStorage.setItem("" + i, "" + valueToAdd);
+            break;
+        }
+    }
+
+    waitingForReset = true;
 }
 
 function Restart() {
