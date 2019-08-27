@@ -18,6 +18,8 @@ var update;
 var waitingForReset = false;
 var paused = true;
 
+var CurrentSnakeParts;
+
 function AddPart() {
     if (partsToAdd > 0) {
         var temp = snakePart;
@@ -31,6 +33,7 @@ function AddPart() {
             speed -= 7;
         }
 
+        CurrentSnakeParts.push(temp.Previous);
         partsToAdd--;
     }
 }
@@ -74,7 +77,7 @@ function Update() {
 
         if (snakePart.X == food.X && snakePart.Y == food.Y) {
             partsToAdd = 5;
-            food.UpdatePosition();
+            food.UpdatePosition(CurrentSnakeParts);
         }
 
         var current = snakePart;
@@ -173,6 +176,7 @@ function GameOver() {
 function Restart() {
     waitingForReset = false;
     snakePart = new SnakePart(Directions.right, 20, 20, 20, 20);
+    CurrentSnakeParts = [snakePart];
     food = new Food(20, 20, canvas.width, canvas.height);
     count = 1;
     speed = 150;
