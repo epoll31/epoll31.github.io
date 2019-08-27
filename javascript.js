@@ -89,7 +89,7 @@ function Update() {
 
         while (current.Previous != null) {
             current = current.Previous;
-            var hexVal = "#00" + "" + parseInt(color).toString(16) + "00";
+            var hexVal = "#" + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16);
             color -= decrementValue;
 
             current.Draw(graphics, hexVal);
