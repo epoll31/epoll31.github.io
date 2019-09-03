@@ -82,21 +82,37 @@ function Update() {
 
         var current = snakePart;
         var color = 0xff;
-        var decrementValue = parseInt(0xff / count);
-        if (decrementValue == 0)
+        var decrementValue = parseInt(color / count);
+        if (decrementValue < 1)
         {
             decrementValue = 1;
         }
 
-        graphics.drawImage(snakeHeadImage, current.X, current.Y);
+        //graphics.drawImage(snakeHeadImage, current.X, current.Y);
 
-        while (current.Previous != null) {
-            current = current.Previous;
-            var hexVal = "#" + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16);
+
+        do {
+            var hexVal = "";
+            if (window.location.search == "?random")
+            {
+              hexVal = "#" + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16);
+            }
+            else if (window.location.search == "?red")
+            {
+              hexVal = "#" + parseInt(color).toString(16) + "0000";
+            }
+            else if (window.location.search == "?blue")
+            {
+              hexVal = "#0000" + parseInt(color).toString(16);
+            }
+            else {
+              hexVal = "#00" + parseInt(color).toString(16) + "00";
+            }
             color -= decrementValue;
 
             current.Draw(graphics, hexVal);
-        };
+            current = current.Previous;
+        } while (current != null && current.Previous != null);
 
         if (snakePart.X < 0 || snakePart.Y < 0 || snakePart.X + snakePart.Width - 1 > canvas.width || snakePart.Y + snakePart.Height - 1 > canvas.height) {
             GameOver();
@@ -132,6 +148,7 @@ window.onload = () => {
 
     snakeHeadImage = new Image(20, 20);
     snakeHeadImage.src = 'Assets/SnakeheadRight.png';
+    //snakeHeadImage = document.body.getElementById("snakeHeadImage");
     document.body.appendChild(snakeHeadImage);
     snakeHeadImage.hidden = true;
 
