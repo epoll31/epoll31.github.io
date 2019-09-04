@@ -76,20 +76,50 @@ function Update() {
         AddPart();
 
         if (snakePart.X == food.X && snakePart.Y == food.Y) {
-            partsToAdd = 5;
+            partsToAdd += 5;
             food.UpdatePosition(CurrentSnakeParts);
         }
 
         var current = snakePart;
-        var color = 0xff;
-        var decrementValue = parseInt(color / count);
-        if (decrementValue < 1)
+
+        var colorR = 0x00;
+        var colorG = 0xff;
+        var colorB = 0x00;
+        var targetR = 0x00;
+        var targetG = 0x00;
+        var targetB = 0x00;
+
+        if (window.location.search == "?pink")
         {
-            decrementValue = 1;
+          colorR = 0xff;
+          colorG = 0x00;
+          colorB = 0x8f;
+          targetR = 0xff;
+          targetG = 0xff;
+          targetB = 0xff;
         }
-
-        //graphics.drawImage(snakeHeadImage, current.X, current.Y);
-
+        else if (window.location.search == "?red")
+        {
+          colorR = 0xff;
+          colorG = 0x00;
+          colorB = 0x00;
+          targetR = 0x00;
+          targetG = 0x00;
+          targetB = 0x00;
+        }
+        else if (window.location.search == "?blue")
+        {
+          colorR = 0x00;
+          colorG = 0x00;
+          colorB = 0xff;
+          targetR = 0x00;
+          targetG = 0x00;
+          targetB = 0x00;
+        }
+        
+        var decrementValueR = parseInt((targetR - colorR) / count);
+        var decrementValueG = parseInt((targetG - colorG) / count);
+        var decrementValueB = parseInt((targetB - colorB) / count);
 
         do {
             var hexVal = "";
@@ -97,18 +127,28 @@ function Update() {
             {
               hexVal = "#" + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16) + (parseInt(Math.random() * 255) + 0).toString(16);
             }
-            else if (window.location.search == "?red")
+            else 
             {
-              hexVal = "#" + parseInt(color).toString(16) + "0000";
+                hexVal = "#";
+                hexVal += parseInt(colorR).toString(16);
+                if (colorR == 0) 
+                {
+                    hexVal += "0";
+                }
+                hexVal += parseInt(colorG).toString(16);
+                if (colorG == 0) 
+                {
+                    hexVal += "0";
+                }
+                hexVal += parseInt(colorB).toString(16);
+                if (colorB == 0) 
+                {
+                    hexVal += "0";
+                }
+                colorR += decrementValueR;
+                colorG += decrementValueG;
+                colorB += decrementValueB;
             }
-            else if (window.location.search == "?blue")
-            {
-              hexVal = "#0000" + parseInt(color).toString(16);
-            }
-            else {
-              hexVal = "#00" + parseInt(color).toString(16) + "00";
-            }
-            color -= decrementValue;
 
             current.Draw(graphics, hexVal);
             current = current.Previous;
