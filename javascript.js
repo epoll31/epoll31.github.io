@@ -18,6 +18,8 @@ var update;
 var waitingForReset = false;
 var paused = true;
 
+var urlParams;
+
 var CurrentSnakeParts;
 
 function AddPart() {
@@ -81,13 +83,12 @@ function Update() {
         }
 
         var current = snakePart;
-
-        var colorR = 0x00;
-        var colorG = 0xff;
-        var colorB = 0x00;
-        var targetR = 0x00;
-        var targetG = 0x00;
-        var targetB = 0x00;
+        var colorR;
+        var colorG;
+        var colorB;
+        var targetR;
+        var targetG;
+        var targetB;
 
         if (window.location.search == "?pink")
         {
@@ -115,6 +116,14 @@ function Update() {
           targetR = 0x00;
           targetG = 0x00;
           targetB = 0x00;
+        }
+        else{
+            colorR = parseInt(urlParams.get('R1'));
+            colorG = parseInt(urlParams.get('G1'));
+            colorB = parseInt(urlParams.get('B1'));
+            targetR = parseInt(urlParams.get('R2'));
+            targetG = parseInt(urlParams.get('G2'));
+            targetB = parseInt(urlParams.get('B2'));
         }
         
         var decrementValueR = parseInt((targetR - colorR) / count);
@@ -199,6 +208,8 @@ window.onload = () => {
     graphics.fillStyle = "#000000";
     graphics.textAlign = "center";
     graphics.fillText("Press space to start.", canvas.width / 2, canvas.height / 2);
+
+    urlParams = new URLSearchParams(window.location.search);
 
     Restart();
 }
