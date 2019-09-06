@@ -90,7 +90,16 @@ function Update() {
         var targetG;
         var targetB;
 
-        if (window.location.search == "?pink")
+        if (window.location.search == "?green")
+        {
+          colorR = 0x00;
+          colorG = 0xff;
+          colorB = 0x00;
+          targetR = 0xff;
+          targetG = 0xff;
+          targetB = 0xff;
+        }
+        else if (window.location.search == "?pink")
         {
           colorR = 0xff;
           colorG = 0x00;
@@ -118,12 +127,26 @@ function Update() {
           targetB = 0x00;
         }
         else{
-            colorR = parseInt(urlParams.get('R1'));
-            colorG = parseInt(urlParams.get('G1'));
-            colorB = parseInt(urlParams.get('B1'));
-            targetR = parseInt(urlParams.get('R2'));
-            targetG = parseInt(urlParams.get('G2'));
-            targetB = parseInt(urlParams.get('B2'));
+            var color1 = parseInt(urlParams.get('Color1'));
+            colorB = color1 % 0x100;
+            color1 /= 0x100;
+            colorG = color1 % 0x100;
+            color1 /= 0x100;
+            colorR = color1 % 0x100;
+            color1 /= 0x100;
+            var color2 = parseInt(urlParams.get('Color2'));
+            targetB = color2 % 0x100;
+            color2 /= 0x100;
+            targetG = color2 % 0x100;
+            color2 /= 0x100;
+            targetR = color2 % 0x100;
+            color2 /= 0x100;
+            //colorR = parseInt(urlParams.get('R1'));
+            //colorG = parseInt(urlParams.get('G1'));
+            //colorB = parseInt(urlParams.get('B1'));
+            //targetR = parseInt(urlParams.get('R2'));
+            //targetG = parseInt(urlParams.get('G2'));
+            //targetB = parseInt(urlParams.get('B2'));
         }
         
         var decrementValueR = parseInt((targetR - colorR) / count);
