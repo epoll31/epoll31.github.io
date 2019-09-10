@@ -19,6 +19,7 @@ var waitingForReset = false;
 var paused = true;
 
 var urlParams;
+var isEasyMode;
 
 var CurrentSnakeParts;
 
@@ -186,9 +187,30 @@ function Update() {
             current = current.Previous;
         } while (current != null && current.Previous != null);
 
-        if (snakePart.X < 0 || snakePart.Y < 0 || snakePart.X + snakePart.Width - 1 > canvas.width || snakePart.Y + snakePart.Height - 1 > canvas.height) {
-            GameOver();
-            return;
+        if (!isEasyMode)
+        {
+            if (snakePart.X < 0 || snakePart.Y < 0 || snakePart.X + snakePart.Width - 1 > canvas.width || snakePart.Y + snakePart.Height - 1 > canvas.height) {
+                GameOver();
+                return;
+            }
+        }
+        else{
+            if (snakePart.X < 0)
+            {
+                snakePart.X = canvas.width;
+            }
+            else if (snakePart.X + snakePart.Width - 1 > canvas.width)
+            {
+                snakePart.X = 0;
+            }
+            if (snakePart.Y < 0)
+            {
+                snakePart.Y = canvas.height;
+            }
+            else if (snakePart.Y + snakePart.Height - 1 > canvas.height)
+            {
+                snakePart.Y = 0;
+            }
         }
 
         var temp = snakePart
@@ -233,6 +255,8 @@ window.onload = () => {
     graphics.fillText("Press space to start.", canvas.width / 2, canvas.height / 2);
 
     urlParams = new URLSearchParams(window.location.search);
+
+    isEasyMode = urlParams.get("Mode") == "Easy";
 
     Restart();
 }
