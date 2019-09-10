@@ -197,7 +197,7 @@ function Update() {
         else{
             if (snakePart.X < 0)
             {
-                snakePart.X = canvas.width;
+                snakePart.X = canvas.width - 1;
             }
             else if (snakePart.X + snakePart.Width - 1 > canvas.width)
             {
