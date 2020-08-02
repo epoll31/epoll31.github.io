@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Snake Game</title>
-        <script src = "javascript.js"></script>
-        <script src = "SnakePart.js"></script>
-        <script src = "Food.js"></script>
+        <title>I Love You!</title>
+        <script type="text/javascript" src="Nicole/script.js"></script>
+        <link rel="stylesheet" href="Nicole/stylesheet.css">
     </head>
-    <body style="vertical-align: 100%">
-        <canvas id="Canvas1" width="800" height="480" style="background-color:cornflowerblue; border:2px solid #000000; " > </canvas>
-        <!--label id="score">Score: 0</label-->
+    <body>
+        <!--input class="nextButton" type="button" value="next" onclick="NextButtonClicked()"/>
+        <input class="backButton" type="button" value="back" onclick="BackButtonClicked()"/-->
+
+        <div class="nextButton" onclick="NextButtonClicked()">
+            <img src="Nicole/next-arrow.png"/>
+        </div>
+        <div class="backButton" onclick="BackButtonClicked()">
+            <img src="Nicole/back-arrow.png"/>
+        </div>
+
+        <div class="image">
+            <p class "iLoveYou">♡I Love You Nicole♡</p>
+            <img id="image" src="Nicole/Photos/Nicole0.jpg" alt="Nicole"/>
+        </div>
     </body>
 </html>
