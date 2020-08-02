@@ -1,0 +1,89 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: pink;
+}
+
+
+.image{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+    height: 100%;
+    position: fixed;
+}
+.image > img{
+    margin: 0;
+    padding: 0;
+    max-width:80%;
+    max-height:80%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.image > p{
+    color: #ff0077;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin: 0;
+    max-height: 10%;
+    max-width: 100%;
+    top: 0%;
+    font-size: 400%;
+}
+
+.backButton{
+    margin: 0;
+    padding: 0;
+    background-color: #fd82bc;
+    top:0%;
+    left:0%;
+    width: 10%;
+    height: 100%;
+    position: fixed;
+    border-style: none;
+    outline: none;
+}
+
+.nextButton{
+    margin: 0;
+    padding: 0;
+    background-color: #fd82bc;
+    top:0%;
+    left:90%;
+    width: 10%;
+    height: 100%;
+    position: fixed;
+    border-style: none;
+    outline: none;
+}
+
+.backButton:hover,
+.nextButton:hover{
+    background-color: #ce6897;
+}
+
+.backButton > img,
+.nextButton > img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
