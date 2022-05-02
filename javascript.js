@@ -84,12 +84,12 @@ function Update() {
         }
 
         var current = snakePart;
-        var colorR;
-        var colorG;
-        var colorB;
-        var targetR;
-        var targetG;
-        var targetB;
+        var colorR = 0;
+        var colorG = 0;
+        var colorB = 0;
+        var targetR = 0;
+        var targetG = 0;
+        var targetB = 0;
 
         if (window.location.search == "?green")
         {
@@ -129,27 +129,29 @@ function Update() {
         }
         else{
             var color1 = parseInt(urlParams.get('Color1'));
-            colorB = color1 % 0x100;
-            color1 /= 0x100;
-            colorG = color1 % 0x100;
-            color1 /= 0x100;
-            colorR = color1 % 0x100;
-            color1 /= 0x100;
-            var color2 = parseInt(urlParams.get('Color2'));
-            targetB = color2 % 0x100;
-            color2 /= 0x100;
-            targetG = color2 % 0x100;
-            color2 /= 0x100;
-            targetR = color2 % 0x100;
-            color2 /= 0x100;
-            //colorR = parseInt(urlParams.get('R1'));
-            //colorG = parseInt(urlParams.get('G1'));
-            //colorB = parseInt(urlParams.get('B1'));
-            //targetR = parseInt(urlParams.get('R2'));
-            //targetG = parseInt(urlParams.get('G2'));
-            //targetB = parseInt(urlParams.get('B2'));
+            if (color1 != NaN) {
+                colorB = color1 % 0x100;
+                color1 /= 0x100;
+                colorG = color1 % 0x100;
+                color1 /= 0x100;
+                colorR = color1 % 0x100;
+                color1 /= 0x100;
+                var color2 = parseInt(urlParams.get('Color2'));
+                targetB = color2 % 0x100;
+                color2 /= 0x100;
+                targetG = color2 % 0x100;
+                color2 /= 0x100;
+                targetR = color2 % 0x100;
+                color2 /= 0x100;
+            }
         }
-        
+         console.clear();
+         console.log("targetr: " + targetR);
+         console.log("colorr: " + colorR);
+         console.log("targetg: " + targetG);
+         console.log("colorg: " + colorG);
+         console.log("targetb: " + targetB);
+         console.log("colorb: " + colorB);
         var decrementValueR = parseInt((targetR - colorR) / count);
         var decrementValueG = parseInt((targetG - colorG) / count);
         var decrementValueB = parseInt((targetB - colorB) / count);
@@ -182,8 +184,7 @@ function Update() {
                 colorG += decrementValueG;
                 colorB += decrementValueB;
             }
-
-            current.Draw(graphics, hexVal);
+            current.Draw(graphics, "#000000");
             current = current.Previous;
         } while (current != null && current.Previous != null);
 
@@ -234,9 +235,9 @@ function Update() {
 window.onload = () => {
     canvas = document.getElementById("Canvas1");
 
-    canvas.width = document.body.clientWidth - 5;
-    canvas.width -= (canvas.width % 20) - 1;
-    canvas.height = window.innerHeight - 25 - (window.innerHeight - 25) % 20;
+    //canvas.width = document.body.clientWidth - 5;
+    //canvas.width -= (canvas.width % 20) - 1;
+    //canvas.height = window.innerHeight - 25 - (window.innerHeight - 25) % 20;
 
     graphics = canvas.getContext("2d");
 

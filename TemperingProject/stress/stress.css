@@ -1,0 +1,47 @@
+@keyframes flash {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.stress-button {
+
+    animation: flash 500ms infinite alternate ease-in;
+
+    display: block;
+    position: absolute;
+    text-align: center;
+}
+
+
+.stress-color0{
+    background-color: #E7BBE3;
+    border-color: #E7BBE3;
+}
+.stress-color1{
+    background-color: #00C2D1;
+    border-color: #00C2D1;
+}
+.stress-color2{
+    background-color: #F9E900;
+    border-color: #F9E900;
+}
+.stress-color3{
+    background-color: #C3423F;
+    border-color: #C3423F;
+    color: #FDFFFC;
+}
+.stress-color4{
+    background-color: #0D1321;
+    border-color: #0D1321;
+    color: #FDFFFC;
+}
+.stress-button:hover,
+.stress-button:active,
+.stress-button:focus{
+    color: var(--blue);
+    border: solid 5px;
+}
