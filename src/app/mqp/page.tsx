@@ -39,7 +39,7 @@ export default function MQP() {
 
       <div className="flex flex-row flex-wrap w-full justify-evenly gap-2">
         <h1 className="flex-grow w-full text-2xl text-center" id="report">Report</h1>
-        <Card className="flex-grow flex max-w-prose">
+        <Card className="flex-grow flex">
           <iframe className="flex-grow aspect-a4" src="/mqp.pdf"/>
         </Card>
       </div>
