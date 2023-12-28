@@ -9,7 +9,8 @@
     {
       "name": "Turning the Nitrogen Cycle into an Augmented Reality Game",
       "description": "This interactive project focuses on the critical importance of the natural nitrogen cycle and its susceptibility to human interventions, particularly in agriculture and waste disposal. Through an augmented reality game, it aims to educate about and visualize the complex interactions and balance of the nitrogen cycle in our environment.",
-      "tags": ["Augmented Reality", "Nitrogen Cycle", "Ecology", "Environmental Science", "Education", "Interactive", "IQP"]
+      "tags": ["Augmented Reality", "Nitrogen Cycle", "Ecology", "Environmental Science", "Education", "Interactive", "IQP"],
+      "link": "/iqp"
     },
     {
       "name": "WasteWorks: A Campus Public Art Project",
