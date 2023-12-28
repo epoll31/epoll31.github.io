@@ -1,95 +1,19 @@
 {
   "projects": [
     {
-      "name": "Project 1",
-      "description": "This is project 1",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
+      "name": "Comparative Study of Relational Databases for CS Courses",
+      "description": "This study evaluates Oracle, Postgres, and MySQL database systems to develop a set of criteria helping college instructors select the most appropriate database for teaching. The project includes a comprehensive literature review, practical evaluations, and analysis, offering insights into each system's unique capabilities and implications for academic curriculum design.",
+      "tags": ["Databases", "Education", "Technology", "Oracle", "Postgres", "MySQL", "Comparative Study", "MQP"]
     },
     {
-      "name": "Project 2",
-      "description": "This is project 2",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
+      "name": "Turning the Nitrogen Cycle into an Augmented Reality Game",
+      "description": "This interactive project focuses on the critical importance of the natural nitrogen cycle and its susceptibility to human interventions, particularly in agriculture and waste disposal. Through an augmented reality game, it aims to educate about and visualize the complex interactions and balance of the nitrogen cycle in our environment.",
+      "tags": ["Augmented Reality", "Nitrogen Cycle", "Ecology", "Environmental Science", "Education", "Interactive", "IQP"]
     },
     {
-      "name": "Project 3",
-      "description": "This is project 3",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
-    },
-    {
-      "name": "Project 4",
-      "description": "This is project 4",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
-    },
-    {
-      "name": "Project 5",
-      "description": "This is project 5",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
-    },
-    {
-      "name": "Project 6",
-      "description": "This is project 6",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
-    },
-    {
-      "name": "Project 7",
-      "description": "This is project 7",
-      "url": "http://www.google.com",
-      "tags": [
-        "tag1",
-        "tag2",
-        "tag3",
-        "tag4",
-        "tag5",
-        "tag6"
-      ]
+      "name": "WasteWorks: A Campus Public Art Project",
+      "description": "In collaboration with Artist-in-Residence Dan Schimmel, this project, WALLFLOWER, is a public art initiative that combines creativity, sustainability, and technology. Students design and prototype kinetic, wall-oriented flowers using repurposed materials, integrated with electronic sensors to engage viewers in a conversation about sustainable art practices and environmental consciousness.",
+      "tags": ["Art", "Public Art", "Sustainability", "Electronics", "Repurposing", "Interactive Installation", "HUA"]
     }
   ],
   "courses": [

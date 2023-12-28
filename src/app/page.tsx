@@ -4,6 +4,7 @@ import Card from "./components/Card";
 import { promises as fs } from "fs";
 import ProjectCard, { Project } from "./components/ProjectCard";
 import CoursesSection from "./components/CoursesSection";
+import ProjectsSection from "./components/ProjectsSection";
 
 
 export default async function Home() {
@@ -20,9 +21,9 @@ export default async function Home() {
       </div>
       <div className="flex flex-row gap-5 text-xl" >
         
-        <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#courses">Courses</a>
-        <h1 className="">·</h1>
         <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#projects">Projects</a>
+        <h1 className="">·</h1>
+        <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#courses">Courses</a>
         <h1 className="">·</h1>
         <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#resume">Resume</a>
       </div>
@@ -32,13 +33,14 @@ export default async function Home() {
           courses.map((c: Course) => <CourseCard course={c} className="flex-grow" />)
         }
       </div> */}
-      <CoursesSection courses={courses}/>
-      <div className="flex flex-row flex-wrap w-full  p-5 justify-evenly gap-2">
+      {/* <div className="flex flex-row flex-wrap w-full  p-5 justify-evenly gap-2">
         <h1 className="flex-grow w-full text-2xl text-center" id="projects">Project Experience</h1>
         {
-          projects.map((p: Project) => <ProjectCard project={p} className="flex-grow" />)
+          projects.map((p: Project) => <ProjectCard project={p} className="flex-grow" key={p.name}/>)
         }
-      </div>
+      </div> */}
+      <ProjectsSection projects={projects}/>
+      <CoursesSection courses={courses}/>
       <div className="flex flex-row flex-wrap w-full  p-5 justify-evenly gap-2">
         <h1 className="flex-grow w-full text-2xl text-center" id="resume">Resume</h1>
         <Card className="flex-grow flex max-w-prose">
