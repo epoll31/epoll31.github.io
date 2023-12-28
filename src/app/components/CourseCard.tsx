@@ -16,16 +16,16 @@ export interface ICourseCardProps {
   className?: string,
 };
 
-function Tag (tag: string, active: boolean) {
+function Tag (props: {tag: string, active: boolean}) {
 
     /* <span className="bg-foreground text-background rounded-full px-2 py-1 text-sm font-semibold mr-2">{tag}</span> */
     /* <span className="bg-background text-foreground hover:bg-foreground hover:text-background transition-colors rounded-full px-2 py-1 text-sm font-semibold mr-2">{tag}</span> */
      
-    if (active) {
-      return <span className="bg-foreground text-background border border-background hover:border-transparent transition-colors rounded-full px-2 py-1 text-sm font-semibold mr-2">{tag}</span>;
+    if (props.active) {
+      return <span className="bg-foreground text-background border border-background hover:border-transparent transition-colors rounded-full px-2 py-1 text-sm font-semibold mr-2">{props.tag}</span>;
     } 
     else {
-      return <span className="bg-background text-foreground border border-transparent hover:border-foreground transition-colors rounded-full px-2 py-1 text-sm font-semibold mr-2">{tag}</span>;
+      return <span className="bg-background text-foreground border border-transparent hover:border-foreground transition-colors rounded-full px-2 py-1 text-sm font-semibold mr-2">{props.tag}</span>;
     }
 }
 
@@ -36,7 +36,7 @@ export default function CourseCard(props: ICourseCardProps) {
         <h3 className="text-2xl">{props.course.name}</h3>
         <p>{props.course.description}</p>
         <div className="mt-1 flex flex-wrap gap-y-1">
-          {props.course.tags.map((tag) => Tag(tag, props.activeTags?.includes(tag) ? true : false))}
+          {props.course.tags.map((tag) => <Tag tag={tag} active={props.activeTags?.includes(tag) ? true : false} key={tag}/>)}
         </div>
       </Card>
   );
