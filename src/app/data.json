@@ -3,7 +3,8 @@
     {
       "name": "Comparative Study of Relational Databases for CS Courses",
       "description": "This study evaluates Oracle, Postgres, and MySQL database systems to develop a set of criteria helping college instructors select the most appropriate database for teaching. The project includes a comprehensive literature review, practical evaluations, and analysis, offering insights into each system's unique capabilities and implications for academic curriculum design.",
-      "tags": ["Databases", "Education", "Technology", "Oracle", "Postgres", "MySQL", "Comparative Study", "MQP"]
+      "tags": ["Databases", "Education", "Technology", "Oracle", "Postgres", "MySQL", "Comparative Study", "MQP"],
+      "link": "/mqp"
     },
     {
       "name": "Turning the Nitrogen Cycle into an Augmented Reality Game",
