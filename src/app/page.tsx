@@ -5,6 +5,7 @@ import { promises as fs } from "fs";
 import ProjectCard, { Project } from "./components/ProjectCard";
 import CoursesSection from "./components/CoursesSection";
 import ProjectsSection from "./components/ProjectsSection";
+import PDFViewer from "./components/PDFViewer";
 
 
 export default async function Home() {
@@ -14,8 +15,8 @@ export default async function Home() {
   const courses = data.courses;
 
   return (
-    <main className="flex min-h-screen flex-col items-center p-24 gap-5">
-      <div className=" w-full flex flex-col items-center justify-between  ">
+    <main className="flex min-h-screen flex-col items-center py-12 md:p-24 gap-5 ">
+      <div className=" w-full flex flex-col items-center justify-between " id="title">
         <h1 className="text-5xl py-2">Ethan Pollack</h1>
         <h2 className="text-l">Software Developer · Designer · Etc.</h2>
       </div>
@@ -32,9 +33,20 @@ export default async function Home() {
       <CoursesSection courses={courses}/>
       <div className="flex flex-row flex-wrap w-full  p-5 justify-evenly gap-2">
         <h1 className="flex-grow w-full text-2xl text-center" id="resume">Resume</h1>
-        <Card className="flex-grow flex max-w-prose">
-          <iframe className="flex-grow aspect-resume" src="/resume.pdf"/>
-        </Card>
+        <PDFViewer src="/resume.pdf" name="my resume"/>
+        {/* <Card className="flex-grow flex max-w-prose">
+          <object data="/resume.pdf" type="application/pdf" width="100%" className="aspect-resume w-full flex-grow flex items-center text-center">
+            <p className="w-full">Your web browser doesn't support PDFs. <br/>Please <a className=" underline" href="/resume.pdf">click here to download my resume</a>.</p>
+          </object>
+        </Card> */}
+      </div>
+
+      <div className="flex flex-row flex-wrap w-full justify-evenly gap-2">
+        <a href="#title">
+          <Card>
+            <h1 className="flex-grow w-full text-2xl text-center">Return To Top</h1>
+          </Card>
+        </a>
       </div>
     </main>
   );
