@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Card from "../components/Card";
-import PDFViewer from "../components/PDFViewer";
+import Card from "../../components/Card";
+import PDFViewer from "../../components/PDFViewer";
 
 
 export default function MQP() {
