@@ -22,11 +22,11 @@ export default async function Home() {
       </div>
       
       <div className="flex flex-row gap-5 text-xl" >
+        <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#resume">Resume</a>
+        <h1 className="">·</h1>
         <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#projects">Projects</a>
         <h1 className="">·</h1>
         <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#courses">Courses</a>
-        <h1 className="">·</h1>
-        <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#resume">Resume</a>
       </div>
 
       <ProjectsSection projects={projects}/>
