@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   basePath: '',
-  output: 'export'
+  // output: 'export'
+  images: {
+    unoptimized: false
+  }
 }
 
 module.exports = nextConfig
