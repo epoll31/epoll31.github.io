@@ -51,7 +51,7 @@ export default function TutorPage() {
                         </CardContainer>
                     </div>
                     <div className="col-start-1 col-span-1 md:col-start-2 lg:col-span-1 flex justify-center align-middle w-full">
-                        <div className="max-w-[22rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl p-6 bg-white text-justify text-black dark:bg-black dark:text-white">
+                        <div className="max-w-[25rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl p-6 bg-white text-justify text-black dark:bg-black dark:text-white">
                             <h1 className="w-full text-3xl text-center pb-1">About Me!</h1>
                             <p className="text-xl">
                                 Hi there, I'm Ethan! I'm a recent graduate with a B.S. in Computer Science. I have a passion for teaching and helping others learn. I have experience in a wide range of subjects, including computer science, math, and web development. I'm excited to help you learn and grow in your studies!
@@ -59,13 +59,22 @@ export default function TutorPage() {
                         </div>
                     </div>
                     <div className="col-start-1 col-span-1 lg:col-start-2 lg:col-span-1 flex justify-center align-middle">
-                        <div className="max-w-[22rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl p-6 bg-white text-justify text-black dark:bg-black dark:text-white">
+                        <div className="max-w-[25rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl p-6 bg-white text-justify text-black dark:bg-black dark:text-white">
                             <h1 className="w-full text-3xl text-center pb-1">Logistics</h1>
                             <p className="text-xl">
                                 My rate is $50/hr. I'm available to tutor in person or online.
-                                I'm flexible with my schedule and can work with you to find a time that works for both of us.
-                                I'm excited to help you learn and grow in your studies!
+                                I'm flexible with my schedule and can work with you to find a time and place that works for both of us.
                             </p>
+                        </div>
+                    </div>
+                    <div className="col-start-1 col-span-1 lg:col-span-2 flex justify-center align-middle">
+                        <div className="max-w-[25rem] md:max-w-full w-fit h-fit rounded-3xl p-6 pl-12 bg-white text-black dark:bg-black dark:text-white">
+                            <h1 className="w-full text-3xl text-center pb-1">Tutoring Options</h1>
+                            <ul className="text-xl list-disc">
+                                <li>A variety of programming languages including: C#, Java, C++, HTML/CSS, JavaSript, Python, and more.</li>
+                                <li>Lots of programming tools and frameworks including: Unity, React, Git, and Visual Studio.</li>
+                                <li>Math subjects including: Algebra, Geometry, Calculus, and more.</li>
+                            </ul>
                         </div>
                     </div>
                     <div className="col-start-1 col-span-1 md:row-start-2 md:row-span-3 lg:row-start-1 md:col-start-2 lg:col-start-3 flex justify-center align-middle">
