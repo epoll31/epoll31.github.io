@@ -10,6 +10,7 @@ import { Toggle } from "./toggle";
 import React from "react";
 import { Button } from "./button";
 import { BackgroundGradient } from "./background-gradient";
+import { TextArea } from "./textarea";
 
 
 export function InterestedForm(
@@ -25,6 +26,7 @@ export function InterestedForm(
     const [studentType, setStudentType2] = React.useState(formTypes[0]);
     const [studentName, setStudentName] = React.useState("your student");
     const setStudentType = (val: string) => {
+        console.log("Setting student type", val);
         if (val === formTypes[0]) {
             setStudentName("your student");
         }
@@ -62,7 +64,7 @@ export function InterestedForm(
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
                 <Label htmlFor="message">Message</Label>
-                <Input id="message" name="message" placeholder="Tell me a bit about what you want help with." type="textarea" required />
+                <TextArea id="message" name="message" placeholder="Tell me a bit about what you want help with." cols={30} rows={10} required />
             </LabelInputContainer>
             <button
                 className="bg-gradient-to-br relative group/btn from-orange-200 to-orange-300 bg-orange-300 dark:from-zinc-900 dark:to-zinc-900 block dark:bg-zinc-800 w-full text-black dark:text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--orange-100)_inset,0px_-1px_0px_0px_var(--orange-100)_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
@@ -122,7 +124,7 @@ export function InterestedForm(
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
                 <Label htmlFor="message">Message</Label>
-                <Input id="message" name="message" placeholder={`Tell me a bit about what ${studentName} wants help with.`} type="textarea" required />
+                <TextArea id="message" name="message" placeholder={`Tell me a bit about what ${studentName} wants help with.`} cols={30} rows={10} required />
             </LabelInputContainer>
             <button
                 className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
