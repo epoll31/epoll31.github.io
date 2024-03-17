@@ -8,21 +8,23 @@ import { InterestedForm } from "./Components/ui/interestForm";
 import { FormspreeProvider } from "@formspree/react";
 
 
-function Tag({ children }: { children: React.ReactNode }) {
+function Tag({ children, href }: { children: React.ReactNode, href?: string }) {
     // focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50  focus:outline-none
+    const MaybeLink = ({ children, href, className }: { children: React.ReactNode, href?: string, className?: string }) => {
+        return href === undefined ? <p className={className}>{children}</p> : <Link href={href} className={className}>{children}</Link>;
+    };
+
     return <>
-        <p className="relative inline-flex h-8 mx-2 my-[2px] overflow-hidden rounded-full p-[1px]">
+        <MaybeLink className="relative inline-flex h-8 mx-2 my-[2px] overflow-hidden rounded-full p-[1px] w-full" href={href}>
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
             <span className="inline-flex h-full w-full items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm text-nowrap font-medium text-white backdrop-blur-3xl">
                 {children}
             </span>
-        </p>
+        </MaybeLink>
     </>;
 }
 
-
 export default function TutorPage() {
-
     return (
         <FormspreeProvider project="2429802370826239296">
             <main className="flex min-h-screen flex-col align-center p-5 gap-5">
@@ -37,14 +39,17 @@ export default function TutorPage() {
                                 {/* <CardItem translateZ="50" rotateZ="2" rotateX="0" className="h-[300px] w-[300px] flex flex-col justify-around " > */}
                                 <div className="flex flex-col justify-around">
                                     <CardItem translateZ="70" as="h1" className="text-4xl text-center w-full font-bold text-black dark:text-white">Ethan Pollack</CardItem>
-                                    <CardItem translateZ="60" as="p" className="text-xl text-center w-full font-semibold *:text-black dark:text-white">Graduated with a B.S. Degree<br></br>in Computer Science</CardItem>
+                                    <CardItem translateZ="60" as="p" className="text-xl text-center w-full font-semibold *:text-black dark:text-white">Computer Science and Math Tutor</CardItem>
                                     <CardItem translateZ="50" className="mt-5 w-full flex flex-col justify-evenly flex-1">
                                         {/* <li className="">Experience in: */}
-                                        <Tag>Computer Science and Algorithms</Tag>
-                                        <Tag>Math: Geometry, Algebra, and Calculus</Tag>
-                                        <Tag>Web, Game, and Mobile Development</Tag>
-                                        <Tag>And Much More...</Tag>
+                                        <Tag>Need Homework Help?</Tag>
+                                        <Tag>Want to Learn to Program?</Tag>
+                                        <Tag>Finding Math or Programming Challenging?</Tag>
+                                        <Tag>All Ages Welcome</Tag>
                                         {/* </li> */}
+                                    </CardItem>
+                                    <CardItem translateZ={80} className="w-full">
+                                        <Tag href="#interested">Contact Me Now!</Tag>
                                     </CardItem>
                                 </div>
                             </CardBody>
@@ -72,9 +77,11 @@ export default function TutorPage() {
                         <CardContainer className="rounded-3xl p-5 md:p-8 h-fit bg-white text-black dark:bg-black dark:text-white" >
                             <CardBody className="max-w-[25rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl text-justify">
                                 <CardItem as="h1" translateZ={100} className="w-full text-3xl text-center pb-1">Logistics</CardItem>
-                                <CardItem as="p" translateZ={80} className="text-xl">
-                                    My rate is $50/hr. I'm available to tutor in person or online.
-                                    I'm flexible with my schedule and can work with you to find a time and place that works for both of us.
+                                <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-4">
+                                    <li className="mb-2">I'm flexible with my schedule and can work with you to find a time and place that works for both of us.</li>
+                                    <li className="mb-2">I'm available to tutor in person or online.</li>
+                                    <li className="mb-2">I'm available to tutor all ages and skill levels.</li>
+                                    <li className="mb-2">My rate is $40/hr.</li>
                                 </CardItem>
                             </CardBody>
                         </CardContainer>
@@ -83,16 +90,16 @@ export default function TutorPage() {
                         <CardContainer className="rounded-3xl p-5 md:p-8 w-full h-fit bg-white text-black dark:bg-black dark:text-white" >
                             <CardBody className="max-w-[25rem] md:max-w-full w-full h-fit rounded-3xl">
                                 <CardItem as="h1" translateZ={100} className="w-full text-3xl text-center pb-1">Tutoring Options</CardItem>
-                                <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-6">
-                                    <li>A variety of programming languages including: C#, Java, C++, HTML/CSS, JavaSript, Python, and more.</li>
-                                    <li>Lots of programming tools and frameworks including: Unity, React, Git, and Visual Studio.</li>
-                                    <li>Math subjects including: Algebra, Geometry, Trigonometry, Calculus, and more.</li>
+                                <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-4 text-justify">
+                                    <li className="mb-2">A variety of programming languages including: C#, Java, C++, HTML/CSS, JavaSript, Python, and more.</li>
+                                    <li className="mb-2">Lots of programming tools and frameworks including: Unity, React, Git, and Visual Studio.</li>
+                                    <li className="mb-2">Math subjects including: Algebra, Geometry, Trigonometry, Calculus, and more.</li>
                                 </CardItem>
                             </CardBody>
                         </CardContainer>
                     </div>
                     <div className="col-start-1 col-span-1 md:row-start-2 md:row-span-3 lg:row-start-1 md:col-start-2 lg:col-start-3 flex justify-center align-middle">
-                        <div className="">
+                        <div className="" id="interested">
                             <InterestedForm />
                         </div>
                     </div>
@@ -152,6 +159,6 @@ export default function TutorPage() {
                     </div>
                 </div >
             </main >
-        </FormspreeProvider>
+        </FormspreeProvider >
     );
 }

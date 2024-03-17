@@ -15,10 +15,6 @@ import { BackgroundGradient } from "./background-gradient";
 export function InterestedForm(
     { className }: { className?: string }
 ) {
-    // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    //     e.preventDefault();
-    //     console.log("Form submitted");
-    // };
     const [studentFormState, handleStudentFormSubmit2, resetStudentForm] = useForm("studentInterestForm");
     const [parentFormState, handleParentFormSubmit, resetParentForm] = useForm("parentInterestForm");
     const handleStudentFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,9 +22,17 @@ export function InterestedForm(
         handleStudentFormSubmit2(e);
     }
     const formTypes = ["I'm a Student", "I'm a Parent"];
-    const [studentType, setStudentType] = React.useState(formTypes[0]);
+    const [studentType, setStudentType2] = React.useState(formTypes[0]);
     const [studentName, setStudentName] = React.useState("your student");
+    const setStudentType = (val: string) => {
+        if (val === formTypes[0]) {
+            setStudentName("your student");
+        }
+        setStudentType2(val);
+    }
+
     const submitted = studentFormState.succeeded || parentFormState.succeeded;
+    const tutorTypes = ["Introduction to Programming", "Enhance Existing Programming Skills", "Computer Science Tutoring", "Math Tutoring", "Other (Please specify in message)"];
 
     const studentForm = (
         <form className="mt-8" onSubmit={handleStudentFormSubmit}>
@@ -54,9 +58,7 @@ export function InterestedForm(
 
             <LabelInputContainer className="mb-4">
                 <Label htmlFor="tutorType">Tutoring In</Label>
-                <Select id="tutorType" name="tutorType" options={
-                    ["Introduction to Programming", "Specific Type of Development (Note which type in message)", "AP Computer Science", "Math Homework", "Other (Please specify in message)"]
-                } required />
+                <Select id="tutorType" name="tutorType" options={tutorTypes} required />
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
                 <Label htmlFor="message">Message</Label>
@@ -116,9 +118,7 @@ export function InterestedForm(
 
             <LabelInputContainer className="mb-4">
                 <Label htmlFor="tutorType">Tutoring In</Label>
-                <Select id="tutorType" name="tutorType" options={
-                    ["Introduction to Programming", "Specific Type of Development (Note which type in message)", "AP Computer Science", "Math Homework", "Other (Please specify in message)"]
-                } required />
+                <Select id="tutorType" name="tutorType" options={tutorTypes} required />
             </LabelInputContainer>
             <LabelInputContainer className="mb-4">
                 <Label htmlFor="message">Message</Label>
