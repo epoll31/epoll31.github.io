@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## What Is This Project?
+This is a personal website and portfolio for me, Ethan Pollack, that you can visit now at [epoll31.github.io](https://epoll31.github.io).
 
-First, run the development server:
+I have several pages on here that display the following:
+* My Research Projects and Classes Taken at [Worcester Polytechnic Institute](https://wpi.edu)
+    * My [Major Qualifying Project](https://epoll31.github.io/mqp): Comparative Study of Relational Databases for CS Courses
+        * This research project compares Oracle, MySQL, and Postgres databases in a pedagogical setting at Worcester Polytechnic Institute
+    * My [Interactive Qualifying Project](https://epoll31.github.io/iqp): Nitrogen Cycle Public Outreach and Game Development
+        * During this research project, I made a simple game using React.JS and AR.JS that enables kids at a local Boy's and Girl's Club to learn and understand more about the Nitrogen Life Cycle.
+* My Tutoring Business
+    * Allowing students and parents to learn more about me and my experiences
+    * If they are interested, there is a form that I implemented using a [Formspree API](https://formspree.io) to send me an email with the information that they filled in, allowing me to reach out with more information and schedule a session.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Development Notes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Editing the Project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Use the command `npm run dev` to start the project and navigate to [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Notes:
+* **Common Error:** Make sure that the `next.config.json` file ***does not*** include `output: 'export'` in the configuration while testing. This may cause issues with running the project.
+* The page auto-updates as you edit the files.
+* This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### Deploying the Project
 
-To learn more about Next.js, take a look at the following resources:
+Any push to the `main` branch on GitHub will trigger a GitHub Action that builds and deploys the project to [epoll31.github.io](https://epoll31.github.io).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Notes:
+* **Common Error**: Make sure that the `next.config.json` file ***does*** include `output: 'export'` in the configuration before you push your code to `main`.
+  * If your configuration does not include this, the GitHub Action will fail to build and the new edits will not deploy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

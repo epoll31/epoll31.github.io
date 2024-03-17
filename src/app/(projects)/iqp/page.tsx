@@ -9,12 +9,12 @@ export default function IQP() {
     <main className="flex min-h-screen flex-col items-center py-12 px-5 md:p-24 gap-5">
       <div className=" w-full flex flex-col items-center justify-between  ">
         <h1 className="text-2xl md:text-5xl py-2 text-center">Nitrogen Cycle Public Outreach and Game Development</h1>
-        <h2 className="md:text-lg text-center font-semibold">Iteractive Qualifying Project</h2>
+        <h2 className="md:text-lg text-center font-semibold">Interactive Qualifying Project</h2>
         <div className="group flex flex-col justify-center items-center text-center m-10">
           <div className="flex flex-row">
-          <h2 className="">by</h2>
-          <h2 className="pl-1 text-nowrap group-hover:font-bold">Ethan Pollack</h2>
-          <h2>,</h2>
+            <h2 className="">by</h2>
+            <h2 className="pl-1 text-nowrap group-hover:font-bold">Ethan Pollack</h2>
+            <h2>,</h2>
           </div>
           <h2 className="">Philip Bui, Charles Anderson, Hasan Gandor, and Vien Le</h2>
         </div>
@@ -37,7 +37,7 @@ export default function IQP() {
 
       <div className="flex flex-row flex-wrap w-full justify-evenly gap-2">
         <h1 className="flex-grow w-full text-2xl text-center" id="report">Report</h1>
-        <PDFViewer src="/iqp.pdf" name="my IQP"/>
+        <PDFViewer src="/iqp.pdf" name="my IQP" />
       </div>
       <div className="flex flex-row flex-wrap w-full justify-evenly gap-2">
         {/* back to main page */}
