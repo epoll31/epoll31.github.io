@@ -18,29 +18,37 @@ export const CardContainer = ({
     children,
     className,
     containerClassName,
+    sensitivity = 25,
 }: {
     children?: React.ReactNode;
     className?: string;
     containerClassName?: string;
+    sensitivity?: number | { x: number, y: number };
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMouseEntered, setIsMouseEntered] = useState(false);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        console.log(window.innerWidth);
+        if (window.innerWidth < 768) return;
         if (!containerRef.current) return;
         const { left, top, width, height } =
             containerRef.current.getBoundingClientRect();
-        const x = (e.clientX - left - width / 2) / 25;
-        const y = (e.clientY - top - height / 2) / 25;
+        const x = (e.clientX - left - width / 2) / (typeof sensitivity === "number" ? sensitivity : sensitivity.x)
+        const y = (e.clientY - top - height / 2) / (typeof sensitivity === "number" ? sensitivity : sensitivity.y);
         containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
     };
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+        console.log(window.innerWidth);
+        if (window.innerWidth < 768) return;
         setIsMouseEntered(true);
         if (!containerRef.current) return;
     };
 
     const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+        console.log(window.innerWidth);
+        if (window.innerWidth < 768) return;
         if (!containerRef.current) return;
         setIsMouseEntered(false);
         containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
