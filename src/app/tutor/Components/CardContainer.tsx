@@ -29,7 +29,7 @@ export const CardContainer = ({
     const [isMouseEntered, setIsMouseEntered] = useState(false);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        console.log(window.innerWidth);
+        // console.log(window.innerWidth);
         if (window.innerWidth < 768) return;
         if (!containerRef.current) return;
         const { left, top, width, height } =
@@ -40,14 +40,14 @@ export const CardContainer = ({
     };
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-        console.log(window.innerWidth);
+        // console.log(window.innerWidth);
         if (window.innerWidth < 768) return;
         setIsMouseEntered(true);
         if (!containerRef.current) return;
     };
 
     const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-        console.log(window.innerWidth);
+        // console.log(window.innerWidth);
         if (window.innerWidth < 768) return;
         if (!containerRef.current) return;
         setIsMouseEntered(false);
