@@ -101,9 +101,10 @@ export default function TutorPage() {
                             <CardBody className="max-w-[25rem] md:max-w-full w-full h-fit rounded-3xl">
                                 <CardItem as="h1" translateZ={100} className="w-full text-3xl text-center pb-1">Tutoring Options</CardItem>
                                 <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-4 text-justify">
-                                    <li className="mb-2">A variety of programming languages including: C#, Java, C++, HTML/CSS, JavaSript, Python, and more.</li>
-                                    <li className="mb-2">Lots of programming tools and frameworks including: Unity, React, Git, and Visual Studio.</li>
-                                    <li className="mb-2">Math subjects including: Algebra, Geometry, Trigonometry, Calculus, and more.</li>
+                                    <li className="mb-2">Math help including: Algebra, Geometry, Trigonometry, Calculus, and more</li>
+                                    <li className="mb-2">Intro to programming: Visual and text-based programming languages including Scratch, C#, Java, Python, and others</li>
+                                    <li className="mb-2">Enhance your programming skills with help in: Unity, React, Git, Visual Studio and more industry standard tools</li>
+                                    {/* <li className="mb-2">A variety of programming languages including: C#, Java, C++, HTML/CSS, JavaSript, Python, and more.</li> */}
                                 </CardItem>
                             </CardBody>
                         </CardContainer>

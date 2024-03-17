@@ -34,7 +34,7 @@ export function InterestedForm(
     }
 
     const submitted = studentFormState.succeeded || parentFormState.succeeded;
-    const tutorTypes = ["Introduction to Programming", "Enhance Existing Programming Skills", "Computer Science Tutoring", "Math Tutoring", "Other (Please specify in message)"];
+    const tutorTypes = ["Introduction to Programming", "Enhance Existing Programming Skills", "Computer Science Class Tutoring", "Math Tutoring", "Other (Please specify in message)"];
 
     const studentForm = (
         <form className="mt-8" onSubmit={handleStudentFormSubmit}>
