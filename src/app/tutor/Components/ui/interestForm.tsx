@@ -65,7 +65,7 @@ export function InterestedForm(
                 <Input id="message" name="message" placeholder="Tell me a bit about what you want help with." type="textarea" required />
             </LabelInputContainer>
             <button
-                className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+                className="bg-gradient-to-br relative group/btn from-orange-200 to-orange-300 bg-orange-300 dark:from-zinc-900 dark:to-zinc-900 block dark:bg-zinc-800 w-full text-black dark:text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_var(--orange-100)_inset,0px_-1px_0px_0px_var(--orange-100)_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
                 type="submit"
                 disabled={studentFormState.submitting}
             >
@@ -157,7 +157,7 @@ export function InterestedForm(
     );
 
     return (
-        <BackgroundGradient className={cn(`max-w-md w-full mx-auto rounded-3xl p-4 md:p-8 shadow-input bg-white dark:bg-black `, className)}>
+        <BackgroundGradient className={cn(`max-w-md w-full mx-auto rounded-3xl p-4 md:p-8 shadow-input bg-sky-200 dark:bg-black `, className)}>
             {submitted ?
                 successMessage :
                 <>

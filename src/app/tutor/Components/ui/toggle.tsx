@@ -54,9 +54,9 @@ const Toggle = React.forwardRef<HTMLButtonElement, ToggleProps>(
                 {props.options.map((option, index) => {
                     const rounded = index === 0 ? "rounded-l-full" : index === props.options.length - 1 ? "rounded-r-full" : "";
                     const padding = index === 0 ? "pr-3 pl-5" : index === props.options.length - 1 ? "pr-5 pl-3" : "px-3";
-                        const selected = option === props.state?.value ?
-                            "bg-gradient-to-r from-neutral-300 to-neutral-400 dark:from-neutral-700 dark:to-neutral-600 text-black dark:text-white underline underline-offset-2" :
-                            "bg-gray-50 dark:bg-zinc-800 text-black dark:text-white";
+                    const selected = option === props.state?.value ?
+                        "bg-gradient-to-r from-orange-200 to-orange-300 dark:from-neutral-700 dark:to-neutral-600 text-black dark:text-white underline underline-offset-2" :
+                        "bg-orange-100 dark:bg-zinc-800 text-black dark:text-white";
                     const onSelected = () => props.state?.setValue(option);
                     return <button
                         className={cn(

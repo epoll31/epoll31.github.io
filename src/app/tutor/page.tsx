@@ -8,16 +8,26 @@ import { InterestedForm } from "./Components/ui/interestForm";
 import { FormspreeProvider } from "@formspree/react";
 
 
-function Tag({ children, href }: { children: React.ReactNode, href?: string }) {
+function Tag({
+    children,
+    href,
+    bgColor = "bg-orange-200 dark:bg-slate-950",
+    textColor = "text-black dark:text-white"
+}: {
+    children: React.ReactNode,
+    href?: string,
+    bgColor?: string
+    textColor?: string
+}) {
     // focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50  focus:outline-none
     const MaybeLink = ({ children, href, className }: { children: React.ReactNode, href?: string, className?: string }) => {
         return href === undefined ? <p className={className}>{children}</p> : <Link href={href} className={className}>{children}</Link>;
     };
 
     return <>
-        <MaybeLink className="relative inline-flex h-8 mx-2 my-[2px] overflow-hidden rounded-full p-[1px] w-full" href={href}>
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full items-center justify-center rounded-full bg-slate-950 px-3 py-1 text-sm text-nowrap font-medium text-white backdrop-blur-3xl">
+        <MaybeLink className="relative inline-flex h-8 mx-2 my-[2px] overflow-hidden rounded-full p-[2px]    w-full" href={href}>
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#64748b_0%,#22d3ee_50%,#e11d48_100%)] dark:bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+            <span className={`inline-flex h-full w-full items-center justify-center rounded-full ${bgColor} ${textColor} px-3 py-1 text-sm text-nowrap font-medium  backdrop-blur-3xl`}>
                 {children}
             </span>
         </MaybeLink>
@@ -27,10 +37,10 @@ function Tag({ children, href }: { children: React.ReactNode, href?: string }) {
 export default function TutorPage() {
     return (
         <FormspreeProvider project="2429802370826239296">
-            <main className="flex min-h-screen flex-col align-center p-5 gap-5">
-                <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto max-w-[1300px]">
+            <main className="flex min-h-screen flex-col align-center p-5 gap-5 bg-white dark:bg-zinc-800">
+                <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:py-16 mx-auto max-w-[1300px]">
                     <div className="col-start-1 col-span-1 md:row-span-2 lg:row-span-1 lg:col-span-2 flex justify-center align-middle h-fit">
-                        <CardContainer className="rounded-3xl p-5 md:p-8 h-fit gap-5 bg-white dark:bg-black" >
+                        <CardContainer className="rounded-3xl p-5 md:p-8 h-fit gap-5 bg-sky-200 dark:bg-black" >
                             <CardBody className="group/card h-auto w-auto flex flex-col lg:flex-row justify-around gap-5">
                                 <CardItem translateZ="100" className="">
                                     <Image src={headshot} alt="headshot" width={300} height={300} className="rounded-xl" />
@@ -39,13 +49,13 @@ export default function TutorPage() {
                                 {/* <CardItem translateZ="50" rotateZ="2" rotateX="0" className="h-[300px] w-[300px] flex flex-col justify-around " > */}
                                 <div className="flex flex-col justify-around">
                                     <CardItem translateZ="70" as="h1" className="text-4xl text-center w-full font-bold text-black dark:text-white">Ethan Pollack</CardItem>
-                                    <CardItem translateZ="60" as="p" className="text-xl text-center w-full font-semibold *:text-black dark:text-white">Computer Science and Math Tutor</CardItem>
+                                    <CardItem translateZ="60" as="p" className="text-xl text-center w-full font-semibold text-black dark:text-white">Computer Science and Math Tutor</CardItem>
                                     <CardItem translateZ="50" className="mt-5 w-full flex flex-col justify-evenly flex-1">
                                         {/* <li className="">Experience in: */}
-                                        <Tag>Need Homework Help?</Tag>
-                                        <Tag>Want to Learn to Program?</Tag>
-                                        <Tag>Finding Math or Programming Challenging?</Tag>
-                                        <Tag>All Ages Welcome</Tag>
+                                        <Tag bgColor="bg-orange-100 dark:bg-slate-950">Need Homework Help?</Tag>
+                                        <Tag bgColor="bg-orange-100 dark:bg-slate-950">Want to Learn to Program?</Tag>
+                                        <Tag bgColor="bg-orange-100 dark:bg-slate-950">Finding Math or Programming Challenging?</Tag>
+                                        <Tag bgColor="bg-orange-100 dark:bg-slate-950">All Ages Welcome</Tag>
                                         {/* </li> */}
                                     </CardItem>
                                     <CardItem translateZ={80} className="w-full">
@@ -56,7 +66,7 @@ export default function TutorPage() {
                         </CardContainer>
                     </div>
                     <div className="col-start-1 col-span-1 md:col-start-2 lg:col-span-1 flex justify-center align-middle w-full">
-                        <CardContainer className="rounded-3xl p-5 md:p-8 h-fit bg-white text-black dark:bg-black dark:text-white" >
+                        <CardContainer className="rounded-3xl p-5 md:p-8 h-fit bg-sky-200 text-black dark:bg-black dark:text-white" >
                             <CardBody className="max-w-[25rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl text-justify ">
                                 <CardItem translateZ={100} as="h1" className="w-full text-3xl text-center pb-1">About Me!</CardItem>
                                 <CardItem translateZ={80} as="p" className="text-xl">
@@ -74,7 +84,7 @@ export default function TutorPage() {
                         </CardContainer>
                     </div>
                     <div className="col-start-1 col-span-1 lg:col-start-2 lg:col-span-1 flex justify-center align-middle">
-                        <CardContainer className="rounded-3xl p-5 md:p-8 h-fit bg-white text-black dark:bg-black dark:text-white" >
+                        <CardContainer className="rounded-3xl p-5 md:p-8 h-fit bg-sky-200 text-black dark:bg-black dark:text-white" >
                             <CardBody className="max-w-[25rem] md:max-w-full  lg:max-w-[30rem] w-fit h-fit rounded-3xl text-justify">
                                 <CardItem as="h1" translateZ={100} className="w-full text-3xl text-center pb-1">Logistics</CardItem>
                                 <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-4">
@@ -87,7 +97,7 @@ export default function TutorPage() {
                         </CardContainer>
                     </div>
                     <div className="col-start-1 col-span-1 lg:col-span-2  w-full flex justify-center align-middle">
-                        <CardContainer className="rounded-3xl p-5 md:p-8 w-full h-fit bg-white text-black dark:bg-black dark:text-white" >
+                        <CardContainer className="rounded-3xl p-5 md:p-8 w-full h-fit bg-sky-200 text-black dark:bg-black dark:text-white" >
                             <CardBody className="max-w-[25rem] md:max-w-full w-full h-fit rounded-3xl">
                                 <CardItem as="h1" translateZ={100} className="w-full text-3xl text-center pb-1">Tutoring Options</CardItem>
                                 <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-4 text-justify">
@@ -104,7 +114,7 @@ export default function TutorPage() {
                         </div>
                     </div>
                     <div className="col-start-1 col-span-full lg:col-span-3 flex justify-center align-middle" id="my-experience">
-                        <CardContainer sensitivity={{ x: 200, y: 200 }} className="w-fit h-fit rounded-3xl p-6 pl-12 md:hover:p-12 md:hover:pl-16 sm:text-justify bg-white text-black dark:bg-black dark:text-white">
+                        <CardContainer sensitivity={{ x: 200, y: 200 }} className="w-fit h-fit rounded-3xl p-6 pl-12 md:hover:p-12 md:hover:pl-16 sm:text-justify bg-sky-200 text-black dark:bg-black dark:text-white">
                             <CardBody className="w-full h-fit rounded-3xl">
                                 <CardItem as="h1" translateZ={45} className="w-full text-3xl text-center pb-1">My Experience</CardItem>
                                 <CardItem as="ul" translateZ={30} className="text-xl list-disc ">
@@ -147,7 +157,7 @@ export default function TutorPage() {
                                         You can reach me at:
                                         <ul className="list-disc list-inside">
                                             <li>Email:      <Link className="px-1 font-bold hover:underline" href="mailto:epollack31@gmail.com">epollack31@gmail.com</Link></li>
-                                            <li>Phone:      <Link className="px-1 font-bold hover:underline" href="tel:818-398-8996">818-398-8996</Link></li>
+                                            {/* <li>Phone:      <Link className="px-1 font-bold hover:underline" href="tel:818-398-8996">818-398-8996</Link></li> */}
                                             <li>LinkedIn:   <Link className="px-1 font-bold hover:underline" href="https://www.linkedin.com/in/ethanpollack">Ethan Pollack</Link></li>
                                             <li>GitHub:     <Link className="px-1 font-bold hover:underline" href="https://github.com/epoll31">epoll31</Link></li>
                                         </ul>
