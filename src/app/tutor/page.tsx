@@ -121,13 +121,15 @@ export default function TutorPage() {
                                         and their performance for pedagogical purposes at WPI.
                                     </li>
                                     <li className="pb-4" >During college, I had two main jobs:
-                                        <li className="list-inside pb-4">Both summers after my sophomore year and junior year, I interned at a large company named Epic Systems in Verona, Wisconsin as a software developer.
-                                            Each summer I developed a project using their proprietary technology and software that passed through development and into quality assurance and testing. I am very proud of my
-                                            accomplishments at Epic Systems.</li>
-                                        <li className="list-inside">During my junior year, I worked for a company named Build-It-Yourself as a project manager and lead software developer. Build-It-Yourself is a mostly-remote,
-                                            Boston-based programming school that teaches programming to kids of various ages. They also hosted a platform named Invention Universe that enables kids to create a display and post
-                                            their creative endeavors including physical creations and programming projects. During my time there, I taught a variety of programming classes and worked as a team lead for the
-                                            Invention Universe project.</li>
+                                        <ul>
+                                            <li className="list-inside pb-4">Both summers after my sophomore year and junior year, I interned at a large company named Epic Systems in Verona, Wisconsin as a software developer.
+                                                Each summer I developed a project using their proprietary technology and software that passed through development and into quality assurance and testing. I am very proud of my
+                                                accomplishments at Epic Systems.</li>
+                                            <li className="list-inside">During my junior year, I worked for a company named Build-It-Yourself as a project manager and lead software developer. Build-It-Yourself is a mostly-remote,
+                                                Boston-based programming school that teaches programming to kids of various ages. They also hosted a platform named Invention Universe that enables kids to create a display and post
+                                                their creative endeavors including physical creations and programming projects. During my time there, I taught a variety of programming classes and worked as a team lead for the
+                                                Invention Universe project.</li>
+                                        </ul>
                                     </li>
                                     <li className="pb-4">
                                         After college, I decided to move to California to work as a software developer. I am currently looking for a job and am excited to help others learn and grow in their studies.
@@ -136,10 +138,12 @@ export default function TutorPage() {
                                     </li>
                                     <li className="pb-4">
                                         You can reach me at:
-                                        <li className="list-inside">Email:      <Link className="px-1 font-bold hover:underline" href="mailto:epollack31@gmail.com">epollack31@gmail.com</Link></li>
-                                        <li className="list-inside">Phone:      <Link className="px-1 font-bold hover:underline" href="tel:818-398-8996">818-398-8996</Link></li>
-                                        <li className="list-inside">LinkedIn:   <Link className="px-1 font-bold hover:underline" href="https://www.linkedin.com/in/ethanpollack">Ethan Pollack</Link></li>
-                                        <li className="list-inside">GitHub:     <Link className="px-1 font-bold hover:underline" href="https://github.com/epoll31">epoll31</Link></li>
+                                        <ul className="list-disc list-inside">
+                                            <li>Email:      <Link className="px-1 font-bold hover:underline" href="mailto:epollack31@gmail.com">epollack31@gmail.com</Link></li>
+                                            <li>Phone:      <Link className="px-1 font-bold hover:underline" href="tel:818-398-8996">818-398-8996</Link></li>
+                                            <li>LinkedIn:   <Link className="px-1 font-bold hover:underline" href="https://www.linkedin.com/in/ethanpollack">Ethan Pollack</Link></li>
+                                            <li>GitHub:     <Link className="px-1 font-bold hover:underline" href="https://github.com/epoll31">epoll31</Link></li>
+                                        </ul>
                                     </li>
 
                                 </CardItem>
