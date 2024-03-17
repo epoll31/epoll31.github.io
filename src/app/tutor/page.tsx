@@ -118,40 +118,49 @@ export default function TutorPage() {
                             <CardBody className="w-full h-fit rounded-3xl">
                                 <CardItem as="h1" translateZ={45} className="w-full text-3xl text-center pb-1">My Experience</CardItem>
                                 <CardItem as="ul" translateZ={30} className="text-xl list-disc ">
-                                    <li className="pb-4">I started learning programming through robotics at a school named
-                                        <Link className="px-1 font-semibold hover:font-bold active:underline" href="https://buildcoolrobots.com">Great Minds Robotics</Link>.
-                                        I started going there very often and participated in a very successful robotics team that made it to the Worlds Competition multiple years in a row.
-                                        While there, I learned a lot of pgramming lanugages, techniques, and tools that have helped me tremendously as a software developer.
-                                        Eventually, I became a teacher there and taught kids of various ages how to program. From the very beginning through learning advanced data structures,
-                                        complex algorithms, games, websites, and mobile apps.
+                                    <li className="pb-4">I began my coding journey back in middle school when I first attended a program at
+                                        <Link className="px-1 font-semibold hover:font-bold active:underline" href="https://buildcoolrobots.com">Great Minds Robotics</Link>
+                                        where 2 of my friends and I created a very successful robotics team. It's there that I first got my taste of programming and robotics
+                                        where we took our team to win State, Nationals, and then came in top 10 in Worlds - all before starting high school.  Before
+                                        graduating high school, I even became an instructor there teaching kids of various ages how to program and build.
                                     </li>
-                                    <li className="pb-4">These programming and robotics classes not only taught me a lot about programming and designing, but also I had picked up a ton of math skills along the way.
-                                        By using math such as trigonometry, algebra, and geometry to solve problems and design robots, I was able to learn a lot of math that I wouldn't have learned until high school.
-                                        This put me ahead of the curve in math and helped me to excel in my math classes in high school and college, allowing me to get a 5 on both my AP Computer Science and AP Calculus BC exams.
+                                    <li className="pb-4">These programming and robotics classes not only exposed me to a multitude of languages, but also helped me learn
+                                        industry standard best practices when it comes to logic, code design, documentation, as well as working as an integrated member of
+                                        a development team.  And of course, my math skills grew exponentially along the way as well. Using trigonometry, algebra, and
+                                        geometry to design and solve robotics issues, I learned these skills at an early age that I wouldn't normally have been exposed
+                                        to until high school. This put me WAY ahead of the curve in both computer science and math and helped me excel in all STEM related
+                                        high school and college classes (allowing me to get a 5 on both the Computer Science and Calculus AP exams!).
                                     </li>
-                                    <li className="pb-4">After high school, I decided to go to college and study Computer Science. I graduated with a B.S. in Computer Science from Worcester Polytechnic Institute
-                                        in Massachusetts. WPI uses a very project-based curriculum, so I have a lot of experience working on projects and collaborating with others. Two projects that I
-                                        am particularly proud of are a game that I made for a local Boy's and Girl's Club that demonstrates the
-                                        <Link className="px-1 font-bold hover:underline" href="https://epoll31.github.io/iqp">importance of the Nitrogen Life Cycle</Link>
-                                        and a research project that
-                                        <Link className="px-1 font-bold hover:underline" href="https://epoll31.github.io/mqp">compares three different SQL databases</Link>
-                                        and their performance for pedagogical purposes at WPI.
+                                    <li className="pb-4">When it came time to go to college, I chose Worcester Polytechnic Institute (in Massachusetts) where I completed my
+                                        Bachelor in Science in Computer Science in 3.5 years! WPI is a (relatively) smaller school which allows a very focused learning environment
+                                        where they leverage a very project-based curriculum. This gave me a ton of experience working deep on projects and collaborating with others.
+                                        Two projects that am particularly proud include a game that I created for a local Boy's and Girl's Club that demonstrates
+                                        <Link className="px-1 font-bold hover:underline" href="https://epoll31.github.io/iqp">the importance of the Nitrogen Life Cycle</Link>
+                                        as well as a research project that compares and analyzes the performance of
+                                        <Link className="px-1 font-bold hover:underline" href="https://epoll31.github.io/mqp">three different SQL Servers for pedagogical purposes</Link>.
                                     </li>
                                     <li className="pb-4" >During college, I had two main jobs:
-                                        <ul>
-                                            <li className="list-inside pb-4">Both summers after my sophomore year and junior year, I interned at a large company named Epic Systems in Verona, Wisconsin as a software developer.
-                                                Each summer I developed a project using their proprietary technology and software that passed through development and into quality assurance and testing. I am very proud of my
-                                                accomplishments at Epic Systems.</li>
-                                            <li className="list-inside">During my junior year, I worked for a company named Build-It-Yourself as a project manager and lead software developer. Build-It-Yourself is a mostly-remote,
-                                                Boston-based programming school that teaches programming to kids of various ages. They also hosted a platform named Invention Universe that enables kids to create a display and post
-                                                their creative endeavors including physical creations and programming projects. During my time there, I taught a variety of programming classes and worked as a team lead for the
-                                                Invention Universe project.</li>
+                                        <ul className="list-disc">
+                                            <li className="list-inside pb-4">
+                                                I interned (twice) at Epic Systems in Verona, Wisconsin as a software developer. Epic is one of, if not THE, largest
+                                                Electronic Health Records (EHR) applications for hospitals in the country. Each summer I developed a project using
+                                                their proprietary technology and software that passed through development and into quality assurance and testing.
+                                                Both were ultimately included in the production versions of their system.
+                                            </li>
+                                            <li className="list-inside">
+                                                During my junior year, I worked for Build-It-Yourself as a project manager and lead software developer. Build-It-Yourself
+                                                is a mostly-remote, Boston-based programming school that teaches kids of various ages to program. They also hosted a
+                                                platform named Invention Universe that enables kids to create a display and post their creative endeavors including
+                                                physical creations and programming projects. During my time there, I taught a variety of programming classes and worked
+                                                as a team lead for the Invention Universe project.
+                                            </li>
                                         </ul>
                                     </li>
                                     <li className="pb-4">
-                                        After college, I decided to move to California to work as a software developer. I am currently looking for a job and am excited to help others learn and grow in their studies.
-                                        I believe that my experience in programming, math, and teaching will help me to be a great tutor and mentor for you. Please feel free to reach out at any time if you have questions
-                                        or would like to schedule a tutoring session.
+                                        After completing my degree at WPI, I decided to move back home to California to work as a software developer. I am currently
+                                        looking to share my experiences and success by helping other kids to learn and grow in their studies. I believe that my
+                                        experience in programming, math, robotics, and teaching help me to be a great tutor and mentor. Please feel free to reach out
+                                        at any time if you have questions or would like to schedule a tutoring session.
                                     </li>
                                     <li className="pb-4">
                                         You can reach me at:
