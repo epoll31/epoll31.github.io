@@ -157,7 +157,7 @@ export function InterestedForm(
     );
 
     return (
-        <BackgroundGradient className={cn(`max-w-md w-full mx-auto rounded-3xl p-4 md:p-8 shadow-input bg-white dark:bg-black`, className)}>
+        <BackgroundGradient className={cn(`max-w-md w-full mx-auto rounded-3xl p-4 md:p-8 shadow-input bg-white dark:bg-black `, className)}>
             {submitted ?
                 successMessage :
                 <>
