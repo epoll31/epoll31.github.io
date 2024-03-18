@@ -89,7 +89,7 @@ export default function TutorPage() {
                                 <CardItem as="h1" translateZ={100} className="w-full text-3xl text-center pb-1">Logistics</CardItem>
                                 <CardItem as="ul" translateZ={80} className="text-xl list-disc pl-4">
                                     <li className="mb-2">I'm flexible with my schedule and can work with you to find a time and place that works for both of us.</li>
-                                    <li className="mb-2">I'm available to tutor in person or online.</li>
+                                    <li className="mb-2">I'm available to tutor in-person or online.</li>
                                     <li className="mb-2">I'm available to tutor all ages and skill levels.</li>
                                     <li className="mb-2">My rate is $40/hr.</li>
                                 </CardItem>
