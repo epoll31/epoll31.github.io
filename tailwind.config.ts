@@ -12,6 +12,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // cursor: {
+      //   'circle': 'url(/images/cursor.png),auto',
+      // },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
