@@ -12,14 +12,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export default function Button({ children, className, ...props }: ButtonProps) {
-  const { handleMouseEnter, handleMouseLeave } = useCursorLock({
-
-  });
-
   return (
     <button className={twMerge(`bg-blue text-white py-3 px-6 rounded-md`, className)}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       {...props}>
       {children}
     </button >

@@ -10,7 +10,9 @@ export default async function Home() {
         <CursorLock cursorLockedClassName="rounded-xl w-64 h-12 bg-blue">
           <h1 className="text-4xl font-bold z-20">Ethan Pollack</h1>
         </CursorLock>
-        <Button>Click me</Button>
+        <CursorLock cursorLockedClassName="w-20 h-8 backdrop-invert rounded-full z-10">
+          <Button>Click me</Button>
+        </CursorLock>
         <CursorLock noLock={true} className="grid gap-5 grid-rows-3 grid-cols-3 w-[500px] h-[500px]">
           <CursorLock holdLock={true} className="bg-blue w-full h-full rounded-2xl" cursorLockedClassName="rounded-3xl w-[180px] h-[180px] bg-white"></CursorLock>
           <CursorLock holdLock={true} className="col-span-2 bg-green w-full h-full rounded-2xl" cursorLockedClassName="rounded-3xl w-[350px] h-[180px] bg-white"></CursorLock>
