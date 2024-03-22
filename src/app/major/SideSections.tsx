@@ -21,7 +21,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
 
     return (
         <li
-            className="w-full h-fit hover:text-background font-lilita text-right ease-in-out snap-always snap-center  z-0 hover:z-10"
+            className="w-full h-fit hover:text-background font-lilita text-right ease-in-out snap-always snap-center  -z-20 hover:-z-10"
             style={{
                 transformStyle: "preserve-3d",
             }}
@@ -33,7 +33,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                 style={{
                     transformStyle: "preserve-3d",
                     transform: `rotateY(${isHovered ? -20 : -30}deg)`,
-                    WebkitTextStroke: `${isHovered ? "1px" : "0px"} white`,
+                    WebkitTextStroke: `${isHovered ? "2px" : "0px"} white`,
                     willChange: "transform",
                     transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
                 }}
@@ -43,6 +43,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                         const size = line.size == 1 ? "text-6xl md:text-[8rem] lg:text-[10rem] xl:text-[16rem]" :
                             line.size == 2 ? "text-3xl md:text-[4rem] lg:text-[6rem] xl:text-[8rem]" :
                                 "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
+                        const yearSize = "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
 
                         return (
                             <p key={i} className={`${size} w-fit relative uppercase text-nowrap`}

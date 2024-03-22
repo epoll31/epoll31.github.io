@@ -17,6 +17,7 @@ const config: Config = {
       // },
       fontFamily: {
         lilita: ["Lilita One", "sans-serif"],
+        k2d: ["K2D", "sans-serif"],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
