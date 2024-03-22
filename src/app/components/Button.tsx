@@ -4,7 +4,7 @@
 import { setPosition, setFollowMouse, setClassName } from "@/lib/features/mouse/mouseSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { twMerge } from "tailwind-merge";
-import { useCursorLock } from "../CursorFollower";
+import { useCursorLock } from "./CursorFollower";
 
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

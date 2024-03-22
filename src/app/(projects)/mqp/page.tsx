@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Card from "../../components/Card";
-import PDFViewer from "../../components/PDFViewer";
+import Card from "../../components/old/Card";
+import PDFViewer from "../../components/old/PDFViewer";
 
 
 export default function MQP() {
@@ -12,14 +12,14 @@ export default function MQP() {
         <h2 className=" md:text-lg text-center font-semibold">Major Qualifying Project</h2>
         <div className="group flex flex-col justify-center items-center text-center m-10">
           <div className="flex flex-row">
-          <h2 className="">by</h2>
-          <h2 className="pl-1 text-nowrap group-hover:font-bold">Ethan Pollack</h2>
-          <h2>,</h2>
+            <h2 className="">by</h2>
+            <h2 className="pl-1 text-nowrap group-hover:font-bold">Ethan Pollack</h2>
+            <h2>,</h2>
           </div>
           <h2 className="">Axel Luca, and Harrison Taylor</h2>
         </div>
       </div>
-      
+
       <div className="flex flex-row gap-5 text-xl" >
         <a className="underline-offset-0 hover:underline hover:underline-offset-4 transition-all" href="#abstract">Abstract</a>
         <h1 className="">·</h1>
@@ -37,7 +37,7 @@ export default function MQP() {
       </div>
       <div className="flex flex-row flex-wrap w-full justify-evenly gap-2">
         <h1 className="flex-grow w-full text-2xl text-center" id="report">Report</h1>
-        <PDFViewer src="/mqp.pdf" name="my MQP"/>
+        <PDFViewer src="/mqp.pdf" name="my MQP" />
       </div>
       <div className="flex flex-row flex-wrap w-full justify-evenly gap-2">
         <Link href="/">

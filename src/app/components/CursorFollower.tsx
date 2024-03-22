@@ -1,22 +1,24 @@
 "use client";
 
 import React, { use, useEffect, useState } from "react";
-import "./useMouse";
-import useMouse from "./useMouse";
+import "../utils/useMouse";
+import useMouse from "../utils/useMouse";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { twMerge } from "tailwind-merge";
-import { setClassName, setFollowMouse, setPosition } from "@/lib/features/mouse/mouseSlice";
+import { setClassName, setFollowMouse, setPosition, setStyle } from "@/lib/features/mouse/mouseSlice";
 
 
 
 export interface CursorLockProps {
     cursorLockedClassName?: string,
+    cursorStyle?: React.CSSProperties,
     noLock?: boolean,
     holdLock?: boolean
 }
 
 export function useCursorLock({
     cursorLockedClassName,
+    cursorStyle,
     noLock,
     holdLock
 }: CursorLockProps = {}) {
@@ -26,7 +28,8 @@ export function useCursorLock({
         const centerX = buttonRect.left + buttonRect.width / 2;
         const centerY = buttonRect.top + buttonRect.height / 2;
         dispatch(setPosition({ x: centerX, y: centerY }));
-        dispatch(setClassName(cursorLockedClassName))
+        dispatch(setClassName(cursorLockedClassName));
+        dispatch(setStyle(cursorStyle));
         if (noLock == undefined || noLock == false) {
             dispatch(setFollowMouse(false));
         }
@@ -43,20 +46,24 @@ export function useCursorLock({
 export function CursorLock({
     children,
     className,
+    style,
+    as: Tag = "div",
     ...cursorLockProps
 }: {
     children?: React.ReactNode,
     className?: string,
+    style?: React.CSSProperties,
+    as?: React.ElementType,
 } & CursorLockProps
 ) {
     const { handleMouseEnter, handleMouseLeave } = useCursorLock(cursorLockProps);
 
     return (
-        <div className={className}
+        <Tag className={className} style={style}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}>
             {children}
-        </div>
+        </Tag>
     );
 }
 
@@ -82,6 +89,10 @@ export function CursorFollower() {
     }, [mouse_slice.followMouse, mouse_slice]);
 
     let className = `fixed -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-150 ease-out -z-10`;
+    let style = {
+        top: `${position.y}px`,
+        left: `${position.x}px`
+    };
     if (following) {
         className = twMerge(className, " w-4 h-4 backdrop-invert rounded-full ");
     }
@@ -92,12 +103,16 @@ export function CursorFollower() {
         else {
             className = twMerge(className, "w-8 h-8 backdrop-invert rounded-full z-10");
         }
+        const { top, left, ...rest } = mouse_slice.style || {};
+        style = {
+            ...style,
+            ...rest
+        };
     }
-
     return (
         <div className={className}
-            style={{ top: `${position.y}px`, left: `${position.x}px` }
-            }>
+            style={style}
+        >
         </div >
     );
 }

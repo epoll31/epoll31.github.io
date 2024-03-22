@@ -6,7 +6,8 @@ export interface MouseState {
     x: number,
     y: number,
     followMouse: boolean,
-    className?: string
+    className?: string,
+    style?: React.CSSProperties
 }
 
 // Define the initial state using that type
@@ -14,7 +15,8 @@ const initialState: MouseState = {
     x: 0,
     y: 0,
     followMouse: true,
-    className: undefined
+    className: undefined,
+    style: undefined
 }
 
 export const mouseSlice = createSlice({
@@ -35,11 +37,14 @@ export const mouseSlice = createSlice({
         },
         setClassName: (state, action: PayloadAction<string | undefined>) => {
             state.className = action.payload
+        },
+        setStyle: (state, action: PayloadAction<React.CSSProperties | undefined>) => {
+            state.style = action.payload
         }
     }
 })
 
-export const { setPosition, setFollowMouse, setClassName } = mouseSlice.actions
+export const { setPosition, setFollowMouse, setClassName, setStyle } = mouseSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectMouse = (state: RootState) => state.mouse
