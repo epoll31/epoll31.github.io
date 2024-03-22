@@ -43,7 +43,7 @@ export function useCursorLock({
     return { handleMouseEnter, handleMouseLeave };
 }
 
-export function CursorLock({
+export const CursorLock = React.forwardRef(({
     children,
     className,
     style,
@@ -55,17 +55,17 @@ export function CursorLock({
     style?: React.CSSProperties,
     as?: React.ElementType,
 } & CursorLockProps
-) {
+    , ref) => {
     const { handleMouseEnter, handleMouseLeave } = useCursorLock(cursorLockProps);
 
     return (
-        <Tag className={className} style={style}
+        <Tag className={className} style={style} ref={ref}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}>
             {children}
         </Tag>
     );
-}
+});
 
 
 export function CursorFollower() {
