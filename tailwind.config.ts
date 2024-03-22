@@ -25,7 +25,7 @@ const config: Config = {
       },
       colors: {
         'foreground': '#E8EEF2',
-        'background': '#37393A',
+        'background': '#F15946',
         'black': {
           DEFAULT: '#1A1D1A',
           100: '#464949',

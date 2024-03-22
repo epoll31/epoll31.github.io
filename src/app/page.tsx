@@ -6,34 +6,114 @@ import SideSections, { SectionInfo } from "./major/SideSections";
 export default async function Home() {
   const sections: SectionInfo[] = [
     {
-      title: "first first"
+      lines: [
+        {
+          text: "Graduated",
+          size: 1,
+        },
+        {
+          text: "Worcester Polytechnic Institute",
+          size: 3,
+        },
+      ],
+      year: "2023"
     },
     {
-      title: "second second"
+      lines: [
+        {
+          text: "Databases",
+          size: 1,
+        },
+        {
+          text: "Research Report",
+          size: 2,
+        },
+      ],
+      year: "2023",
     },
     {
-      title: "third third"
+      lines: [
+        {
+          text: "Internship",
+          size: 1,
+        },
+        {
+          text: "at Epic Systems",
+          size: 2,
+        }
+      ],
+      year: "2023"
     },
     {
-      title: "fourth fourth"
+      lines: [
+        {
+          text: "AR Games",
+          size: 1,
+        },
+        {
+          text: "Research Report",
+          size: 2,
+        }
+      ],
+      year: "2022",
     },
     {
-      title: "fifth fifth"
+      lines: [
+        {
+          text: "Build-It-",
+          size: 1,
+        },
+        {
+          text: "Yourself",
+          size: 2,
+        }
+      ],
+      year: "2022",
     },
     {
-      title: "sixth sixth"
+      lines: [
+        {
+          text: "Internship",
+          size: 1,
+        },
+        {
+          text: "at Epic Systems",
+          size: 2,
+        }
+      ],
+      year: "2022"
     },
     {
-      title: "seventh seventh"
+      lines: [
+        {
+          text: "Great Minds",
+          size: 1,
+        },
+        {
+          text: "Robotics",
+          size: 2,
+        },
+      ],
+      year: "2019",
     },
     {
-      title: "eighth eighth"
+      lines: [
+        {
+          text: "Robotics",
+          size: 1,
+        },
+        {
+          text: "Competitions",
+          size: 2,
+        },
+      ],
+      year: "2016",
     }
   ]
 
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center gap-5 overflow-hidden">
+      <main className="w-screen h-screen flex flex-col items-center gap-5 overflow-hidden cursor-none">
         <SideSections sections={sections} />
       </main >
       <CursorFollower />

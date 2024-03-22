@@ -105,7 +105,7 @@ export function CursorFollower() {
         left: `${position.x}px`
     };
     if (following) {
-        className = twMerge(className, " w-4 h-4 backdrop-invert rounded-full ");
+        className = twMerge(className, " w-4 h-4 backdrop-invert rounded-full z-20");
     }
     else {
         if (mouse_slice.className) {
