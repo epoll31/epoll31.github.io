@@ -15,6 +15,9 @@ const config: Config = {
       // cursor: {
       //   'circle': 'url(/images/cursor.png),auto',
       // },
+      fontFamily: {
+        lilita: ["Lilita One", "sans-serif"],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

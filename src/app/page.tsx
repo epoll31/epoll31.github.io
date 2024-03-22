@@ -6,34 +6,28 @@ import SideSections, { SectionInfo } from "./major/SideSections";
 export default async function Home() {
   const sections: SectionInfo[] = [
     {
-      title: "first"
+      title: "first first"
     },
     {
-      title: "second"
+      title: "second second"
     },
     {
-      title: "third"
+      title: "third third"
     },
     {
-      title: "fourth"
+      title: "fourth fourth"
     },
     {
-      title: "fifth"
+      title: "fifth fifth"
     },
     {
-      title: "sixth"
+      title: "sixth sixth"
     },
     {
-      title: "seventh"
+      title: "seventh seventh"
     },
     {
-      title: "eighth"
-    },
-    {
-      title: "ninth"
-    },
-    {
-      title: "tenth"
+      title: "eighth eighth"
     }
   ]
 

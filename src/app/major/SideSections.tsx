@@ -12,85 +12,59 @@ export interface SectionInfo {
 
 const Section = React.forwardRef(({ title }: SectionInfo, ref: React.ForwardedRef<HTMLDivElement>) => {
     const myRef = useRef<HTMLDivElement>(null);
-    const rotateZRegex = /rotateZ\((.*?)\)/
-    const [transform, setTransform] = useState("");
-    const [size, setSize] = useState({
-        width: 0,
-        height: 0
-    });
-    const [hovering, setHovering] = useState(false);
-    useEffect(() => {
-        const rotateZ = myRef.current?.style.transform.match(rotateZRegex)?.[1] ?? "0deg";
-        const rotateZNum = parseFloat(rotateZ);
-        const yFactor = Math.cos((rotateZNum * 8) * (Math.PI / 180));
-        const translateX = `${-50}%`;
-        const translateY = `-${rotateZNum >= 0 ? 50 * yFactor : 100 - 50 * yFactor}%`;
-        const rotateX = `${hovering ? -50 : 0}deg`;
-        const newTransform = `rotateZ(${rotateZ}) rotateX(${rotateX}) translateX(${translateX}) translateY(${translateY})`;
-        console.log(newTransform);
-        // console.log(rotateZNum, yFactor, translateY);
-        setTransform(newTransform);
-    }, [myRef.current?.style.transform, hovering]);
-
-    useEffect(() => {
-        setSize({
-            width: myRef.current?.clientWidth ?? 0,
-            height: myRef.current?.clientHeight ?? 0
-        });
-    }, [myRef.current?.clientWidth, myRef.current?.clientHeight])//, window.innerWidth])
-
-    // useEffect(() => {
-    //     if (hovering) {
-    //         console.log("hovering: ", title);
-    //     } else {
-    //         console.log("not hovering: ", title);
-    //     }
-    // }, [hovering]);
+    const { isHovered, onMouseEnter, onMouseLeave } = useHover();
 
     return (
-        <CursorLock
-            className="w-fit h-fit header transition-transform duration-150 ease-in-out origin-right snap-always snap-center select-none cursor-none"
-            cursorLockedClassName={`backdrop-invert rounded-full z-10`}
-            cursorStyle={{
-                width: `calc(${size.width}px + 3rem)`,
-                height: `${size.height}px`,
-                transform: transform
+        <div
+            className="w-full h-fit hover:text-background font-lilita text-right ease-in-out snap-always snap-center  z-0 hover:z-10"
+            style={{
+                transformStyle: "preserve-3d",
+                // transform: `rotateY(${isHovered ? -20 : -40}deg)`,
+                // WebkitTextStroke: `${isHovered ? "1px" : "0px"} white`
             }}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
             ref={mergeRefs(ref, myRef)}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
         >
-            <h1 className="text-6xl md:text-[10rem] xl:text-[15rem] leading-none font-bold"> {title}</h1>
-        </CursorLock >
+            <h1 className="text-6xl md:text-[10rem] xl:text-[10rem] leading-none origin-right cursor-none select-none"
+                style={{
+                    transformStyle: "preserve-3d",
+                    transform: `rotateY(${isHovered ? -20 : -40}deg)`,
+                    WebkitTextStroke: `${isHovered ? "1px" : "0px"} white`,
+                    willChange: "transform",
+                    transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
+                }}
+            > {title}</h1>
+        </div >
     );
 });
+
+const useHover = () => {
+    const [isHovered, setIsHovered] = useState(false);
+
+    const onMouseEnter = () => setIsHovered(true);
+    const onMouseLeave = () => setIsHovered(false);
+
+    return { isHovered, onMouseEnter, onMouseLeave };
+}
 
 export default function SideSections(
     { sections }:
         { sections: SectionInfo[] }
 ) {
-    const outerRef = useRef<HTMLDivElement>(null);
     const sectionRefs = useRef(new Array());
-    const [scroll, setScroll] = useState(0);
-
-    const handleScroll: UIEventHandler<HTMLElement> = (e) => {
-        setScroll(e.currentTarget.scrollTop);
-    }
-
-    useEffect(() => {
-
-        sectionRefs.current.forEach((section: HTMLDivElement, i: number) => {
-            if (section) {
-                const scrollY = scroll - section.offsetTop + (outerRef.current?.clientHeight ?? 0) / 2 - section.scrollTop;
-                section.style.transform = `rotateZ(${scrollY / 100}deg)`;
-            }
-        });
-    }, [scroll]);
+    const { isHovered, onMouseEnter, onMouseLeave } = useHover();
 
     return (
-        <div className="fixed w-screen h-screen flex flex-col items-end py-32 px-8 md:py-72 md:px-24 xl:py-96 overflow-y-scroll snap-mandatory snap-y scroll-smooth"
-            onScroll={handleScroll}
-            ref={outerRef}
+
+        <div className="fixed w-screen h-screen py-24 px-24 overflow-y-auto scroll-smooth snap-mandatory snap-y flex flex-col justify-center items-end"
+            style={{
+                // transform: `rotateY(-50deg)`,
+                transformStyle: "preserve-3d",
+                perspectiveOrigin: "50% 50%",
+                perspective: "100vw",
+                willChange: "transform perspective",
+            }}
         >
             {
                 sections.map((section, i) => {
