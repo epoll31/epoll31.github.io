@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use, useEffect, useState } from "react";
+import React, { HTMLAttributes, use, useEffect, useState } from "react";
 import "../utils/useMouse";
 import useMouse from "../utils/useMouse";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
@@ -34,7 +34,7 @@ export function useCursorLock({
             dispatch(setFollowMouse(false));
         }
     }
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
         if (holdLock == undefined || holdLock == false) {
             dispatch(setFollowMouse(true));
         }
@@ -44,25 +44,36 @@ export function useCursorLock({
 }
 
 export const CursorLock = React.forwardRef(({
-    children,
-    className,
-    style,
     as: Tag = "div",
-    ...cursorLockProps
+    ...props
 }: {
-    children?: React.ReactNode,
-    className?: string,
-    style?: React.CSSProperties,
     as?: React.ElementType,
-} & CursorLockProps
+} & CursorLockProps & HTMLAttributes<HTMLElement>
     , ref) => {
-    const { handleMouseEnter, handleMouseLeave } = useCursorLock(cursorLockProps);
+
+    const { onMouseEnter, onMouseLeave, cursorLockedClassName, cursorStyle, noLock, holdLock, ...rest } = props;
+
+    const cursorLock = useCursorLock({ cursorLockedClassName, cursorStyle, noLock, holdLock });
+    const handleMouseEnter = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        cursorLock.handleMouseEnter(e);
+        if (onMouseEnter) {
+            onMouseEnter(e);
+        }
+    }
+    const handleMouseLeave = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+        cursorLock.handleMouseLeave(e);
+        if (onMouseLeave) {
+            onMouseLeave(e);
+        }
+    }
 
     return (
-        <Tag className={className} style={style} ref={ref}
+        <Tag className={props.className} style={props.style} ref={ref}
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}>
-            {children}
+            onMouseLeave={handleMouseLeave}
+            {...rest}
+        >
+            {props.children}
         </Tag>
     );
 });
@@ -108,6 +119,7 @@ export function CursorFollower() {
             ...style,
             ...rest
         };
+        // console.log(style);
     }
     return (
         <div className={className}

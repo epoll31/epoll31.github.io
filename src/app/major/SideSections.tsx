@@ -18,16 +18,20 @@ const Section = React.forwardRef(({ title }: SectionInfo, ref: React.ForwardedRe
         width: 0,
         height: 0
     });
+    const [hovering, setHovering] = useState(false);
     useEffect(() => {
         const rotateZ = myRef.current?.style.transform.match(rotateZRegex)?.[1] ?? "0deg";
         const rotateZNum = parseFloat(rotateZ);
         const yFactor = Math.cos((rotateZNum * 8) * (Math.PI / 180));
         const translateX = `${-50}%`;
         const translateY = `-${rotateZNum >= 0 ? 50 * yFactor : 100 - 50 * yFactor}%`;
-        const newTransform = `rotateZ(${rotateZ}) translateX(${translateX}) translateY(${translateY})`;
+        const rotateX = `${hovering ? -50 : 0}deg`;
+        const newTransform = `rotateZ(${rotateZ}) rotateX(${rotateX}) translateX(${translateX}) translateY(${translateY})`;
+        console.log(newTransform);
         // console.log(rotateZNum, yFactor, translateY);
         setTransform(newTransform);
-    }, [myRef.current?.style.transform]);
+    }, [myRef.current?.style.transform, hovering]);
+
     useEffect(() => {
         setSize({
             width: myRef.current?.clientWidth ?? 0,
@@ -35,6 +39,13 @@ const Section = React.forwardRef(({ title }: SectionInfo, ref: React.ForwardedRe
         });
     }, [myRef.current?.clientWidth, myRef.current?.clientHeight])//, window.innerWidth])
 
+    // useEffect(() => {
+    //     if (hovering) {
+    //         console.log("hovering: ", title);
+    //     } else {
+    //         console.log("not hovering: ", title);
+    //     }
+    // }, [hovering]);
 
     return (
         <CursorLock
@@ -46,6 +57,8 @@ const Section = React.forwardRef(({ title }: SectionInfo, ref: React.ForwardedRe
                 transform: transform
             }}
             ref={mergeRefs(ref, myRef)}
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
         >
             <h1 className="text-6xl md:text-[10rem] xl:text-[15rem] leading-none font-bold"> {title}</h1>
         </CursorLock >
