@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <StoreProvider >
       <html lang="en">
-        <body className="bg-background text-foreground">{children}</body>
+        <body className="bg-background">{children}</body>
       </html>
     </StoreProvider>
   )

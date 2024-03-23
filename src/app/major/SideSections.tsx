@@ -5,6 +5,7 @@ import { CursorLock } from "../components/CursorFollower";
 import React from "react";
 import mergeRefs from "../utils/mergeRefs";
 import { transform } from "next/dist/build/swc";
+import useHover from "../utils/useHover";
 
 export interface SectionInfo {
     lines:
@@ -18,10 +19,22 @@ export interface SectionInfo {
 const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<HTMLLIElement>) => {
     const myRef = useRef<HTMLLIElement>(null);
     const { isHovered, onMouseEnter, onMouseLeave } = useHover();
+    // const lineRefs = useRef(new Array());
+
+    // useEffect(() => {
+    //     lineRefs.current.forEach((el, i) => {
+    //         if (el) {
+    //             const fgColor = section.lines[i].size == 1 ? "--foreground" :
+    //                 section.lines[i].size == 2 ? "--foreground-100" :
+    //                     "--foreground-200";
+    //             el.style.textColor = `var(${isHovered ? "--background" : "--foreground"})`;
+    //         }
+    //     });
+    // }, [isHovered]);
 
     return (
         <li
-            className="w-full h-fit hover:text-background font-lilita text-right ease-in-out snap-always snap-center  -z-20 hover:-z-10"
+            className="w-full h-fit text-foreground hover:text-background font-lilita text-right ease-in-out snap-always snap-center  -z-20 hover:-z-10 m-4"
             style={{
                 transformStyle: "preserve-3d",
             }}
@@ -33,7 +46,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                 style={{
                     transformStyle: "preserve-3d",
                     transform: `rotateY(${isHovered ? -20 : -30}deg)`,
-                    WebkitTextStroke: `${isHovered ? "2px" : "0px"} white`,
+                    WebkitTextStroke: `${isHovered ? "2px" : "0px"} var(--foreground)`,
                     willChange: "transform",
                     transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
                 }}
@@ -43,25 +56,39 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                         const size = line.size == 1 ? "text-6xl md:text-[8rem] lg:text-[10rem] xl:text-[16rem]" :
                             line.size == 2 ? "text-3xl md:text-[4rem] lg:text-[6rem] xl:text-[8rem]" :
                                 "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
-                        const yearSize = "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
+
+                        const color = `${line.size == 1 ? "foreground" : "foreground-100"}`;
+                        // line.size == 2 ? "foreground-100" :
+                        //     "foreground-200"}`;
 
                         return (
                             <p key={i} className={`${size} w-fit relative uppercase text-nowrap`}
                                 style={{
                                     transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out",
-                                }}>
+                                    color: `var(--${isHovered ? 'background' : color})`,
+                                    WebkitTextStroke: `${isHovered ? "2px" : "0px"} var(--${color})`,
+                                    // transform: `translateZ(100px)`,
+                                }}
+                            // ref={el => lineRefs.current.push(el)}
+                            >
                                 {
                                     i !== 0 ? <></> :
                                         <>
-                                            <span className="text-foreground text-xl absolute text-left top-1 md:top-3 lg:top-5 xl:top-7 -left-[4rem]  xl:-left-20" aria-hidden="true"
+                                            <span className={`text-${color} text-xl absolute text-left top-1 md:top-3 lg:top-5 xl:top-7 -left-[4rem]  xl:-left-20`}
+                                                aria-hidden="true"
                                                 style={{
+                                                    WebkitTextStroke: "0px",
+                                                    // transformStyle: "preserve-3d",
+                                                    // translate: `0 0 20px`,
                                                     transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
                                                 }}
                                             >
                                                 {section.year}
                                             </span>
-                                            <span className="w-[4px] h-[3.5rem] md:h-[6.5rem] lg:h-[8.2rem] xl:h-[13rem] top-1 md:top-3 xl:top-5 -left-3 md:-left-4 xl:-left-6 bg-white absolute -skew-x-12"
+                                            <span className={`bg-${color} w-[4px] h-[3.5rem] md:h-[6.5rem] lg:h-[8.2rem] xl:h-[13rem] top-1 md:top-3 xl:top-5 -left-3 md:-left-4 xl:-left-6 absolute -skew-x-12`}
                                                 style={{
+                                                    // transformStyle: "preserve-3d",
+                                                    // translate: `0 0 20px`,
                                                     transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
                                                 }} />
                                         </>
@@ -75,15 +102,6 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
         </li >
     );
 });
-
-const useHover = () => {
-    const [isHovered, setIsHovered] = useState(false);
-
-    const onMouseEnter = () => setIsHovered(true);
-    const onMouseLeave = () => setIsHovered(false);
-
-    return { isHovered, onMouseEnter, onMouseLeave };
-}
 
 export default function SideSections(
     { sections }:
@@ -103,7 +121,7 @@ export default function SideSections(
                 willChange: "transform perspective",
             }}
         >
-            <ul className="w-full h-fit my-32 pr-12 flex flex-col justify-center items-end gap-4"
+            <ul className="w-full h-fit my-32 pr-12 flex flex-col justify-center items-end"
                 style={{
                     transformStyle: "preserve-3d",
                 }}
