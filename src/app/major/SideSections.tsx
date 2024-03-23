@@ -34,7 +34,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
 
     return (
         <li
-            className="w-full h-fit text-foreground hover:text-background font-lilita text-right ease-in-out snap-always snap-center  -z-20 hover:-z-10 m-4"
+            className="w-full h-fit text-foreground hover:text-background font-lilita text-right ease-in-out snap-always snap-center -z-20 hover:-z-10 m-4"
             style={{
                 transformStyle: "preserve-3d",
             }}
@@ -121,7 +121,7 @@ export default function SideSections(
                 willChange: "transform perspective",
             }}
         >
-            <ul className="w-full h-fit my-32 pr-12 flex flex-col justify-center items-end"
+            <ul className="w-full h-fit my-32 pr-4 md:pr-12 flex flex-col justify-center items-end"
                 style={{
                     transformStyle: "preserve-3d",
                 }}
