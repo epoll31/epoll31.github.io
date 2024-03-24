@@ -14,14 +14,21 @@ const MouseEnterContext = createContext<
     [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
 >(undefined);
 
+type Damping = {
+    x: number;
+    y: number;
+} | number;
+
 export const CardContainer = ({
     children,
     className,
     containerClassName,
+    damping = 25
 }: {
     children?: React.ReactNode;
     className?: string;
     containerClassName?: string;
+    damping?: Damping;
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMouseEntered, setIsMouseEntered] = useState(false);
@@ -30,8 +37,9 @@ export const CardContainer = ({
         if (!containerRef.current) return;
         const { left, top, width, height } =
             containerRef.current.getBoundingClientRect();
-        const x = (e.clientX - left - width / 2) / 25;
-        const y = (e.clientY - top - height / 2) / 25;
+        const d = typeof damping === "number" ? { x: damping, y: damping } : damping;
+        const x = (e.clientX - left - width / 2) / d.x;
+        const y = (e.clientY - top - height / 2) / d.y;
         containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
     };
 

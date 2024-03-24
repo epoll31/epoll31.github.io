@@ -32,6 +32,7 @@ export default async function Home() {
         },
       ],
       years: ["2023", "2022"],
+      popUpType: "research",
     },
     {
       lines: [
@@ -179,6 +180,8 @@ export default async function Home() {
   //     year: "2016",
   //   }
   // ]
+
+
 
   return (
     <>

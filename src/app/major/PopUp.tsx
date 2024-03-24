@@ -6,6 +6,7 @@ import { use, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import About from "./PopUps/about";
 import WPI from "./PopUps/wpi";
+import Research from "./PopUps/research";
 
 export interface PopUpProps extends React.HTMLAttributes<HTMLDivElement> {
     outerClassName?: string,
@@ -54,6 +55,11 @@ export default function PopUp(
     else if (popUpType == "wpi") {
         innerContent = (
             <WPI />
+        );
+    }
+    else if (popUpType == "research") {
+        innerContent = (
+            <Research />
         );
     }
 

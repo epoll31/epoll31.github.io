@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Card from "../../components/old/Card";
 import PDFViewer from "../../components/old/PDFViewer";
+import { useAppDispatch } from "@/lib/hooks";
+import { setActive, setPopUpType } from "@/lib/features/popUp/popUpSlice";
 
 
 export default function MQP() {

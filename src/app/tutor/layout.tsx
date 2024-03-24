@@ -19,7 +19,7 @@ export default function TutorPageLayout({
 }) {
   return (
     <section>
-        {children}
+      {children}
     </section>
   )
 }

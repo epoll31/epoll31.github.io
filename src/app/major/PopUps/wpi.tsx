@@ -359,13 +359,11 @@ function CourseCard({
                     <CardItem as="h1" className="text-left flex-grow font-bold text-2xl" translateZ={300}>
                         {course.name}
                     </CardItem>
-                    {/* <div className="w-fit h-fit relative"> */}
                     <span className={`relative minmax ${minimized ? '' : 'up'} flex-shrink w-8 h-8 z-50 aspect-square`}
                     >
                         <span className="bg-background absolute rounded-full"></span>
                         <span className="bg-background absolute rounded-full"></span>
                     </span>
-                    {/* </div> */}
                 </button>
                 {
                     minimized ? <></> :
@@ -390,11 +388,10 @@ function CourseCard({
 }
 
 export default function WPI() {
-    console.log(courses);
 
     return (
         <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
-            <div className="w-fit h-fit max-w-prose min-w-96">
+            <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
                 <div className="m-10 w-fit flex-shrink">
                     <h1 className="font-lilita text-5xl">Worcester Polytechnic Institute (WPI)</h1>
                     <div className="w-full flex flex-row gap-10">
