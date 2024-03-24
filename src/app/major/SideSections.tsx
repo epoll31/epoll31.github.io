@@ -6,6 +6,8 @@ import React from "react";
 import mergeRefs from "../utils/mergeRefs";
 import { transform } from "next/dist/build/swc";
 import useHover from "../utils/useHover";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { setActive } from "@/lib/features/popUp/popUpSlice";
 
 export interface SectionInfo {
     lines:
@@ -19,18 +21,10 @@ export interface SectionInfo {
 const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<HTMLLIElement>) => {
     const myRef = useRef<HTMLLIElement>(null);
     const { isHovered, onMouseEnter, onMouseLeave } = useHover();
-    // const lineRefs = useRef(new Array());
-
-    // useEffect(() => {
-    //     lineRefs.current.forEach((el, i) => {
-    //         if (el) {
-    //             const fgColor = section.lines[i].size == 1 ? "--foreground" :
-    //                 section.lines[i].size == 2 ? "--foreground-100" :
-    //                     "--foreground-200";
-    //             el.style.textColor = `var(${isHovered ? "--background" : "--foreground"})`;
-    //         }
-    //     });
-    // }, [isHovered]);
+    const dispatch = useAppDispatch();
+    const showPopUp = () => {
+        dispatch(setActive(true));
+    }
 
     return (
         <li
@@ -42,7 +36,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
             onMouseLeave={onMouseLeave}
             ref={mergeRefs(ref, myRef)}
         >
-            <div className="  origin-right cursor-none select-none h-full w-full flex flex-col justify-center items-end"
+            <button className="  origin-right cursor-none select-none h-full w-full flex flex-col justify-center items-end"
                 style={{
                     transformStyle: "preserve-3d",
                     transform: `rotateY(${isHovered ? -20 : -30}deg)`,
@@ -50,6 +44,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                     willChange: "transform",
                     transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
                 }}
+                onClick={showPopUp}
             >
                 {
                     section.lines.map((line, i) => {
@@ -98,7 +93,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                         )
                     })
                 }
-            </div>
+            </button>
         </li >
     );
 });

@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import mouseSlice from './features/mouse/mouseSlice';
+import mouseReducer from './features/mouse/mouseSlice';
+import popUpReducer from './features/popUp/popUpSlice';
 
 const rootReducer = combineReducers({
-    mouse: mouseSlice,
+    mouse: mouseReducer,
+    popUp: popUpReducer
 });
 
 export const makeStore = () => {

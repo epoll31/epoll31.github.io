@@ -105,7 +105,7 @@ export function CursorFollower() {
         left: `${position.x}px`
     };
     if (following) {
-        className = twMerge(className, " w-4 h-4 backdrop-invert rounded-full z-20");
+        className = twMerge(className, " w-4 h-4 backdrop-invert rounded-full z-40");
     }
     else {
         if (mouse_slice.className) {
@@ -128,15 +128,3 @@ export function CursorFollower() {
         </div >
     );
 }
-// export function CursorFollower() {
-//     const { x, y, dx, dy } = useMouse();
-
-//     const w = Math.sqrt(dx * dx + dy * dy) > 50 ? "w-10" : "w-20";
-
-//     return (
-//         <div className={`fixed -translate-x-1/2 -translate-y-1/2 cursor-none  aspect-square ${w} border-4 border-blue backdrop-invert rounded-full transition-all duration-75`}
-//             style={{ top: `${y}px`, left: `${x}px` }
-//             }>
-//         </div >
-//     );
-// }

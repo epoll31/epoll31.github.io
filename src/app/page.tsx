@@ -2,6 +2,7 @@
 import { CursorFollower, CursorLock } from "./components/CursorFollower";
 import SideSections, { SectionInfo } from "./major/SideSections";
 import FrontLayer from "./major/FrontLayer";
+import PopUp from "./major/PopUp";
 
 export default async function Home() {
   const sections: SectionInfo[] = [
@@ -114,6 +115,9 @@ export default async function Home() {
   return (
     <>
       <main className="relative w-screen h-screen flex flex-col items-center gap-5 overflow-hidden">
+        <PopUp outerClassName="bg -opacity-95">
+          <p> test</p>
+        </PopUp>
         <SideSections sections={sections} />
         <FrontLayer />
       </main >

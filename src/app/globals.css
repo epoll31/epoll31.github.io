@@ -20,11 +20,84 @@ body {
   background-color: var(--background); */
 }
 
-.header {
-  /* transform: rotateY(30deg) rotateZ(-5deg); */
+.menu>.line1 {
+  left: 30%;
+  top: 35%;
+  width: 40%;
+  height: 4%;
+  transform-origin: left center;
+  transform: rotate(0deg);
+  transition: transform 0.2s, top 0.2s, left 0.2s, width 0.2s, height 0.2s, transform-origin 0.2s, background 0.2s;
 }
 
-.header:hover {
-  /* transform: rotateY(10deg) rotateZ(-5deg); */
+.menu>.line2 {
+  left: 30%;
+  top: 50%;
+  width: 40%;
+  height: 4%;
+  transform-origin: left center;
+  transform: rotate(0deg);
+  transition: transform 0.2s, top 0.2s, left 0.2s, width 0.2s, height 0.2s, transform-origin 0.2s, background 0.2s;
+}
 
+.menu>.line3 {
+  left: 30%;
+  top: 65%;
+  width: 40%;
+  height: 4%;
+  transform-origin: left center;
+  transform: rotate(0deg);
+  transition: transform 0.2s, top 0.2s, left 0.2s, width 0.2s, height 0.2s, transform-origin 0.2s, background 0.2s;
+}
+
+.menu.arrow:hover>.line1 {
+  top: 51.5%;
+  left: 25%;
+  width: 30%;
+  height: 5%;
+  transform: rotate(-45deg);
+}
+
+.menu.arrow:hover>.line2 {
+  top: 50%;
+  left: 25%;
+  width: 50%;
+  height: 5%;
+  transform: rotate(0deg);
+}
+
+.menu.arrow:hover>.line3 {
+  top: 48.5%;
+  left: 25%;
+  width: 30%;
+  height: 5%;
+  transform: rotate(45deg);
+}
+
+.menu.close:hover>.line1 {
+  transform-origin: left bottom;
+  top: 30%;
+  left: 27.5%;
+  width: 55%;
+  height: 5%;
+  transform: rotate(44deg);
+}
+
+.menu.close:hover>.line2 {
+  transform-origin: center;
+  top: 50%;
+  left: 50%;
+  width: 0%;
+  height: 0%;
+  background: transparent;
+  transform: rotate(0deg);
+}
+
+.menu.close:hover>.line3 {
+  transform-origin: left top;
+  top: 70%;
+  left: 27.5%;
+  width: 55%;
+  height: 5%;
+  transform: rotate(-44deg);
 }

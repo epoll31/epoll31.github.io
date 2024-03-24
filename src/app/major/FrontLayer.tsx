@@ -5,11 +5,13 @@ import Image from "next/image";
 import GitHub from "/public/images/github.svg";
 import LinkedIn from "/public/images/linkedin.svg";
 import { CursorLock } from "../components/CursorFollower";
-import useMediaSizes, { mdOrLarger, smOrSmaller } from "../utils/useMediaSizes";
-import { useEffect } from "react";
+import { setActive, setPopUpType } from "@/lib/features/popUp/popUpSlice";
+import { useAppDispatch } from "@/lib/hooks";
 
 
 export default function FrontLayer() {
+    const dispatch = useAppDispatch();
+
     return (
         <>
             <div className="fixed bottom-0 left-0 w-fit h-fit pl-5 md:pl-14 pb-5 md:pb-10 overflow-hidden flex flex-col text-black">
@@ -21,15 +23,22 @@ export default function FrontLayer() {
                     Personal website made by <span className="font-bold text-nowrap whitespace-nowrap">Ethan Pollack</span>
                 </p>
                 <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
-                    Email me @
-                    <CursorLock as="span" className="mx-1 " cursorLockedClassName="h-1 w-[10.5rem] rounded-full bg-foreground translate-y-2">
-                        <Link href="mailto:epollack31@gmail.com" className="hover:font-bold text-nowrap whitespace-nowrap">epollack31@gmail.com</Link>
+                    Inspiration from
+                    <CursorLock as="span" className="ml-1" cursorLockedClassName="h-1 w-[5.2rem] sm:w-[7rem] md:w-[9.2rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3">
+                        <Link href="https://vanholtz.co/" className="hover:font-bold text-nowrap whitespace-nowrap">Van Holtz Co.</Link>
                     </CursorLock>
                 </p>
                 <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
-                    Inspiration from
-                    <CursorLock as="span" className="ml-1" cursorLockedClassName="h-1 w-28 rounded-full bg-foreground translate-y-2">
-                        <Link href="https://vanholtz.co/" className="hover:font-bold text-nowrap whitespace-nowrap">Van Holtz Co.</Link>
+
+                    <CursorLock as="span" className=" " cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[7rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3">
+                        <button className="hover:font-bold text-nowrap whitespace-nowrap"
+                            onClick={() => {
+                                dispatch(setPopUpType("about"));
+                                dispatch(setActive(true));
+                            }}
+                        >
+                            About me
+                        </button>
                     </CursorLock>
                 </p>
             </div>
