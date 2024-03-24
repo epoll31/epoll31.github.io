@@ -101,3 +101,67 @@ body {
   height: 5%;
   transform: rotate(-44deg);
 }
+
+.control .minmax>:first-child {
+  height: 10%;
+  width: 57%;
+  top: 40%;
+  left: 0;
+
+  transform-origin: center center;
+  transform: rotateZ(30deg);
+
+  transition: all 0.2s;
+}
+
+.control .minmax>:last-child {
+
+  height: 10%;
+  width: 57%;
+  top: 40%;
+  left: 43%;
+
+  transform-origin: center center;
+  transform: rotateZ(-30deg);
+
+  transition: all 0.2s;
+}
+
+
+.control .minmax.up>:first-child {
+  top: 30%;
+  transform: rotateZ(-30deg);
+}
+
+.control .minmax.up>:last-child {
+  top: 30%;
+  transform: rotateZ(30deg);
+}
+
+.control:hover .minmax>:first-child {
+  top: 20%;
+  transform: rotateZ(30deg);
+}
+
+.control:hover .minmax>:last-child {
+  top: 20%;
+  transform: rotateZ(-30deg);
+}
+
+.control:hover .minmax.up>:first-child {
+  top: 50%;
+  transform: rotateZ(-30deg);
+}
+
+.control:hover .minmax.up>:last-child {
+  top: 50%;
+  transform: rotateZ(30deg);
+}
+
+/* .minmax>:first-child {
+  height: 10%;
+  width: 60%;
+
+  top: 20%;
+  transform: rotateZ(-30deg);
+} */

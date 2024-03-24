@@ -9,67 +9,29 @@ export default async function Home() {
     {
       lines: [
         {
-          text: "Graduated",
+          text: "WPI",
           size: 1,
         },
         {
-          text: "Worcester Polytechnic Institute",
+          text: "Graduated",
           size: 3,
         },
       ],
-      year: "2023"
+      years: ["2023"],
+      popUpType: "wpi",
     },
     {
       lines: [
         {
-          text: "Databases",
+          text: "Research",
           size: 1,
         },
         {
-          text: "Research Report",
+          text: "Project Experience",
           size: 2,
         },
       ],
-      year: "2023",
-    },
-    {
-      lines: [
-        {
-          text: "Internship",
-          size: 1,
-        },
-        {
-          text: "at Epic Systems",
-          size: 2,
-        }
-      ],
-      year: "2023"
-    },
-    {
-      lines: [
-        {
-          text: "AR Games",
-          size: 1,
-        },
-        {
-          text: "Research Report",
-          size: 2,
-        }
-      ],
-      year: "2022",
-    },
-    {
-      lines: [
-        {
-          text: "Build-It-",
-          size: 1,
-        },
-        {
-          text: "Yourself",
-          size: 2,
-        }
-      ],
-      year: "2022",
+      years: ["2023", "2022"],
     },
     {
       lines: [
@@ -78,39 +40,145 @@ export default async function Home() {
           size: 1,
         },
         {
-          text: "at Epic Systems",
+          text: "Epic Systems",
           size: 2,
         }
       ],
-      year: "2022"
+      years: ["2023", "2022"]
     },
     {
       lines: [
         {
-          text: "Great Minds",
+          text: "Work",
           size: 1,
         },
         {
-          text: "Robotics",
+          text: "Experience",
           size: 2,
-        },
+        }
       ],
-      year: "2019",
+      years: [],
     },
     {
       lines: [
         {
-          text: "Robotics",
+          text: "Early",
           size: 1,
         },
         {
-          text: "Competitions",
+          text: "Years",
           size: 2,
-        },
+        }
       ],
-      year: "2016",
+      years: [],
     }
   ]
+  // const sections: SectionInfo[] = [
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Graduated",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "Worcester Polytechnic Institute",
+  //         size: 3,
+  //       },
+  //     ],
+  //     year: "2023"
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Databases",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "Research Report",
+  //         size: 2,
+  //       },
+  //     ],
+  //     year: "2023",
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Internship",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "at Epic Systems",
+  //         size: 2,
+  //       }
+  //     ],
+  //     year: "2023"
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "AR Games",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "Research Report",
+  //         size: 2,
+  //       }
+  //     ],
+  //     year: "2022",
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Build-It-",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "Yourself",
+  //         size: 2,
+  //       }
+  //     ],
+  //     year: "2022",
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Internship",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "at Epic Systems",
+  //         size: 2,
+  //       }
+  //     ],
+  //     year: "2022"
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Great Minds",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "Robotics",
+  //         size: 2,
+  //       },
+  //     ],
+  //     year: "2019",
+  //   },
+  //   {
+  //     lines: [
+  //       {
+  //         text: "Robotics",
+  //         size: 1,
+  //       },
+  //       {
+  //         text: "Competitions",
+  //         size: 2,
+  //       },
+  //     ],
+  //     year: "2016",
+  //   }
+  // ]
 
   return (
     <>

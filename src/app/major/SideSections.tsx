@@ -7,7 +7,7 @@ import mergeRefs from "../utils/mergeRefs";
 import { transform } from "next/dist/build/swc";
 import useHover from "../utils/useHover";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { setActive } from "@/lib/features/popUp/popUpSlice";
+import { PopUpType, setActive, setPopUpType } from "@/lib/features/popUp/popUpSlice";
 
 export interface SectionInfo {
     lines:
@@ -15,7 +15,8 @@ export interface SectionInfo {
         text: string,
         size?: 1 | 2 | 3,
     }[],
-    year: string,
+    years: string[],
+    popUpType?: PopUpType,
 }
 
 const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<HTMLLIElement>) => {
@@ -23,7 +24,10 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
     const { isHovered, onMouseEnter, onMouseLeave } = useHover();
     const dispatch = useAppDispatch();
     const showPopUp = () => {
-        dispatch(setActive(true));
+        if (section.popUpType != undefined) {
+            dispatch(setPopUpType(section.popUpType));
+            dispatch(setActive(true));
+        }
     }
 
     return (
@@ -62,24 +66,30 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                                     transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out",
                                     color: `var(--${isHovered ? 'background' : color})`,
                                     WebkitTextStroke: `${isHovered ? "2px" : "0px"} var(--${color})`,
-                                    // transform: `translateZ(100px)`,
                                 }}
-                            // ref={el => lineRefs.current.push(el)}
                             >
                                 {
                                     i !== 0 ? <></> :
                                         <>
-                                            <span className={`text-${color} text-xl absolute text-left top-1 md:top-3 lg:top-5 xl:top-7 -left-[4rem]  xl:-left-20`}
-                                                aria-hidden="true"
-                                                style={{
-                                                    WebkitTextStroke: "0px",
-                                                    // transformStyle: "preserve-3d",
-                                                    // translate: `0 0 20px`,
-                                                    transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
-                                                }}
-                                            >
-                                                {section.year}
-                                            </span>
+                                            {
+                                                <span className={`text-${color} text-xl absolute text-left top-1 md:top-3 lg:top-5 xl:top-7 -left-[4rem] xl:-left-20 flex flex-col`}
+                                                    aria-hidden="true"
+                                                    style={{
+                                                        WebkitTextStroke: "0px",
+                                                        transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
+                                                    }}
+                                                >
+                                                    {
+                                                        section.years.map((year, j) => {
+                                                            return (
+                                                                <span key={j} className="">
+                                                                    {year}
+                                                                </span>
+                                                            )
+                                                        })
+                                                    }
+                                                </span>
+                                            }
                                             <span className={`bg-${color} w-[4px] h-[3.5rem] md:h-[6.5rem] lg:h-[8.2rem] xl:h-[13rem] top-1 md:top-3 xl:top-5 -left-3 md:-left-4 xl:-left-6 absolute -skew-x-12`}
                                                 style={{
                                                     // transformStyle: "preserve-3d",
