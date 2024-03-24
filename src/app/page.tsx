@@ -63,6 +63,21 @@ export default async function Home() {
     {
       lines: [
         {
+          text: "Tutor",
+          size: 1,
+        },
+        {
+          text: "Sign Up Now",
+          size: 2,
+        }
+      ],
+      years: ["2024"],
+      // link: "./tutor",
+      link: "https://epoll31.github.io/tutor",
+    },
+    {
+      lines: [
+        {
           text: "Early",
           size: 1,
         },

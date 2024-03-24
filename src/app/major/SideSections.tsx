@@ -17,16 +17,21 @@ export interface SectionInfo {
     }[],
     years: string[],
     popUpType?: PopUpType,
+    link?: string,
 }
 
 const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<HTMLLIElement>) => {
     const myRef = useRef<HTMLLIElement>(null);
     const { isHovered, onMouseEnter, onMouseLeave } = useHover();
     const dispatch = useAppDispatch();
-    const showPopUp = () => {
+
+    const handleClick = () => {
         if (section.popUpType != undefined) {
             dispatch(setPopUpType(section.popUpType));
             dispatch(setActive(true));
+        }
+        else if (section.link != undefined) {
+            window.open(section.link, "_blank");
         }
     }
 
@@ -48,7 +53,7 @@ const Section = React.forwardRef((section: SectionInfo, ref: React.ForwardedRef<
                     willChange: "transform",
                     transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
                 }}
-                onClick={showPopUp}
+                onClick={handleClick}
             >
                 {
                     section.lines.map((line, i) => {
