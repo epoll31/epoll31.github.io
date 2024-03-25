@@ -1,5 +1,7 @@
+"use client";
+
 import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
-import useMediaSizes, { mdOrLarger, smOrLarger, smOrSmaller, xlOrLarger } from "@/app/utils/useMediaSizes";
+import { useRouter } from "next/navigation";
 import { HTMLAttributes, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -342,9 +344,7 @@ function CourseCard({
     course: Course
 } & HTMLAttributes<HTMLDivElement>) {
 
-    const mediaSize = useMediaSizes();
-    const [minimized, setMinimized] = useState(mdOrLarger(mediaSize));
-    console.log(mediaSize);
+    const [minimized, setMinimized] = useState(false);
 
     const handleMinimized = () => {
         setMinimized(!minimized);
@@ -388,42 +388,55 @@ function CourseCard({
 }
 
 export default function WPI() {
+    const router = useRouter();
+
+    const handleClose = () => {
+        router.replace("/");
+    }
 
     return (
-        <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
-            <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
-                <div className="m-10 w-fit flex-shrink">
-                    <h1 className="font-lilita text-5xl">Worcester Polytechnic Institute (WPI)</h1>
-                    <div className="w-full flex flex-row gap-10">
-                        <p>aug 2020 → dec 2023</p>
+        <>
+            <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
+                <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
+                    <div className="m-10 w-fit flex-shrink">
+                        <h1 className="font-lilita text-5xl">Worcester Polytechnic Institute (WPI)</h1>
+                        <div className="w-full flex flex-row gap-10">
+                            <p>aug 2020 → dec 2023</p>
+                        </div>
                     </div>
-                </div>
-                <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
-                    <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
-                        <p>
-                            I recieved my Bachelor's Degree in Computer Science from Worcester Polytechnic Institute in December 2023.
-                        </p>
-                        <p>
-                            WPI is uses a project based teaching style where students learn by doing. This has prepared me not only for
-                            the technical aspects of software development, but also for the soft skills needed to work in a team and
-                            communicate. I have worked on projects ranging from creating an augmented reality game to teach children about
-                            the nitrogen cycle to comparing the MySQL, Oracle, and Postgres databases for pedagogical purposes.
-                        </p>
-                        <p>
-                            Check out some of the courses that I have taken below, and feel free to reach out if you would like to learn more about me or my work.
-                        </p>
+                    <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
+                        <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
+                            <p>
+                                I recieved my Bachelor's Degree in Computer Science from Worcester Polytechnic Institute in December 2023.
+                            </p>
+                            <p>
+                                WPI is uses a project based teaching style where students learn by doing. This has prepared me not only for
+                                the technical aspects of software development, but also for the soft skills needed to work in a team and
+                                communicate. I have worked on projects ranging from creating an augmented reality game to teach children about
+                                the nitrogen cycle to comparing the MySQL, Oracle, and Postgres databases for pedagogical purposes.
+                            </p>
+                            <p>
+                                Check out some of the courses that I have taken below, and feel free to reach out if you would like to learn more about me or my work.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="flex flex-col gap-5">
-                    {
-                        courses.map((course, i) => {
-                            return (
-                                <CourseCard key={i} course={course} />
-                            );
-                        })
-                    }
+                    <div className="flex flex-col gap-5">
+                        {
+                            courses.map((course, i) => {
+                                return (
+                                    <CourseCard key={i} course={course} />
+                                );
+                            })
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+            <span className="absolute menu arrow bg-foreground top-0 right-0 m-5 w-10 h-10 sm:m-10 sm:w-14 sm:h-14 rounded-full transition-all drop-shadow-md"
+                onClick={handleClose}>
+                <span className="absolute line1 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
+                <span className="absolute line2 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
+                <span className="absolute line3 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
+            </span>
+        </>
     );
 }

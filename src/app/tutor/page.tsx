@@ -38,8 +38,8 @@ export default function TutorPage() {
     return (
         <FormspreeProvider project="2429802370826239296">
             <main className="flex min-h-screen flex-col align-center p-5 gap-5 bg-white dark:bg-zinc-800">
-                <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:py-16 mx-auto max-w-[1300px]">
-                    <div className="col-start-1 col-span-1 md:row-span-2 lg:row-span-1 lg:col-span-2 flex justify-center align-middle h-fit">
+                <div className="gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:py-16 mx-auto max-w-[1300px] ">
+                    <div className="col-start-1 col-span-1 md:row-span-2 lg:row-span-1 lg:col-span-2 flex justify-center align-middle h-fit ">
                         <CardContainer className="rounded-3xl p-5 md:p-8 h-fit gap-5 bg-sky-200 dark:bg-black" >
                             <CardBody className="group/card h-auto w-auto flex flex-col lg:flex-row justify-around gap-5">
                                 <CardItem translateZ="100" className="">

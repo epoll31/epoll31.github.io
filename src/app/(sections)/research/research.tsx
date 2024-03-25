@@ -1,6 +1,9 @@
+"use client";
+
 import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
 import { CursorLock } from "@/app/components/CursorFollower";
-import useMediaSizes, { mdOrLarger, smOrLarger, smOrSmaller, xlOrLarger } from "@/app/utils/useMediaSizes";
+import useMediaSizes, { mdOrLarger } from "@/app/utils/useMediaSizes";
+import { useRouter } from "next/navigation";
 import { HTMLAttributes, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -48,7 +51,6 @@ function ResearchCard({
     const mediaSize = useMediaSizes();
     const [minimized, setMinimized] = useState(mdOrLarger(mediaSize));
     const [showPDF, setShowPDF] = useState(false);
-    console.log(mediaSize);
 
     const handleMinimized = () => {
         setMinimized(!minimized);
@@ -118,57 +120,72 @@ function ResearchCard({
 
 export default function Research() {
 
+
+    const router = useRouter();
+
+    const handleClose = () => {
+        router.replace("/");
+    };
+
     return (
-        <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
-            <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
-                <div className="m-10 w-fit flex-shrink">
-                    <h1 className="font-lilita text-6xl">Research Experience</h1>
-                    <div className="w-full flex flex-row gap-10">
-                        <p>IQP 2022</p>
-                        <p>MQP 2023</p>
+        <>
+            <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
+                <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
+                    <div className="m-10 w-fit flex-shrink">
+                        <h1 className="font-lilita text-6xl">Research Experience</h1>
+                        <div className="w-full flex flex-row gap-10">
+                            <p>IQP 2022</p>
+                            <p>MQP 2023</p>
+                        </div>
                     </div>
-                </div>
-                <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
-                    <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
-                        <p>
-                            During my time at WPI, I participated in many projects, including two major research projects, the Interactive Qualifying Project (IQP)
-                            and the Major Qualifying Project (MQP).
-                        </p>
-                        <p>
-                            The IQP is a research project that emphasizes the importance of learning to work with people of different interests, experiences, and
-                            backgrounds. In this project, groups are formed from a variety of majors to work on a single project that is meant to benefit society
-                            in some way. For my project, my team decided to research the Nitrogen Life Cycle and create a game using AR.js and React.js to teach
-                            children as a local Boy's and Girl's Club about the importance of nitrogen in our environment. As the lead developer, I was responsible
-                            for creating the game and ensuring that it was both educational and fun for children to play.
-                        </p>
-                        <p>
-                            Conversely, the MQP is a research project that encourages students of the same major to dive deep into a specific topic of their choosing.
-                            For my project, my team decided to research the differences between the MySQL, Oracle, and Postgres databases. Specifically, we wanted to
-                            figure out which database would be best for pedagogical purposes for future coputer science classes at WPI. We used a variety of tools
-                            including various SQL languages, Python, Java, and C++ to fully get a grasp of the differences, both positive and negative, between the
-                            three databases.
-                        </p>
-                        <p>
-                            Both projects were extremely rewarding and taught me a lot about the research process and how to work with a team to accomplish a common
-                            goal. I am very proud of the work that my teams and I accomplished and am excited for the opportunity to continue working on research
-                            projects in the future.
-                        </p>
-                        <p>
-                            Below you can find more information about the research projects that I have worked on. I am happy to answer any questions that you may
-                            have about the projects and am excited to discuss the work that I have done. Please feel free to reach out to me if you have any questions.
-                        </p>
+                    <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
+                        <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
+                            <p>
+                                During my time at WPI, I participated in many projects, including two major research projects, the Interactive Qualifying Project (IQP)
+                                and the Major Qualifying Project (MQP).
+                            </p>
+                            <p>
+                                The IQP is a research project that emphasizes the importance of learning to work with people of different interests, experiences, and
+                                backgrounds. In this project, groups are formed from a variety of majors to work on a single project that is meant to benefit society
+                                in some way. For my project, my team decided to research the Nitrogen Life Cycle and create a game using AR.js and React.js to teach
+                                children as a local Boy's and Girl's Club about the importance of nitrogen in our environment. As the lead developer, I was responsible
+                                for creating the game and ensuring that it was both educational and fun for children to play.
+                            </p>
+                            <p>
+                                Conversely, the MQP is a research project that encourages students of the same major to dive deep into a specific topic of their choosing.
+                                For my project, my team decided to research the differences between the MySQL, Oracle, and Postgres databases. Specifically, we wanted to
+                                figure out which database would be best for pedagogical purposes for future coputer science classes at WPI. We used a variety of tools
+                                including various SQL languages, Python, Java, and C++ to fully get a grasp of the differences, both positive and negative, between the
+                                three databases.
+                            </p>
+                            <p>
+                                Both projects were extremely rewarding and taught me a lot about the research process and how to work with a team to accomplish a common
+                                goal. I am very proud of the work that my teams and I accomplished and am excited for the opportunity to continue working on research
+                                projects in the future.
+                            </p>
+                            <p>
+                                Below you can find more information about the research projects that I have worked on. I am happy to answer any questions that you may
+                                have about the projects and am excited to discuss the work that I have done. Please feel free to reach out to me if you have any questions.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="flex flex-col gap-5">
-                    {
-                        research.map((research, i) => {
-                            return (
-                                <ResearchCard key={i} research={research} />
-                            );
-                        })
-                    }
+                    <div className="flex flex-col gap-5">
+                        {
+                            research.map((research, i) => {
+                                return (
+                                    <ResearchCard key={i} research={research} />
+                                );
+                            })
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+            <span className="absolute menu arrow bg-foreground top-0 right-0 m-5 w-10 h-10 sm:m-10 sm:w-14 sm:h-14 rounded-full transition-all drop-shadow-md"
+                onClick={handleClose}>
+                <span className="absolute line1 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
+                <span className="absolute line2 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
+                <span className="absolute line3 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
+            </span>
+        </>
     );
 }

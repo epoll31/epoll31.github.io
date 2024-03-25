@@ -1,27 +1,25 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import './globals.css'
+import '@/app/globals.css'
 import StoreProvider from '@/app/StoreProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Ethan Pollack',
-  description: 'Personal Website made by Ethan Pollack',
+  title: 'About Me | Ethan Pollack',
+  description: 'Learn About Ethan Pollack',
 }
 
-export default function RootLayout({
+export default function AboutLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
     <StoreProvider >
-      <html lang="en">
-        <body className="bg-background">
-          {children}
-        </body>
-      </html>
+      <section className="bg-background">
+        {children}
+      </section>
     </StoreProvider>
   )
 }

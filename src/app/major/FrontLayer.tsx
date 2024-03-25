@@ -7,10 +7,11 @@ import LinkedIn from "/public/images/linkedin.svg";
 import { CursorLock } from "../components/CursorFollower";
 import { setActive, setPopUpType } from "@/lib/features/popUp/popUpSlice";
 import { useAppDispatch } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
 
 
 export default function FrontLayer() {
-    const dispatch = useAppDispatch();
+    const router = useRouter();
 
     return (
         <>
@@ -33,8 +34,7 @@ export default function FrontLayer() {
                     <CursorLock as="span" className=" " cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[7rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3">
                         <button className="hover:font-bold text-nowrap whitespace-nowrap"
                             onClick={() => {
-                                dispatch(setPopUpType("about"));
-                                dispatch(setActive(true));
+                                router.replace("/about");
                             }}
                         >
                             About me

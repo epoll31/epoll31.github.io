@@ -3,7 +3,7 @@ import type { RootState } from '@/lib/store'
 
 // Define a type for the slice state
 
-export type PopUpType = 'about' | 'wpi' | 'research' | undefined;
+export type PopUpType = 'about' | 'wpi' | 'research' | 'internships' | 'work' | undefined;
 export interface PopUpState {
     active: boolean,
     popUpType: PopUpType,

@@ -4,7 +4,7 @@ import popUpReducer from './features/popUp/popUpSlice';
 
 const rootReducer = combineReducers({
     mouse: mouseReducer,
-    popUp: popUpReducer
+    popUp: popUpReducer,
 });
 
 export const makeStore = () => {
