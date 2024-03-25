@@ -25,13 +25,13 @@ export default function FrontLayer() {
                 </p>
                 <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
                     Inspiration from
-                    <CursorLock as="span" className="ml-1" cursorLockedClassName="h-1 w-[5.2rem] sm:w-[7rem] md:w-[9.2rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3">
+                    <CursorLock as="span" className="ml-1" cursorLockedClassName="h-1 w-[5.2rem] sm:w-[7rem] md:w-[9.2rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3 z-30">
                         <Link href="https://vanholtz.co/" className="hover:font-bold text-nowrap whitespace-nowrap">Van Holtz Co.</Link>
                     </CursorLock>
                 </p>
                 <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
 
-                    <CursorLock as="span" className=" " cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[7rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3">
+                    <CursorLock as="span" className=" " cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[7rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3 z-30">
                         <button className="hover:font-bold text-nowrap whitespace-nowrap"
                             onClick={() => {
                                 router.replace("/about");

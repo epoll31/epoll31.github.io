@@ -1,15 +1,12 @@
 "use client";
 
 import { CursorLock } from "@/app/components/CursorFollower";
+import Home from "@/app/components/Home";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function About() {
     const router = useRouter();
-
-    const handleClose = () => {
-        router.replace("/");
-    }
 
     return (
         <>
@@ -83,12 +80,7 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <span className="absolute menu arrow bg-foreground top-0 right-0 m-5 w-10 h-10 sm:m-10 sm:w-14 sm:h-14 rounded-full transition-all drop-shadow-md"
-                onClick={handleClose}>
-                <span className="absolute line1 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
-                <span className="absolute line2 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
-                <span className="absolute line3 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
-            </span>
+            <Home />
         </>
     );
 }

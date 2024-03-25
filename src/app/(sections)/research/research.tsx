@@ -2,8 +2,8 @@
 
 import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
 import { CursorLock } from "@/app/components/CursorFollower";
+import Home from "@/app/components/Home";
 import useMediaSizes, { mdOrLarger } from "@/app/utils/useMediaSizes";
-import { useRouter } from "next/navigation";
 import { HTMLAttributes, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -119,14 +119,6 @@ function ResearchCard({
 }
 
 export default function Research() {
-
-
-    const router = useRouter();
-
-    const handleClose = () => {
-        router.replace("/");
-    };
-
     return (
         <>
             <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
@@ -180,12 +172,7 @@ export default function Research() {
                     </div>
                 </div>
             </div>
-            <span className="absolute menu arrow bg-foreground top-0 right-0 m-5 w-10 h-10 sm:m-10 sm:w-14 sm:h-14 rounded-full transition-all drop-shadow-md"
-                onClick={handleClose}>
-                <span className="absolute line1 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
-                <span className="absolute line2 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
-                <span className="absolute line3 arrow w-full h-1 rounded-full bg-black " aria-hidden></span>
-            </span>
+            <Home />
         </>
     );
 }

@@ -119,7 +119,6 @@ export function CursorFollower() {
             ...style,
             ...rest
         };
-        // console.log(style);
     }
     return (
         <div className={className}

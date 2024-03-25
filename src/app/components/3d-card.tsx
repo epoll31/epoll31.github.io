@@ -23,18 +23,21 @@ export const CardContainer = ({
     children,
     className,
     containerClassName,
-    damping = 25
+    damping = 25,
+    disabled = false
 }: {
     children?: React.ReactNode;
     className?: string;
     containerClassName?: string;
     damping?: Damping;
+    disabled?: boolean;
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMouseEntered, setIsMouseEntered] = useState(false);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
         if (!containerRef.current) return;
+        if (disabled) return;
         const { left, top, width, height } =
             containerRef.current.getBoundingClientRect();
         const d = typeof damping === "number" ? { x: damping, y: damping } : damping;
@@ -44,11 +47,13 @@ export const CardContainer = ({
     };
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (disabled) return;
         setIsMouseEntered(true);
         if (!containerRef.current) return;
     };
 
     const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (disabled) return;
         if (!containerRef.current) return;
         setIsMouseEntered(false);
         containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
