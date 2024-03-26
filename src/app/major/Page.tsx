@@ -1,5 +1,5 @@
 
-
+"use client"
 import CustomButton, { CustomButtonType } from "../components/CustomButton/CustomButton";
 import Fade from "./Fade";
 import { twMerge } from "tailwind-merge";

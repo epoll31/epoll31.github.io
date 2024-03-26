@@ -2,15 +2,12 @@
 import { CursorFollower } from "@/app/components/CursorFollower";
 import Fade from "@/app/major/Fade";
 import Work from "./work";
+import Page from "@/app/major/Page";
 
 export default async function WorkPage() {
   return (
-    <>
-      <main className="fixed w-screen h-screen">
-        <Fade />
-        <Work />
-      </main >
-      <CursorFollower />
-    </>
+    <Page >
+      <Work />
+    </Page>
   );
 };

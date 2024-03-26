@@ -14,7 +14,7 @@ export default function Work() {
 
     return (
         <>
-            <div className="fixed w-full h-full text-black overflow-y-auto flex flex-col items-center">
+            <div className="text-black overflow-y-auto flex flex-col items-center">
                 <div className="w-fit h-fit max-w-prose">
                     <div className="m-10 flex-shrink">
                         <h1 className="font-lilita text-4xl lg:text-7xl w-fit text-wrap transition-all duration-150">
@@ -32,8 +32,10 @@ export default function Work() {
                             </CursorLock>
                         </div>
                     </div>
-                    <div className="flex-grow flex flex-col justify-around m-5 gap-5 items-center">
-                        <div className="flex-1 font-k2d flex flex-col text-wrap gap-4">
+
+
+                    <div className="flex-grow flex flex-col justify-around m-5 gap-5 items-center hidden">
+                        <div className=" flex-1 font-k2d flex flex-col text-wrap gap-4">
                             <p>
                                 I am fortunate to have had the opportunity to work at a few different places and gain experience in a variety of
                                 settings. Most importantly, I have worked at
