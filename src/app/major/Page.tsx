@@ -4,20 +4,22 @@ import CustomButton, { CustomButtonType } from "../components/CustomButton/Custo
 import Fade from "./Fade";
 import { twMerge } from "tailwind-merge";
 import React, { useEffect } from "react";
-import { Heading } from "./Heading";
+import { Heading, Tab } from "./Heading";
 
 function Side({
     className,
-    children
+    children,
+    tabs
 }: {
     className?: string;
     children?: React.ReactNode;
+    tabs: Tab[];
 }) {
 
     return (
         <div className={twMerge(className, "m-10 text-black md:top-10 md:sticky flex flex-row md:w-fit justify-center md:justify-end")}>
             <div className="flex flex-col w-min">
-                <Heading tabs={["Work", "Projects", "About", "Early Years"]} />
+                <Heading tabs={tabs} />
                 {children}
             </div>
         </div>
@@ -44,11 +46,13 @@ export function PageMajor({
 
 export default function Page({
     children,
-    customButtonType
+    customButtonType,
+    tabs
 }:
     {
         children?: React.ReactNode;
-        customButtonType?: CustomButtonType
+        customButtonType?: CustomButtonType;
+        tabs: Tab[];
     }) {
 
     // const sideChildren: React.ReactNode[] = [];
@@ -80,7 +84,7 @@ export default function Page({
         <>
             <main className="fixed w-full h-full flex flex-col md:flex-row overflow-x-hidden overflow-y-scroll">
                 <Fade />
-                <Side className="md:flex-1" >
+                <Side className="md:flex-1" tabs={tabs} >
                     {...sideChildren}
                 </Side>
                 <div className="md:flex-2 ">

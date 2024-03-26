@@ -6,7 +6,7 @@ import Page from "@/app/major/Page";
 
 export default async function WorkPage() {
   return (
-    <Page >
+    <Page tabs={["Education", "Projects", "About", "Early Years"]} >
       <Work />
     </Page>
   );

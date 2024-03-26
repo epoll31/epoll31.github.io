@@ -4,14 +4,29 @@ import { CursorLock } from "@/app/components/CursorFollower";
 import CustomButton from "@/app/components/CustomButton/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import WorkTimeline from "./WorkTimeline";
+
 
 export default function Work() {
-    const router = useRouter();
+    return (
+        <div className="w-full h-fit text-black flex flex-col items-center md:mt-10">
+            <div className="w-fit h-fit min-w-96 pb-10">
+                <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
+                    <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
+                        <h1 className="font-lilita text-4xl md:text-6xl">Work Experience</h1>
+                        <p>
+                            put some stuff here maybe
+                        </p>
+                    </div>
+                </div>
 
-    const handleClose = () => {
-        router.replace("/");
-    }
+                <WorkTimeline />
+            </div>
+        </div>
+    );
+}
 
+function WorkOld() {
     return (
         <>
             <div className="text-black overflow-y-auto flex flex-col items-center">
@@ -34,7 +49,7 @@ export default function Work() {
                     </div>
 
 
-                    <div className="flex-grow flex flex-col justify-around m-5 gap-5 items-center hidden">
+                    <div className="flex-grow flex flex-col justify-around m-5 gap-5 items-center">
                         <div className=" flex-1 font-k2d flex flex-col text-wrap gap-4">
                             <p>
                                 I am fortunate to have had the opportunity to work at a few different places and gain experience in a variety of
@@ -124,7 +139,6 @@ export default function Work() {
                     </div>
                 </div >
             </div >
-            <CustomButton />
         </>
     );
 }

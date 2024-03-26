@@ -9,7 +9,7 @@ export default function WPIPage() {
   const mediaSize = useMediaSizes();
 
   return (
-    <Page customButtonType="home">
+    <Page customButtonType="home" tabs={["Work", "Projects", "About", "Early Years"]}>
       {
         mediaSize != undefined && (
           <PageMajor type="Side">
