@@ -1,16 +1,21 @@
 "use client";
 import { allCourseTypes, clearCourseTypes, selectCourseTypes, toggleCourseType } from "@/lib/features/courseFilters/courseFiltersSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { twMerge } from "tailwind-merge";
 
-export function Filters() {
+export function Filters(props:
+    {
+        className?: string,
+    }) {
     const dispatch = useAppDispatch();
     const toggled = useAppSelector(selectCourseTypes);
 
     return (
-        <div className="w-full h-fit mt-10 font-k2d">
-            <h1 className="text-2xl pl-1 mb-2">Filters:</h1>
-            <div className=" flex flex-col gap-2">
-                <h2 className="text-md pl-3">Class Types</h2>
+        <div className={twMerge(props.className, "w-full h-fit mt-10 font-k2d py-1")}>
+            <hr className="border-black my-2"></hr>
+            {/* <h1 className="text-2xl pl-1 mb-2">Filters:</h1> */}
+            <div className=" flex flex-row flex-wrap md:flex-col gap-2 justify-center">
+                {/* <h2 className="text-md pl-3 w-full">Class Types</h2> */}
                 {allCourseTypes.map((filter, i) => {
                     const cn = (toggled.find(f => f === filter)) ? "outline" : "";
 
@@ -24,7 +29,7 @@ export function Filters() {
                     );
                 }
                 )}
-                <button className="active:underline" onClick={() => dispatch(clearCourseTypes())}>Clear Filters</button>
+                {/* <button className="active:underline" onClick={() => dispatch(clearCourseTypes())}>Clear Filters</button> */}
             </div>
             <hr className="border-black my-2"></hr>
         </div>

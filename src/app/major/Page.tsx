@@ -1,11 +1,10 @@
 
 
-import Link from "next/link";
-import { CursorLock } from "../components/CursorFollower";
-import Home from "../components/Home";
+import CustomButton, { CustomButtonType } from "../components/CustomButton/CustomButton";
 import Fade from "./Fade";
 import { twMerge } from "tailwind-merge";
-import React from "react";
+import React, { useEffect } from "react";
+import { Heading } from "./Heading";
 
 function Side({
     className,
@@ -14,43 +13,11 @@ function Side({
     className?: string;
     children?: React.ReactNode;
 }) {
-    const tabs = [
-        {
-            title: "Projects",
-            link: "https://github.com/epoll31",
-            width: "w-[4rem]"
-        },
-        {
-            title: "Work",
-            link: "../work",
-            width: "w-[2.3rem]"
-        },
-        {
-            title: "About",
-            link: "../about",
-            width: "w-[2.7rem]"
-        },
-        {
-            title: "Early Years",
-            link: "../early",
-            width: "w-[5rem]"
-        },
-    ]
+
     return (
-        <div className={twMerge(className, "m-10 text-black")}>
-            <div className="flex flex-col w-min  top-10 fixed">
-                <Link href={"./"} className="w-min font-lilita text-8xl">Ethan Pollack</Link>
-                <div className="flex flex-row justify-between flex-wrap">
-                    {
-                        tabs.map((tab, i) => {
-                            return (
-                                <CursorLock className="underline hover:no-underline" cursorLockedClassName={` hidden sm:[display:inherit] h-1 ${tab.width} rounded-full bg-foreground translate-y-2 z-40`} key={i}>
-                                    <Link key={i} href={tab.link} className="font-k2d text-md">{tab.title}</Link>
-                                </CursorLock>
-                            )
-                        })
-                    }
-                </div>
+        <div className={twMerge(className, "m-10 text-black md:top-10 md:sticky flex flex-row md:w-fit justify-center md:justify-end")}>
+            <div className="flex flex-col w-min">
+                <Heading tabs={["Work", "Projects", "About", "Early Years"]} />
                 {children}
             </div>
         </div>
@@ -75,42 +42,54 @@ export function PageMajor({
     );
 }
 
-export default function Page(props:
+export default function Page({
+    children,
+    customButtonType
+}:
     {
         children?: React.ReactNode;
+        customButtonType?: CustomButtonType
     }) {
 
-    const sideChildren: React.ReactNode[] = [];
-    const mainChildren: React.ReactNode[] = [];
+    // const sideChildren: React.ReactNode[] = [];
+    // const mainChildren: React.ReactNode[] = [];
+    const [sideChildren, setSideChildren] = React.useState<React.ReactNode[]>([]);
+    const [mainChildren, setMainChildren] = React.useState<React.ReactNode[]>([]);
 
-    React.Children.forEach(props.children, (child) => {
-        if (React.isValidElement(child)) {
-            if (child.type === PageMajor) {
-                if (child.props.type === "Side") {
-                    sideChildren.push(child);
+    useEffect(() => {
+        const sideChildren: React.ReactNode[] = [];
+        const mainChildren: React.ReactNode[] = [];
+        React.Children.forEach(children, (child) => {
+            if (React.isValidElement(child)) {
+                if (child.type === PageMajor) {
+                    if (child.props.type === "Side") {
+                        sideChildren.push(child);
+                    } else {
+                        mainChildren.push(child);
+                    }
                 } else {
                     mainChildren.push(child);
                 }
-            } else {
-                mainChildren.push(child);
             }
-        }
-    });
+        });
+        setSideChildren(sideChildren);
+        setMainChildren(mainChildren);
+    }, [children]);
 
     return (
         <>
-            <main className="fixed w-full h-full flex flex-row overflow-x-hidden overflow-y-scroll">
+            <main className="fixed w-full h-full flex flex-col md:flex-row overflow-x-hidden overflow-y-scroll">
                 <Fade />
-                <Side className="flex-1" >
+                <Side className="md:flex-1" >
                     {...sideChildren}
                 </Side>
-                <div className="flex-2 ">
+                <div className="md:flex-2 ">
                     {...mainChildren}
                 </div>
-                <div className="flex-1">
+                <div className="md:flex-1">
 
                 </div>
-                <Home />
+                <CustomButton type={customButtonType} />
             </main >
             {/* <CursorFollower /> */}
         </>

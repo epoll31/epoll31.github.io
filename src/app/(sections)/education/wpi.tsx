@@ -1,10 +1,12 @@
 "use client";
 
-import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
 import { CourseType, selectCourseTypes } from "@/lib/features/courseFilters/courseFiltersSlice";
 import { useAppSelector } from "@/lib/hooks";
-import { HTMLAttributes, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { CourseCard } from "./CourseCard";
+import { useEffect, useState } from "react";
+import useMediaSizes from "@/app/utils/useMediaSizes";
+import { Filters } from "./Filters";
+import ResearchCard from "./ResearchCard";
 
 const courses: Course[] = [
     {
@@ -359,81 +361,64 @@ const courses: Course[] = [
     }
 ];
 
-interface Course {
+
+const research: Research[] = [
+    {
+        title: "Nitrogen Cycle Public Outreach and Game Development",
+        subTitle: "Interactive Qualifying Project",
+        year: "2022",
+        authors: ["Ethan Pollack", "Philip Bui", "Charles Anderson", "Hasan Gandor", "Vien Le"],
+        abstract: "The natural nitrogen cycle (NNC) is an important part of the world's overall ecosystem. It is integral to all life, especially human life. The nitrogen cycle is a process that can easily go out of balance through human development. Some of the ways humans unintentionally affect the natural nitrogen cycle is through the agriculture industry and waste disposal systems. The agriculture industry is the largest factor of human incursion in the nitrogen cycle. It has gotten to a point where there is arguably a man-made nitrogen cycle that exists within the agriculture industry. Both the natural and man-made cycle influence each other. Sustaining both the natural cycle and the artificial one is key if the agriculture industry expects it to be at equal or greater levels of production as to what it is currently. This environmental relationship can almost be thought of as a resource balancing game, or an optimization game. The word “game” used here is not meant to diminish the severity of such ecological systems but meant to embody the creation of an imaginary model which can give us differing outcomes based on input. In current culture, games are a common form of entertainment in today’s world and one of the most ancient types of activity. However, with the advent of computers, games are now often said to have taken a new “dimension” of possibilities. This is embodied in the medium of video games and has been taken further with the recent technology of augmented reality (AR) and virtual reality (VR). Video games are a very recent medium with their origins going back to the 1950’s with Tennis for Two, and only in the past couple decades where they considered to have their own merit as tools for education. Virtual reality, the ancestor of augmented reality, is also relatively new, having its modern iteration first shown in the 1960’s with the Telesphere Mask. By combining the capabilities of AR/VR and video games, educators now have a wide range of possibilities for all sorts of education in a variety of fields. STEM education particularly due to the very hands-on and model driven nature of the subject. The goal of this project is to collaborate with educators and students to make an augmented reality game that aims to teach students about the nitrogen cycle and the greater social implications of human development in it.",
+        tags: ["AR.js", "React.js", "Nitrogen Cycle", "Education", "Game Development"],
+        pdf: "/iqp.pdf",
+        id: "iqp"
+    },
+    {
+        title: "Comparative Study of Relational Databases for CS Courses",
+        subTitle: "Major Qualifying Project",
+        year: "2023",
+        authors: ["Ethan Pollack", "Azel Luca", "Harrison Taylor"],
+        abstract: "This comparative study assesses three leading database systems: Oracle, Postgres, and MySQL. The aim of this MQP was to create systematic selection criteria for college instructors to assist them in choosing the most suitable database management system for teaching database courses. As many industries rely on databases, the choice of appropriate database systems for the curriculum is crucial to prepare students for real-world applications. Our methodology included a thorough literature review of each system, practical evaluations via installations on multiple operating systems, and syntactical analyses through hands-on projects. The results show unique features of each system, with implications for how they fit within university curricula, depending on course design and goals.        ",
+        tags: ["Oracle", "Postgres", "MySQL", "Database Systems", "Database Management", "CS Education"],
+        pdf: "/mqp.pdf",
+        id: "mqp"
+    }
+];
+
+export interface Course {
     name: string,
     description: string,
     tags: string[],
     courseType: CourseType,
 }
-
-function CourseCard({
-    course,
-    ...props
-}: {
-    course: Course
-} & HTMLAttributes<HTMLDivElement>) {
-
-    const [minimized, setMinimized] = useState(false);
-
-    const handleMinimized = () => {
-        setMinimized(!minimized);
-    };
-
-    return (
-        <CardContainer containerClassName="p-0" className={twMerge(props.className, `relative w-full mx-5 p-5 bg-foreground font-k2d text-black rounded-lg drop-shadow-lg`)} {...props}>
-            <CardBody className="flex flex-col gap-2 w-full h-min overflow-x-hidden">
-                <button className="control flex flex-row w-full gap-1"
-                    onClick={handleMinimized}
-                >
-                    <CardItem as="h1" className="text-left flex-grow font-bold text-2xl" translateZ={300}>
-                        {course.name}
-                    </CardItem>
-                    <span className={`relative minmax ${minimized ? '' : 'up'} flex-shrink w-8 h-8 z-50 aspect-square`}
-                    >
-                        <span className="bg-background absolute rounded-full"></span>
-                        <span className="bg-background absolute rounded-full"></span>
-                    </span>
-                </button>
-                {
-                    minimized ? <></> :
-                        <>
-                            <p className=" text-justify">{course.description}</p>
-                            <CardItem className={`w-full flex flex-row flex-wrap gap-2 justify-around`}
-                                translateZ={400}
-                            >
-                                {
-                                    course.tags.map((tag, i) => {
-                                        return (
-                                            <p key={i} className="rounded-full px-3 bg-foreground-100 text-black ">{tag}</p>
-                                        );
-                                    })
-                                }
-                            </CardItem>
-                        </>
-                }
-            </CardBody>
-        </CardContainer>
-    );
+export interface Research {
+    title: string,
+    subTitle: string,
+    year: string,
+    authors: string[],
+    abstract: string,
+    tags: string[],
+    pdf: string,
+    id: string
 }
 
 export default function WPI() {
+    const mediaSize = useMediaSizes();
     const toggled = useAppSelector(selectCourseTypes);
+    const [filteredCourses, setFilteredCourses] = useState<Course[]>(courses.filter(course => toggled.length === 0 || toggled.includes(course.courseType)));
+    useEffect(() => {
+        setFilteredCourses(courses.filter(course => toggled.length === 0 || toggled.includes(course.courseType)));
+    }, [toggled]);
 
     return (
         <>
-            <div className="w-full h-fit text-black flex flex-col items-center">
+            <div className="w-full h-fit text-black flex flex-col items-center md:mt-10">
                 <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
-                    <div className="m-10 w-fit flex-shrink">
-                        <h1 className="font-lilita text-6xl">Education</h1>
-                        <div className="w-full flex flex-row gap-10">
-                            <p>Worcester Polytechnic Institute</p>
-                            <p>B.S. in Computer Science</p>
-                        </div>
-                    </div>
                     <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
                         <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
+                            <h1 className="font-lilita text-6xl">Education</h1>
                             <p>
-                                I recieved my Bachelor's Degree in Computer Science from Worcester Polytechnic Institute in December 2023.
+                                I recieved my Bachelor of Science Degree in Computer Science from Worcester Polytechnic Institute in December 2023.
                             </p>
                             <p>
                                 WPI is uses a project based teaching style where students learn by doing. This has prepared me not only for
@@ -446,9 +431,25 @@ export default function WPI() {
                             </p>
                         </div>
                     </div>
+
+                    {
+                        mediaSize == undefined && (
+                            <Filters className="px-10 sticky top-0 bg-background z-10" />
+                        )
+                    }
+
                     <div className="flex flex-col gap-5">
+                        <h2 className="text-center font-bold font-k2d">Research Projects</h2>
                         {
-                            courses.filter(course => toggled.length === 0 || toggled.includes(course.courseType)).map((course, i) => {
+                            research.map((research, i) => {
+                                return (
+                                    <ResearchCard key={i} research={research} />
+                                );
+                            })
+                        }
+                        <h2 className="text-center font-bold font-k2d">Courses Taken</h2>
+                        {
+                            filteredCourses.map((course, i) => {
                                 return (
                                     <CourseCard key={i} course={course} />
                                 );

@@ -1,7 +1,7 @@
 "use client";
 
 import { CursorLock } from "@/app/components/CursorFollower";
-import Home from "@/app/components/Home";
+import CustomButton from "@/app/components/CustomButton/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -62,7 +62,7 @@ export default function Internships() {
                     </div>
                 </div >
             </div >
-            <Home />
+            <CustomButton />
         </>
     );
 }

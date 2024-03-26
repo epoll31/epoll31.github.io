@@ -2,7 +2,7 @@
 
 import { CursorFollower } from "@/app/components/CursorFollower";
 import ResearchCard from "../components/ResearchCard";
-import Home from "@/app/components/Home";
+import CustomButton from "@/app/components/CustomButton/CustomButton";
 
 
 export default function IQP() {
@@ -23,7 +23,7 @@ export default function IQP() {
             }} />
           </div>
         </div>
-        <Home />
+        <CustomButton />
       </main >
       <CursorFollower />
     </>

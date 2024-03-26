@@ -9,49 +9,21 @@ export default async function Home() {
     {
       lines: [
         {
-          text: "WPI",
+          text: "Education",
           size: 1,
         },
         {
-          text: "Graduated",
-          size: 3,
-        },
-      ],
-      years: ["2023"],
-      redirect: "/wpi",
-    },
-    {
-      lines: [
-        {
-          text: "Research",
-          size: 1,
-        },
-        {
-          text: "Project Experience",
+          text: "BS in CS",
           size: 2,
         },
       ],
-      years: ["2023", "2022"],
-      redirect: "/research",
+      years: [],
+      redirect: "/education",
     },
     {
       lines: [
         {
-          text: "Internship",
-          size: 1,
-        },
-        {
-          text: "Epic Systems",
-          size: 2,
-        }
-      ],
-      years: ["2023", "2022"],
-      redirect: "/internships",
-    },
-    {
-      lines: [
-        {
-          text: "Work",
+          text: "Work",//TODO: ask about "Working"
           size: 1,
         },
         {
@@ -65,16 +37,16 @@ export default async function Home() {
     {
       lines: [
         {
-          text: "Tutor",
+          text: "Projects",
           size: 1,
         },
         {
-          text: "Sign Up Now",
+          text: "Github",
           size: 2,
         }
       ],
-      years: ["2024"],
-      redirect: "./tutor",
+      years: [],
+      redirect: "https://github.com/epoll31",
     },
     {
       lines: [
