@@ -12,6 +12,10 @@ I have several pages on here that display the following:
     * Allowing students and parents to learn more about me and my experiences
     * If they are interested, there is a form that I implemented using a [Formspree API](https://formspree.io) to send me an email with the information that they filled in, allowing me to reach out with more information and schedule a session.
 
+### Inspiration
+
+[Van Holtz Co.](https://vanholtz.co/)
+
 ## Development Notes
 
 ### Editing the Project

@@ -1,17 +1,17 @@
-
 import { CursorFollower } from "@/app/components/CursorFollower";
 import Fade from "@/app/major/Fade";
 import WPI from "./wpi";
+import Page, { PageMajor } from "@/app/major/Page";
+import { Filters } from "./Filters";
 
 export default async function WPIPage() {
 
   return (
-    <>
-      <main className="relative w-screen h-screen flex flex-col items-center gap-5 overflow-hidden">
-        <Fade />
-        <WPI />
-      </main >
-      <CursorFollower />
-    </>
+    <Page>
+      <PageMajor type="Side" >
+        <Filters />
+      </PageMajor>
+      <WPI />
+    </Page>
   );
 };

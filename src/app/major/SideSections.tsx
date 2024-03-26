@@ -7,8 +7,8 @@ import mergeRefs from "../utils/mergeRefs";
 import { transform } from "next/dist/build/swc";
 import useHover from "../utils/useHover";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { PopUpType, setActive, setPopUpType } from "@/lib/features/popUp/popUpSlice";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export interface SectionInfo {
     lines:
@@ -28,12 +28,6 @@ const Section = React.forwardRef((
     const dispatch = useAppDispatch();
     const router = useRouter();
 
-    const handleClick = () => {
-        if (section.redirect) {
-            router.replace(section.redirect);
-        }
-    };
-
     return (
         <>
             <li
@@ -45,7 +39,7 @@ const Section = React.forwardRef((
                 onMouseLeave={onMouseLeave}
                 ref={mergeRefs(ref, myRef)}
             >
-                <button className="  origin-right cursor-none select-none h-full w-full flex flex-col justify-center items-end"
+                <Link className="  origin-right cursor-none select-none h-full w-full flex flex-col justify-center items-end"
                     style={{
                         transformStyle: "preserve-3d",
                         transform: `rotateY(${isHovered ? -20 : -30}deg)`,
@@ -53,7 +47,7 @@ const Section = React.forwardRef((
                         willChange: "transform",
                         transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
                     }}
-                    onClick={handleClick}
+                    href={section.redirect}
                 >
                     {
                         section.lines.map((line, i) => {
@@ -108,7 +102,7 @@ const Section = React.forwardRef((
                             )
                         })
                     }
-                </button>
+                </Link>
             </li>
         </>
     );

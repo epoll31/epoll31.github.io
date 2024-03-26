@@ -1,8 +1,8 @@
 "use client";
 
 import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
-import Home from "@/app/components/Home";
-import { useRouter } from "next/navigation";
+import { CourseType, selectCourseTypes } from "@/lib/features/courseFilters/courseFiltersSlice";
+import { useAppSelector } from "@/lib/hooks";
 import { HTMLAttributes, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -17,7 +17,8 @@ const courses: Course[] = [
             "Advanced Topics",
             "HTTP Protocol",
             "Project-Based"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Accelerated Object-Oriented Design Concepts",
@@ -29,7 +30,8 @@ const courses: Course[] = [
             "Advanced Design",
             "Algorithmic Thinking",
             "Program Design"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Systems Programming Concepts",
@@ -41,7 +43,8 @@ const courses: Course[] = [
             "Hardware Interaction",
             "Memory Management",
             "Advanced Programming"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Algorithms",
@@ -53,7 +56,8 @@ const courses: Course[] = [
             "Algorithm Analysis",
             "Data Structures",
             "Problem Solving"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Discrete Mathematics",
@@ -65,7 +69,8 @@ const courses: Course[] = [
             "Graph Theory",
             "Propositional Calculus",
             "Counting Techniques"
-        ]
+        ],
+        courseType: "Mathematics"
     },
     {
         name: "Introduction To Machine Organization And Assembly Language",
@@ -77,7 +82,8 @@ const courses: Course[] = [
             "Hardware",
             "Programming",
             "Computer Architecture"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "The Game Development Process",
@@ -89,7 +95,8 @@ const courses: Course[] = [
             "Artistic Development",
             "Group Work",
             "Game Design"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Data Science I: Introduction To Data Science",
@@ -101,7 +108,8 @@ const courses: Course[] = [
             "Business Intelligence",
             "Data Analysis",
             "Real-world Data"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Operating Systems",
@@ -113,7 +121,8 @@ const courses: Course[] = [
             "Memory Management",
             "C Programming",
             "Resource Allocation"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Software Engineering",
@@ -125,7 +134,8 @@ const courses: Course[] = [
             "System Design",
             "Configuration Management",
             "Software Development"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Data Science II: Modeling And Data Analysis",
@@ -137,7 +147,8 @@ const courses: Course[] = [
             "Machine Learning",
             "Statistics",
             "Real-world Data"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Graphic Design",
@@ -149,7 +160,8 @@ const courses: Course[] = [
             "Layout",
             "Color Theory",
             "Digital Production"
-        ]
+        ],
+        courseType: "Design"
     },
     {
         name: "Human-Computer Interaction",
@@ -161,7 +173,8 @@ const courses: Course[] = [
             "Interactive Systems",
             "Psychology of Interaction",
             "Technology Design"
-        ]
+        ],
+        courseType: "Design"
     },
     {
         name: "Database Systems I",
@@ -173,7 +186,8 @@ const courses: Course[] = [
             "Query Languages",
             "System Design",
             "Database Applications"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Techniques Of Programming Language Translation",
@@ -185,7 +199,8 @@ const courses: Course[] = [
             "Syntax Analysis",
             "Code Generation",
             "Compiler Construction"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Database Systems II",
@@ -197,7 +212,8 @@ const courses: Course[] = [
             "Database Internals",
             "Concurrency Control",
             "Distributed Databases"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Mobile And Ubiquitous Computing",
@@ -209,7 +225,8 @@ const courses: Course[] = [
             "Mobile Security",
             "Sensor Technology",
             "Mobile Health"
-        ]
+        ],
+        courseType: "Design"
     },
     {
         name: "Programming Language Design",
@@ -221,7 +238,8 @@ const courses: Course[] = [
             "Functional Programming",
             "Object-Oriented Programming",
             "Logic Programming"
-        ]
+        ],
+        courseType: "Computer Science"
     },
     {
         name: "Introduction To Static Systems",
@@ -233,7 +251,8 @@ const courses: Course[] = [
             "Force Systems",
             "Equilibrium",
             "Structural Analysis"
-        ]
+        ],
+        courseType: "Engineering"
     },
     {
         name: "Introduction To Robotics",
@@ -245,7 +264,8 @@ const courses: Course[] = [
             "Embedded Systems",
             "Mobile Robots",
             "System Design"
-        ]
+        ],
+        courseType: "Engineering"
     },
     {
         name: "Ordinary Differential Equations",
@@ -257,7 +277,8 @@ const courses: Course[] = [
             "Numerical Methods",
             "Oscillatory Systems",
             "RLC Circuits"
-        ]
+        ],
+        courseType: "Mathematics"
     },
     {
         name: "Calculus IV",
@@ -269,7 +290,8 @@ const courses: Course[] = [
             "Optimization",
             "Integrals",
             "Coordinate Systems"
-        ]
+        ],
+        courseType: "Mathematics"
     },
     {
         name: "Essentials Of Art",
@@ -281,7 +303,8 @@ const courses: Course[] = [
             "Visual Literacy",
             "Storyboarding",
             "Concept Art"
-        ]
+        ],
+        courseType: "Design"
     },
     {
         name: "Digital Imaging And Computer Art",
@@ -293,7 +316,8 @@ const courses: Course[] = [
             "Color Theory",
             "Visual Perception",
             "Digital Design"
-        ]
+        ],
+        courseType: "Design"
     },
     {
         name: "General Physics-Mechanics",
@@ -305,7 +329,8 @@ const courses: Course[] = [
             "Energy",
             "Momentum",
             "Physics Fundamentals"
-        ]
+        ],
+        courseType: "Engineering"
     },
     {
         name: "Science, Engineering And Design In International Development",
@@ -317,7 +342,8 @@ const courses: Course[] = [
             "Collaboration",
             "User-Centered Design",
             "Problem Solving"
-        ]
+        ],
+        courseType: "Engineering"
     },
     {
         name: "Special Topics In Psychological Science",
@@ -328,7 +354,8 @@ const courses: Course[] = [
             "Emerging Fields",
             "Flexible Learning",
             "In-depth Study"
-        ]
+        ],
+        courseType: "Humanities"
     }
 ];
 
@@ -336,6 +363,7 @@ interface Course {
     name: string,
     description: string,
     tags: string[],
+    courseType: CourseType,
 }
 
 function CourseCard({
@@ -389,20 +417,17 @@ function CourseCard({
 }
 
 export default function WPI() {
-    const router = useRouter();
-
-    const handleClose = () => {
-        router.replace("/");
-    }
+    const toggled = useAppSelector(selectCourseTypes);
 
     return (
         <>
-            <div className="w-full h-full text-black overflow-y-auto overflow-x-auto flex flex-col items-center">
+            <div className="w-full h-fit text-black flex flex-col items-center">
                 <div className="w-fit h-fit max-w-prose min-w-96 pb-10">
                     <div className="m-10 w-fit flex-shrink">
-                        <h1 className="font-lilita text-5xl">Worcester Polytechnic Institute (WPI)</h1>
+                        <h1 className="font-lilita text-6xl">Education</h1>
                         <div className="w-full flex flex-row gap-10">
-                            <p>aug 2020 → dec 2023</p>
+                            <p>Worcester Polytechnic Institute</p>
+                            <p>B.S. in Computer Science</p>
                         </div>
                     </div>
                     <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
@@ -423,7 +448,7 @@ export default function WPI() {
                     </div>
                     <div className="flex flex-col gap-5">
                         {
-                            courses.map((course, i) => {
+                            courses.filter(course => toggled.length === 0 || toggled.includes(course.courseType)).map((course, i) => {
                                 return (
                                     <CourseCard key={i} course={course} />
                                 );
@@ -432,7 +457,6 @@ export default function WPI() {
                     </div>
                 </div>
             </div>
-            <Home />
         </>
     );
 }

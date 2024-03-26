@@ -1,10 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import mouseReducer from './features/mouse/mouseSlice';
-import popUpReducer from './features/popUp/popUpSlice';
+import courseFiltersReducer from './features/courseFilters/courseFiltersSlice';
 
 const rootReducer = combineReducers({
     mouse: mouseReducer,
-    popUp: popUpReducer,
+    courseFilters: courseFiltersReducer,
 });
 
 export const makeStore = () => {
