@@ -85,7 +85,7 @@ export default function WorkTimeline({
                                 icon: info.icon,
                             }}
                         >
-                            <CardContainer className='bg-foreground text-black rounded-2xl p-3 overflow-hidden font-k2d' containerClassName={`py-0 w-full ${findFlexAlignment(index)}`}>
+                            <CardContainer className='bg-foreground text-black rounded-2xl p-3 px-4 overflow-hidden font-k2d' containerClassName={`py-0 w-full ${findFlexAlignment(index)}`}>
                                 <CardBody className='h-fit'>
                                     {/* <div className='flex flex-row flex-wrap justify-between gap-5'> */}
                                     <h1 className='text-nowrap text-xl'>{info.company}</h1>
