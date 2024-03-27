@@ -4,8 +4,98 @@ import { CursorLock } from "@/app/components/CursorFollower";
 import CustomButton from "@/app/components/CustomButton/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
+import { useEffect, useState } from "react";
+import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFunctionFilled, IconSchool, IconSchoolBell, IconTrophyFilled } from "@tabler/icons-react";
+import EarlyYearsTimeLine from "./EarlyYearsTimeline";
+
 
 export default function EarlyYears() {
+    const [windowSize, setWindowSize] = useState(0);
+    const mediaSize = useMediaSizes();
+
+    useEffect(() => {
+        function update() {
+            setWindowSize(window.innerWidth);
+        }
+        window.addEventListener("resize", update);
+        update();
+        return () => window.removeEventListener("resize", update);
+    }, []);
+
+    return (
+        <div className="w-full h-fit text-black flex flex-col items-center md:mt-10">
+            <div className={`h-fit pb-10 max-w-[400px] lg:max-w-[900px] transition-all duration-75`}
+                style={{
+                    width: `${windowSize - (smOrSmaller(mediaSize) ? 50 : 400)}px`,
+                }}>
+                <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
+                    <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
+                        <h1 className="font-lilita text-6xl md:text-8xl transition-all">Early Years</h1>
+                        <p>
+                            put some stuff here maybe
+                        </p>
+                    </div>
+                </div>
+
+                <EarlyYearsTimeLine sections={[
+                    {
+                        title: "Learning Robotics",
+                        subtitle: "Great Minds Robotics",
+                        startDate: "2012",
+                        bullets: [
+                            "Used Lego Mindstorms and RobotC to program robots",
+                            "Used Lego and VexIQ to build robots",
+                            "Completed missions to refine my skills",
+                        ],
+                        icon: <IconFunctionFilled />,
+                    },
+                    {
+                        title: "Robotics Competitions",
+                        subtitle: "Great Minds Robotics",
+                        startDate: "2015",
+                        endDate: "2016",
+                        bullets: [
+                            "Competed in VexIQ competitions",
+                            "Placed first at local qualifiers in including the State and National Championships",
+                            "Placed 9th in the World Championship",
+                        ],
+                        icon: <IconTrophyFilled />,
+                    },
+                    {
+                        title: "Learned Advanced Programming",
+                        subtitle: "Great Minds Robotics",
+                        startDate: "2016",
+                        bullets: [
+                            "Languages such as C#, Java, C++, and more",
+                            "Tools including Unity, Git, and other industry standard tools",
+                            "Platforms like Arduino, Raspberry Pi, and Microsoft Hololens",
+                            "Algorithms and data structures",
+                            "Math skills such as geometry, trigonometry, calculus, and physics",
+                        ],
+                    },
+                    {
+                        title: "High School",
+                        subtitle: "Calabasas High School",
+                        startDate: "2016",
+                        endDate: "2020",
+                        bullets: [
+                            "Took many AP classes including AP Computer Science, AP Calculus BC, AP Physics, and more",
+                            "Learned many different subjects including history, english, and more",
+                            "Participated in many clubs and organizations",
+                            "Captian of the Varsity Tennis Team",
+                            "Tutored in Math and Computer Science"
+                        ],
+                        icon: <IconSchool />,
+                    }
+                ]} />
+            </div>
+        </div>
+    );
+}
+
+
+export function EarlyYearsOld() {
     const router = useRouter();
 
     return (
@@ -77,7 +167,6 @@ export default function EarlyYears() {
                     </div>
                 </div>
             </div>
-            <CustomButton />
         </>
     );
 }
