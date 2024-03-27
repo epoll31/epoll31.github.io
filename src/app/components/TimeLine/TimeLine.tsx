@@ -22,14 +22,17 @@ export const TimeLineItem = forwardRef((
     {
         dotInfo,
         lineInfo,
+        alignment = "left",
         ...props
     }: {
         dotInfo?: Partial<DotInfo>;
         lineInfo?: Partial<LineInfo>;
+        alignment?: "left" | "right";
     } & React.HTMLAttributes<HTMLDivElement>,
     ref: React.Ref<HTMLDivElement>
 ) => {
-    const { largestDotSize, topDotSize, defaultDotInfo, defaultLineInfo } = useContext(TimeLineContext);
+
+    const { largestDotSize, defaultDotInfo, defaultLineInfo, gap, willAlternate } = useContext(TimeLineContext);
     const [dotColor, setDotColor] = useState<string>(dotInfo?.color || defaultDotInfo.color);
     const [dotSize, setDotSize] = useState<string>(dotInfo?.size || defaultDotInfo.size);
     const [dotIcon, setDotIcon] = useState<React.ReactNode>(dotInfo?.icon || defaultDotInfo.icon);
@@ -37,6 +40,15 @@ export const TimeLineItem = forwardRef((
     const [lineInfoState, setLineInfoState] = useState<LineInfo>({
         color: lineInfo?.color || defaultLineInfo.color,
         size: lineInfo?.size || defaultLineInfo.size,
+    });
+    const [alignmentClassName, setAlignmentClassName] = useState({
+        container: "",
+        dot: "",
+        line: "",
+        body: {
+            className: "",
+            style: {} as React.CSSProperties,
+        }
     });
 
     useEffect(() => {
@@ -53,9 +65,44 @@ export const TimeLineItem = forwardRef((
         });
     }, [lineInfo, defaultLineInfo]);
 
+    useEffect(() => {
+        switch (alignment) {
+            case "left":
+                setAlignmentClassName({
+                    container: twMerge(willAlternate ? "w-1/2" : "w-full"),
+                    dot: "left-full -translate-x-1/2",
+                    line: "left-full -translate-x-1/2",
+                    body: {
+                        className: "",
+                        style: {
+                            paddingRight: `calc(${largestDotSize} / 2)`,
+                            paddingTop: `calc(${gap} / 2)`,
+                            paddingBottom: `calc(${gap} / 2)`,
+                        },
+                    }
+                });
+                break;
+            case "right":
+                setAlignmentClassName({
+                    container: twMerge(willAlternate ? "w-1/2 self-end" : "w-full", ""),
+                    dot: "left-0 -translate-x-1/2",
+                    line: "left-0 -translate-x-1/2",
+                    body: {
+                        className: "",
+                        style: {
+                            paddingLeft: `calc(${largestDotSize} / 2)`,
+                            paddingTop: `calc(${gap} / 2)`,
+                            paddingBottom: `calc(${gap} / 2)`,
+                        },
+                    }
+                });
+                break;
+        }
+    }, [alignment, willAlternate]);
+
     return (
-        <div className={`group/item relative w-1/2 even:self-end`} ref={ref}>
-            <div className={` translate-x-1/2 group-odd/item:right-0  group-even/item:-translate-x-1/2 absolute -translate-y-1/2 rounded-full aspect-square z-10 flex justify-center items-center`}
+        <div className={`${alignmentClassName.container} group/item relative transition-all`} ref={ref}>
+            <div className={`${alignmentClassName.dot} absolute -translate-y-1/2 rounded-full aspect-square z-10 flex justify-center items-center transition-all`}
                 style={{
                     background: dotColor,
                     width: dotSize,
@@ -66,17 +113,14 @@ export const TimeLineItem = forwardRef((
                     {dotIcon}
                 </span>
             </div>
-            <div className={`group-odd/item:right-0 translate-x-1/2 group-even/item:-translate-x-1/2 group-last/item:hidden absolute top-0 h-full`}
+            <div className={`${alignmentClassName.line} group-last/item:hidden absolute top-0 h-full transition-all`}
                 style={{
                     width: lineInfoState.size,
                     background: lineInfoState.color,
                 }}
             />
-            <div className={twMerge("w-full h-full", props.className, "group-odd/item:mr-[${dotSize}]")}
-                style={{
-                    minHeight: `calc(${dotSize})`,
-                    padding: `calc(${largestDotSize} / 2)`,
-                }}
+            <div className={twMerge("w-full h-full", props.className, `${alignmentClassName.body.className} transition-all`)}
+                style={alignmentClassName.body.style}
             >
                 {props.children}
             </div>
@@ -89,6 +133,8 @@ interface TimeLineContextInfo {
     topDotSize: string;
     defaultDotInfo: DotInfo;
     defaultLineInfo: LineInfo;
+    gap?: string;
+    willAlternate: boolean;
 }
 
 const DefaultDotInfo: DotInfo = {
@@ -107,29 +153,35 @@ const TimeLineContext = createContext<TimeLineContextInfo>({
     topDotSize: DefaultDotInfo.size,
     defaultDotInfo: DefaultDotInfo,
     defaultLineInfo: DefaultLineInfo,
+    willAlternate: false,
 });
 
 export default function TimeLine(
     {
         children,
         defaultDotInfo = DefaultDotInfo,
-        defaultLineInfo = DefaultLineInfo
+        defaultLineInfo = DefaultLineInfo,
+        className,
+        gap,
+        willAlternate,
     }: {
         children?: React.ReactNode;
         defaultDotInfo?: DotInfo;
         defaultLineInfo?: LineInfo;
+        className?: string;
+        gap?: string;
+        willAlternate: boolean;
     }
 ) {
     const [largestDotSize, setLargestDotSize] = useState<string>(defaultDotInfo.size);
     const [topDotSize, setTopDotSize] = useState<string>(defaultDotInfo.size);
 
-
     useEffect(() => {
         const allItems = React.Children.toArray(children).filter((child) => React.isValidElement(child) && child.type === TimeLineItem);
-        console.log(allItems);
-
 
         let largest = { px: -Infinity, raw: '' };
+        let lastAlignment: undefined | "left" | "right" = undefined;
+
         for (let i = 0; i < allItems.length; i++) {
             const el = (allItems[i] as React.ReactElement<typeof TimeLineItem>);
             if (!el) {
@@ -152,15 +204,12 @@ export default function TimeLine(
 
     }, [children]);
 
+
     return (
-        <TimeLineContext.Provider value={{ largestDotSize, topDotSize, defaultDotInfo, defaultLineInfo }}>
-            <div className={`relative w-full h-fit flex flex-col justify-center`}
-                style={{
-                    paddingTop: `calc(${topDotSize} / 2)`,
-                }}
-            >
+        <TimeLineContext.Provider value={{ largestDotSize, topDotSize, defaultDotInfo, defaultLineInfo, gap, willAlternate }}>
+            <div className={twMerge(className, `relative  h-fit flex flex-col`)}    >
                 {children}
             </div >
-        </TimeLineContext.Provider>
+        </TimeLineContext.Provider >
     );
 };
