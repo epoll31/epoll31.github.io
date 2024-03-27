@@ -1,11 +1,11 @@
 "use client";
 
 import { MutableRefObject, RefCallback, UIEventHandler, forwardRef, useEffect, useRef, useState } from "react";
-import { CursorLock } from "../components/CursorFollower";
+import { CursorLock } from "@/app/components/CursorFollower";
 import React from "react";
-import mergeRefs from "../utils/mergeRefs";
+import mergeRefs from "@/app/utils/mergeRefs";
 import { transform } from "next/dist/build/swc";
-import useHover from "../utils/useHover";
+import useHover from "@/app/utils/useHover";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { useRouter } from "next/navigation";
 import Link from "next/link";

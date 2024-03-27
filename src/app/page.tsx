@@ -1,8 +1,8 @@
 
-import { CursorFollower, CursorLock } from "./components/CursorFollower";
-import SideSections, { SectionInfo } from "./major/SideSections";
-import FrontLayer from "./major/FrontLayer";
-import Fade from "./major/Fade";
+import { CursorFollower, CursorLock } from "@/app/components/CursorFollower";
+import SideSections, { SectionInfo } from "@/app/components/major/SideSections";
+import FrontLayer from "@/app/components/major/FrontLayer";
+import Fade from "@/app/components/major/Fade";
 
 export default async function Home() {
   const sections: SectionInfo[] = [

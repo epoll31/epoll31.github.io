@@ -6,7 +6,7 @@ import { CourseCard } from "./CourseCard";
 import { useEffect, useState } from "react";
 import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { Filters } from "./Filters";
-import ResearchCard from "./ResearchCard";
+import ResearchCard from "../../components/major/ResearchCard";
 
 const courses: Course[] = [
     {

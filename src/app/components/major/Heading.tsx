@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CursorLock } from "../components/CursorFollower";
+import { CursorLock } from "@/app/components/CursorFollower";
 import React, { useEffect } from "react";
 
 export interface TabProps {
@@ -10,7 +10,7 @@ export interface TabProps {
     width: string;
 }
 
-export type Tab = TabProps | "Education" | "Work" | "Projects" | "Early Years" | "About";
+export type Tab = TabProps | "Education" | "Work" | "Projects" | "Early Years";
 
 const defaultTabs: TabProps[] = [
     {
@@ -32,11 +32,6 @@ const defaultTabs: TabProps[] = [
         title: "Early Years",
         link: "../early",
         width: "w-[5rem]"
-    },
-    {
-        title: "About",
-        link: "../about",
-        width: "w-[2.7rem]"
     },
 ];
 
@@ -63,16 +58,19 @@ export function Heading({
             });
             setUsableTabs(usableTabs);
         }
+        else {
+            setUsableTabs(defaultTabs);
+        }
     }, [tabs]);
 
     return (
-        <>
-            <Link href={"./"} className="text-nowrap md:text-wrap md:w-min font-lilita text-5xl md:text-8xl">
+        <div className="flex flex-col w-min text-black mt-5">
+            <Link href={"./"} className="text-nowrap md:text-wrap font-lilita text-5xl md:text-8xl">
                 <h1>
                     Ethan Pollack
                 </h1>
             </Link>
-            <div className="flex flex-row justify-between flex-wrap gap-1">
+            <div className="text-black  flex flex-row justify-between flex-wrap gap-1">
                 {usableTabs.map((tab, i) => {
                     return (
                         // <CursorLock className="underline hover:no-underline" cursorLockedClassName={` hidden sm:[display:inherit] h-1 ${tab.width} rounded-full bg-foreground translate-y-2 z-40`} key={i}>
@@ -81,6 +79,6 @@ export function Heading({
                     );
                 })}
             </div>
-        </>
+        </div>
     );
 }
