@@ -5,11 +5,17 @@ import Image from "next/image";
 import GitHub from "/public/images/github.svg";
 import LinkedIn from "/public/images/linkedin.svg";
 import { CursorLock } from "@/app/components/CursorFollower";
-import { useRouter } from "next/navigation";
+import { PiChalkboardTeacherFill } from "react-icons/pi";
+import useMediaSizes, { lgOrLarger, mdOrLarger, smOrSmaller } from "@/app/utils/useMediaSizes";
+import { useEffect } from "react";
 
 
 export default function FrontLayer() {
-    const router = useRouter();
+    const mediaSize = useMediaSizes();
+
+    useEffect(() => {
+        console.log(mediaSize);
+    }, [mediaSize]);
 
     return (
         <>
@@ -20,23 +26,40 @@ export default function FrontLayer() {
                 <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
                     Software Developer and Designer
                 </p>
-                {/* <div className="font-k2d text-lg md:text-2xl transition-all duration-150 flex flex-row flex-wrap"> */}
-                <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
+                <p className="font-k2d text-xs sm:text-md md:text-xl transition-all duration-150">
                     Personal website made by <span className="font-bold text-nowrap whitespace-nowrap">Ethan Pollack</span>
                 </p>
-                <CursorLock as="p" className="w-fit font-k2d text-sm sm:text-md md:text-xl transition-all duration-150" cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[14.2rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3 z-30">
+                {/* <CursorLock as="p" className="w-fit font-k2d text-sm sm:text-md md:text-xl transition-all duration-150" cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[14.2rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3 z-30">
                     <Link href="./tutor" className="hover:font-bold text-nowrap whitespace-nowrap ">
                         Need help in CS or Math?
                     </Link>
-                </CursorLock>
+                </CursorLock> */}
             </div>
-            <div className="fixed bottom-0 right-0 flex flex-col md:flex-row gap-5 m-5 md:m-10 w-fit h-fit transition-all duration-150 justify-end items-end text-black">
-                <CursorLock className="bg-foreground rounded-full w-10 h-10 p-0.5 md:w-20 md:h-20 md:p-2 flex justify-center items-center transition-all duration-150" cursorLockedClassName="w-10 h-10 md:w-20 md:h-20 backdrop-invert rounded-full z-10">
+            <div className="fixed bottom-0 right-0 flex flex-col-reverse lg:flex-row gap-1 md:gap-5 m-5 md:m-10 w-fit h-fit transition-all duration-150 justify-end items-end text-black">
+                <Link href="./tutor">
+                    <CursorLock
+                        className="rounded-full w-10 h-10 sm:w-44 md:w-72 md:h-20 flex justify-center items-center transition-all duration-150 border-[0.125rem] md:border-[0.25rem] border-foreground-200 bg-black text-foreground-200 text-wrap text-sm md:text-2xl select-none"// aspect-square sm:aspect-auto"
+                        cursorLockedClassName=" w-10 h-10 sm:w-44 md:w-72 md:h-20 backdrop-invert rounded-full z-10"
+                    >
+                        {
+                            (mediaSize == undefined)
+                                ? (<PiChalkboardTeacherFill size={24} />)
+                                : (<p className="text-nowrap px-3 md:px-6">Need CS or Math Help?</p>)
+                        }
+                    </CursorLock>
+                </Link>
+                <CursorLock
+                    className="bg-foreground-200 rounded-full w-10 h-10 p-0.5 md:w-20 md:h-20 md:p-1 flex justify-center items-center transition-all duration-150"
+                    cursorLockedClassName="w-10 h-10 md:w-20 md:h-20 backdrop-invert rounded-full z-10"
+                >
                     <Link href="https://linkedin.com/in/ethanpollack" className="w-full h-full">
                         <Image src={LinkedIn} alt="LinkedIn" className="w-full h-full" />
                     </Link>
                 </CursorLock>
-                <CursorLock className="bg-foreground rounded-full w-10 h-10 p-0.5 md:w-20 md:h-20 md:p-2 flex justify-center items-center transition-all duration-150" cursorLockedClassName="w-10 h-10 md:w-20 md:h-20 backdrop-invert rounded-full z-10">
+                <CursorLock
+                    className="bg-foreground-200 rounded-full w-10 h-10 p-0.5 md:w-20 md:h-20 md:p-1 flex justify-center items-center transition-all duration-150"
+                    cursorLockedClassName="w-10 h-10 md:w-20 md:h-20 backdrop-invert rounded-full z-10"
+                >
                     <Link href="https://github.com/epoll31" className="w-full h-full">
                         <Image src={GitHub} alt="GitHub" className="w-full h-full" />
                     </Link>
