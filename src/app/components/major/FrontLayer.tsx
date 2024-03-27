@@ -35,7 +35,7 @@ export default function FrontLayer() {
                     </Link>
                 </CursorLock> */}
             </div>
-            <div className="fixed bottom-0 right-0 flex flex-col-reverse lg:flex-row gap-1 md:gap-5 m-5 md:m-10 w-fit h-fit transition-all duration-150 justify-end items-end text-black">
+            <div className="fixed bottom-0 right-0 flex flex-col-reverse lg:flex-row-reverse gap-1 md:gap-5 m-5 md:m-10 w-fit h-fit transition-all duration-150 justify-end items-end text-black">
                 <Link href="./tutor">
                     <CursorLock
                         className="rounded-full w-10 h-10 sm:w-44 md:w-72 md:h-20 flex justify-center items-center transition-all duration-150 border-[0.125rem] md:border-[0.25rem] border-foreground-200 bg-black text-foreground-200 text-wrap text-sm md:text-2xl select-none"// aspect-square sm:aspect-auto"
