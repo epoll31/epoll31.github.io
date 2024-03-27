@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import WorkTimeline from "./WorkTimeline";
 import { useEffect, useState } from "react";
 import useMediaSizes, { mdOrSmaller, smOrSmaller } from "@/app/utils/useMediaSizes";
+import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFunction, IconFunctionFilled, IconHealthRecognition, IconSchool } from "@tabler/icons-react";
 
 
 export default function Work() {
@@ -24,7 +25,7 @@ export default function Work() {
 
     return (
         <div className="w-full h-fit text-black flex flex-col items-center md:mt-10">
-            <div className={`h-fit pb-10`}
+            <div className={`h-fit pb-10 max-w-[400px] lg:max-w-[900px] transition-all duration-75`}
                 style={{
                     width: `${windowSize - (smOrSmaller(mediaSize) ? 50 : 400)}px`,
                 }}>
@@ -49,6 +50,7 @@ export default function Work() {
                             'Indivudally developed the page and push it through to QA and testing',
                         ],
                         location: "Verona, Wisconsin",
+                        icon: <IconDeviceHeartMonitorFilled />,
                     },
                     {
                         company: "Build-It-Yourself",
@@ -61,6 +63,7 @@ export default function Work() {
                             'Used React.js, Node.js, and serverless backends',
                         ],
                         location: "Remote / Boston, Massachusetts",
+                        icon: <IconBriefcaseFilled />,
                     },
                     {
                         company: "Epic Systems",
@@ -73,6 +76,7 @@ export default function Work() {
                             'Indivudally developed the page and push it through to QA and testing',
                         ],
                         location: "Verona, Wisconsin",
+                        icon: <IconDeviceHeartMonitorFilled />,
                     },
                     {
                         company: "Great Minds Robotics",
@@ -86,6 +90,7 @@ export default function Work() {
                             'Projects include game development, machine learning, data structures, and more'
                         ],
                         location: "Boston, Massachusetts",
+                        icon: <IconFunctionFilled />,
                     },
                 ]} />
             </div>

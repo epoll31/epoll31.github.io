@@ -11,36 +11,32 @@ export interface WorkInfo {
     endDate: string;
     bullets: string[];
     location: string;
+    icon: React.ReactNode;
 }
 
 export default function WorkTimeline({
     workInfo,
-    defaultSide = "left",
-    itemsAlignment = "close"
 }: {
     workInfo: WorkInfo[];
-    defaultSide?: "left" | "right";
-    itemsAlignment?: "close" | "center" | "far";
 }) {
-
+    const [side, setSide] = useState<"left" | "right">("left");
+    const [itemsAlignment, setItemsAlignment] = useState<"close" | "center" | "far">("close");
     const mediaSize = useMediaSizes();
     const [alternate, setAlternate] = useState(true);
     useEffect(() => {
-        if (mediaSize != undefined) {
-            setAlternate(!mdOrSmaller(mediaSize));
+        const alternating = !mdOrSmaller(mediaSize)
+        setAlternate(alternating);
 
-        }
     }, [mediaSize]);
 
     const findAlignment = (index: number) => {
-        // return (alternate && index % 2 == (even ? 1 : 0)) ? (even ? "right" : "left") : (even ? "left" : "right")
         if (alternate) {
-            if (defaultSide == "left") {
+            if (side == "left") {
                 return index % 2 == 0 ? "left" : "right";
             }
             return index % 2 == 1 ? "right" : "left";
         }
-        return defaultSide;
+        return side;
     };
     const findFlexAlignment = (index: number) => {
         if (itemsAlignment === "center") {
@@ -64,10 +60,10 @@ export default function WorkTimeline({
 
     return (
         <TimeLine
-            className=" border-black border"
+            className="pt-5"
             defaultDotInfo={{
                 color: "var(--black)",
-                size: "3rem",
+                size: "2.4rem",
                 icon: <IconBriefcaseFilled />,
                 iconColor: "var(--foreground-200)",
             }}
@@ -81,12 +77,21 @@ export default function WorkTimeline({
             {
                 workInfo.map((info, index) => {
                     return (
-                        <TimeLineItem key={index} alignment={findAlignment(index)} className=''>
-                            <CardContainer className='bg-black text-foreground rounded-3xl p-4 overflow-hidden font-k2d' containerClassName={`py-0 w-full ${findFlexAlignment(index)}`}>
+                        <TimeLineItem
+                            key={index}
+                            alignment={findAlignment(index)}
+                            className=''
+                            dotInfo={{
+                                icon: info.icon,
+                            }}
+                        >
+                            <CardContainer className='bg-foreground text-black rounded-2xl p-3 overflow-hidden font-k2d' containerClassName={`py-0 w-full ${findFlexAlignment(index)}`}>
                                 <CardBody className='h-fit'>
+                                    {/* <div className='flex flex-row flex-wrap justify-between gap-5'> */}
                                     <h1 className='text-nowrap text-xl'>{info.company}</h1>
+                                    {/* </div> */}
                                     <h2 className='text-nowrap text-rg'>{info.role}</h2>
-                                    <ul className='text-sm list-disc pl-4 text-pretty'>
+                                    <ul className='text-sm list-disc pl-4 pt-2 text-pretty'>
                                         {
                                             info.bullets.map((bullet, index) => {
                                                 return (
@@ -95,6 +100,7 @@ export default function WorkTimeline({
                                             })
                                         }
                                     </ul>
+                                    <p className='text-nowrap text-md text-right'>{info.startDate} - {info.endDate}</p>
                                 </CardBody>
                             </CardContainer>
                         </TimeLineItem>

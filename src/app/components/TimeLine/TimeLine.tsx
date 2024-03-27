@@ -67,11 +67,11 @@ export const TimeLineItem = forwardRef((
 
     useEffect(() => {
         switch (alignment) {
-            case "left":
+            case "right":
                 setAlignmentClassName({
                     container: twMerge(willAlternate ? "w-1/2" : "w-full"),
-                    dot: "left-full -translate-x-1/2",
-                    line: "left-full -translate-x-1/2",
+                    dot: "left-full ",
+                    line: "left-full",
                     body: {
                         className: "",
                         style: {
@@ -82,11 +82,11 @@ export const TimeLineItem = forwardRef((
                     }
                 });
                 break;
-            case "right":
+            case "left":
                 setAlignmentClassName({
                     container: twMerge(willAlternate ? "w-1/2 self-end" : "w-full", ""),
-                    dot: "left-0 -translate-x-1/2",
-                    line: "left-0 -translate-x-1/2",
+                    dot: "left-0",
+                    line: "left-0",
                     body: {
                         className: "",
                         style: {
@@ -102,7 +102,7 @@ export const TimeLineItem = forwardRef((
 
     return (
         <div className={`${alignmentClassName.container} group/item relative transition-all`} ref={ref}>
-            <div className={`${alignmentClassName.dot} absolute -translate-y-1/2 rounded-full aspect-square z-10 flex justify-center items-center transition-all`}
+            <div className={`${alignmentClassName.dot} absolute -translate-x-1/2 -translate-y-1/2 rounded-full aspect-square z-10 flex justify-center items-center transition-all`}
                 style={{
                     background: dotColor,
                     width: dotSize,
@@ -113,7 +113,7 @@ export const TimeLineItem = forwardRef((
                     {dotIcon}
                 </span>
             </div>
-            <div className={`${alignmentClassName.line} group-last/item:hidden absolute top-0 h-full transition-all`}
+            <div className={`${alignmentClassName.line} -translate-x-1/2 group-last/item:hidden absolute top-0 h-full transition-all`}
                 style={{
                     width: lineInfoState.size,
                     background: lineInfoState.color,

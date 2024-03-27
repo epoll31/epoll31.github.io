@@ -17,7 +17,7 @@ function Side({
 }) {
 
     return (
-        <div className={twMerge(className, "m-10 text-black md:top-10 md:sticky flex flex-row md:w-fit justify-center md:justify-end")}>
+        <div className={twMerge(className, "m-10 mb-0 text-black md:top-10 md:sticky flex flex-row md:w-fit justify-center md:justify-end")}>
             <div className="flex flex-col w-min">
                 <Heading tabs={tabs} />
                 {children}
