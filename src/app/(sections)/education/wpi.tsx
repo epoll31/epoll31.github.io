@@ -4,7 +4,7 @@ import { CourseType, selectCourseTypes } from "@/lib/features/courseFilters/cour
 import { useAppSelector } from "@/lib/hooks";
 import { CourseCard } from "./CourseCard";
 import { useEffect, useState } from "react";
-import useMediaSizes from "@/app/utils/useMediaSizes";
+import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { Filters } from "./Filters";
 import ResearchCard from "./ResearchCard";
 
@@ -433,7 +433,7 @@ export default function WPI() {
                     </div>
 
                     {
-                        mediaSize == undefined && (
+                        smOrSmaller(mediaSize) && (
                             <Filters className="px-10 sticky top-0 bg-background z-10" />
                         )
                     }

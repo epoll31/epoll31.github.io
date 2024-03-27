@@ -11,7 +11,7 @@ export default function WPIPage() {
   return (
     <Page customButtonType="home" tabs={["Work", "Projects", "About", "Early Years"]}>
       {
-        mediaSize != undefined && (
+        !smOrSmaller(mediaSize) && (
           <PageMajor type="Side">
             <Filters />
           </PageMajor>
