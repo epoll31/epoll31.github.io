@@ -1,20 +1,22 @@
 
 "use client";
 
-import { ButtonHTMLAttributes, ReactEventHandler, ReactNode, useState } from "react";
+import { setPosition, setFollowMouse, setClassName } from "@/lib/features/mouse/mouseSlice";
+import { useAppDispatch } from "@/lib/hooks";
+import { twMerge } from "tailwind-merge";
+import { useCursorLock } from "./CursorFollower";
 
-export interface IButtonProps {
-  text: String,
-  onClick: ReactEventHandler
-};
 
-export default function Button(props: ButtonHTMLAttributes<HTMLButtonElement>) {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+}
 
+export default function Button({ children, className, ...props }: ButtonProps) {
   return (
-      <button 
-        className="bg-blue hover:bg-orange text-black font-bold py-2 px-4 rounded transition-colors: duration-200 ease-in-out"
-        onClick={props.onClick}>
-          {props.title}
-      </button>
+    <button className={twMerge(`bg-blue text-white py-3 px-6 rounded-md`, className)}
+      {...props}>
+      {children}
+    </button >
+
   );
 };

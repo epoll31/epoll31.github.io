@@ -12,18 +12,27 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // cursor: {
+      //   'circle': 'url(/images/cursor.png),auto',
+      // },
+      fontFamily: {
+        lilita: ["Lilita One", "sans-serif"],
+        k2d: ["K2D", "sans-serif"],
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
-        'foreground': '#E8EEF2',
-        'background': '#37393A',
+        foreground: {
+          DEFAULT: '#F0F0C9',
+          100: '#D9D9B8',
+          200: '#C1C2A6',
+        },
+        'background': '#F15946',
         'black': {
-          DEFAULT: '#1A1D1A',
-          100: '#464949',
-          200: '#323434',
+          DEFAULT: '#32373B',
         },
         'blue': '#77B6EA',
         'orange': {

@@ -3,6 +3,8 @@
 This is a personal website and portfolio for me, Ethan Pollack, that you can visit now at [epoll31.github.io](https://epoll31.github.io).
 
 I have several pages on here that display the following:
+* My Work Experience and Resume from the last several years.
+    * Including Great Minds Robotics, Epic Systems, and Build-It-Yourself
 * My Research Projects and Classes Taken at [Worcester Polytechnic Institute](https://wpi.edu)
     * My [Major Qualifying Project](https://epoll31.github.io/mqp): Comparative Study of Relational Databases for CS Courses
         * This research project compares Oracle, MySQL, and Postgres databases in a pedagogical setting at Worcester Polytechnic Institute
@@ -11,6 +13,11 @@ I have several pages on here that display the following:
 * My Tutoring Business
     * Allowing students and parents to learn more about me and my experiences
     * If they are interested, there is a form that I implemented using a [Formspree API](https://formspree.io) to send me an email with the information that they filled in, allowing me to reach out with more information and schedule a session.
+* My Early Years of programming and robotics showing that I have been programming and competing in robotics competitions since I was about 10 years old.
+
+### Design Inspiration
+
+[Van Holtz Co.](https://vanholtz.co/)
 
 ## Development Notes
 
