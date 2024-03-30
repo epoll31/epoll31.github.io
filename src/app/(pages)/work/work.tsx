@@ -52,13 +52,13 @@ export default function Work() {
                 <WorkTimeline workInfo={[
                     {
                         company: "Epic Systems",
-                        role: "Software Development Internship",
+                        role: "Software Development Intern (Paid)",
                         startDate: "May 2023",
                         endDate: "August 2023",
                         bullets: [
-                            'Added a Research Study Search Page to MyChart',
+                            'Added Research Study Searching Functionality to MyChart',
                             'Used React.js, C#, and Epic\'s proprietary software',
-                            'Indivudally developed the page and push it through to QA and testing',
+                            // 'Indivudally developed the page and push it through to QA and testing',
                         ],
                         location: "Verona, Wisconsin",
                         icon: <IconDeviceHeartMonitorFilled />,
@@ -78,13 +78,13 @@ export default function Work() {
                     },
                     {
                         company: "Epic Systems",
-                        role: "Software Development Internship",
+                        role: "Software Development Intern (Paid)",
                         startDate: "May 2022",
                         endDate: "August 2022",
                         bullets: [
-                            'Modernized an old page on the EpicCareLink team',
+                            'Modernized legacy functionality on the EpicCareLink team',
                             'Used React.js, C#, Visual Basic, and Epic\'s proprietary software',
-                            'Indivudally developed the page and push it through to QA and testing',
+                            // 'Indivudally developed and pushed through to QA and testing',
                         ],
                         location: "Verona, Wisconsin",
                         icon: <IconDeviceHeartMonitorFilled />,
@@ -95,8 +95,8 @@ export default function Work() {
                         startDate: "June 2019",
                         endDate: "July 2020",
                         bullets: [
-                            'Taught people of various ages and skill levels about programming',
-                            'Focused on individual projects that the students would work on for many weeks or months',
+                            'Taught various ages and skill levels',
+                            'Focused on individual projects that the students would work on for weeks or months',
                             'Used C#, Java, Git, Unity, and more',
                             'Projects include game development, machine learning, data structures, and more'
                         ],

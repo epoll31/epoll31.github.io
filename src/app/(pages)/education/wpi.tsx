@@ -418,16 +418,16 @@ export default function WPI() {
                         <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
                             <h1 className="font-lilita text-6xl">Education</h1>
                             <p>
-                                I recieved my Bachelor of Science Degree in Computer Science from Worcester Polytechnic Institute in December 2023.
+                                I recieved a Bachelor of Science Degree in Computer Science from Worcester Polytechnic Institute in December 2023.
                             </p>
                             <p>
-                                WPI is uses a project based teaching style where students learn by doing. This has prepared me not only for
-                                the technical aspects of software development, but also for the soft skills needed to work in a team and
-                                communicate. I have worked on projects ranging from creating an augmented reality game to teach children about
+                                WPI uses a project based teaching approach where students learn by doing. This has prepared me not only for
+                                the technical aspects of software development, but also for the soft skills needed to successfully work in a team environment.
+                                I've worked on projects ranging from creating an augmented reality game teaching children about
                                 the nitrogen cycle to comparing the MySQL, Oracle, and Postgres databases for pedagogical purposes.
                             </p>
                             <p>
-                                Check out some of the courses that I have taken below, and feel free to reach out if you would like to learn more about me or my work.
+                                Check out some of the courses that I've taken below and feel free to reach out if you would like to learn more about me or my work.
                             </p>
                         </div>
                     </div>
