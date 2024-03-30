@@ -7,12 +7,12 @@ import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { useEffect, useState } from "react";
 import { IconFish, IconFunctionFilled, IconSchool, IconTrophyFilled } from "@tabler/icons-react";
 import EarlyYearsTimeLine from "./EarlyYearsTimeline";
-import GMR2014 from "/early/gmr-2014.png";
-import Vex2015 from "/early/vex-2015.jpg";
-import Vex2016 from "/early/vex-2016.jpg";
-import WRO2019 from "/early/wro-2019.jpeg";
-import CHSFish from "/early/chs-fish-robot.jpg";
-import CHSLogo from "/early/chs.png";
+// import GMR2014 from "/early/gmr-2014.png";
+// import Vex2015 from "/early/vex-2015.jpg";
+// import Vex2016 from "/early/vex-2016.jpg";
+// import WRO2019 from "/early/wro-2019.jpeg";
+// import CHSFish from "/early/chs-fish-robot.jpg";
+// import CHSLogo from "/early/chs.png";
 
 export default function EarlyYears() {
     const [windowSize, setWindowSize] = useState(0);
@@ -53,7 +53,7 @@ export default function EarlyYears() {
                             "Completed missions to refine my skills",
                         ],
                         icon: <IconFunctionFilled />,
-                        img: GMR2014,
+                        img: "/early/gmr-2014.png",
                     },
                     {
                         title: "VexIQ",
@@ -64,7 +64,7 @@ export default function EarlyYears() {
                             "Placed in top 100 in the World Championship",
                         ],
                         icon: <IconTrophyFilled />,
-                        img: Vex2015,
+                        img: "/early/vex-2015.jpg",
                     },
                     {
                         title: "Vex IQ",
@@ -74,7 +74,7 @@ export default function EarlyYears() {
                             "Learned many new skills and techniques in robotics, programming, and team work",
                         ],
                         icon: <IconTrophyFilled />,
-                        img: Vex2016,
+                        img: "/early/vex-2016.jpg",
                     },
                     {
                         title: "Advanced Programming Classes",
@@ -88,7 +88,7 @@ export default function EarlyYears() {
                             "Algorithms and data structures",
                             "Math skills such as geometry, trigonometry, calculus, and physics",
                         ],
-                        img: GMR2014,
+                        img: "/early/gmr-2014.png",
                     },
                     {
                         title: "Fish Controlled Robot",
@@ -100,7 +100,7 @@ export default function EarlyYears() {
                             "Demonstrated the robot at the school district's science fair",
                         ],
                         icon: <IconFish />,
-                        img: CHSFish,
+                        img: "/early/chs-fish-robot.jpg",
                     },
                     {
                         title: "World Robotics Olympiad",
@@ -111,7 +111,7 @@ export default function EarlyYears() {
                             "Traveled to Hungary to compete in the international competition",
                         ],
                         icon: <IconTrophyFilled />,
-                        img: WRO2019,
+                        img: "/early/wro-2019.jpeg",
                     },
                     {
                         title: "High School",
@@ -127,7 +127,7 @@ export default function EarlyYears() {
                             "Tutored in Math and Computer Science"
                         ],
                         icon: <IconSchool />,
-                        img: CHSLogo,
+                        img: "/early/chs.png",
                     },
                 ]} />
             </div>

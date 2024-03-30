@@ -13,7 +13,7 @@ export interface SectionInfo {
     endDate?: string;
     bullets: string[];
     icon?: React.ReactNode;
-    img: StaticImageData;
+    img: string;
 }
 
 export default function EarlyYearsTimeLine({
