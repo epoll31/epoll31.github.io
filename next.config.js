@@ -5,7 +5,6 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: false,
-    remotePatterns: ['/public'],
   },
 }
 
