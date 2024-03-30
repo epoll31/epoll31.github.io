@@ -5,7 +5,8 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: false
-  }
+  },
+  future: { webpack5: true }
 }
 
 module.exports = nextConfig
