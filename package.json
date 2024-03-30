@@ -2,6 +2,7 @@
   "name": "epweb",
   "version": "2.0.0",
   "private": true,
+  "homepage": "https://epoll31.github.io",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
