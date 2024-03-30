@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { CardBody, CardContainer, CardItem } from "./Components/CardContainer";
 import Image from "next/image";
-import headshot from "/public/tutor/headshot.png";
 import { InterestedForm } from "./Components/ui/interestForm";
 import { FormspreeProvider } from "@formspree/react";
 
@@ -43,7 +42,7 @@ export default function TutorPage() {
                         <CardContainer className="rounded-3xl p-5 md:p-8 h-fit gap-5 bg-sky-200 dark:bg-black" >
                             <CardBody className="group/card h-auto w-auto flex flex-col lg:flex-row justify-around gap-5">
                                 <CardItem translateZ="100" className="">
-                                    <Image src={headshot} alt="headshot" width={300} height={300} className="rounded-xl" />
+                                    <Image src={"/tutor/headshot.png"} alt="headshot" width={300} height={300} className="rounded-xl" />
                                 </CardItem>
                                 {/* </CardItem> */}
                                 {/* <CardItem translateZ="50" rotateZ="2" rotateX="0" className="h-[300px] w-[300px] flex flex-col justify-around " > */}
