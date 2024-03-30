@@ -74,7 +74,7 @@ export default function EarlyYears() {
                             "Learned many new skills and techniques in robotics, programming, and team work",
                         ],
                         icon: <IconTrophyFilled />,
-                        img: "/early/vex-2016.jpg",
+                        img: "/early/vex-2016.JPG",
                     },
                     {
                         title: "Advanced Programming Classes",
