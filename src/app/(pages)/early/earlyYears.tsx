@@ -64,7 +64,7 @@ export default function EarlyYears() {
                             "Placed in top 100 in the World Championship",
                         ],
                         icon: <IconTrophyFilled />,
-                        img: "/early/vex-2015.jpg",
+                        img: "/early/vex-2015.JPG",
                     },
                     {
                         title: "Vex IQ",
@@ -100,7 +100,7 @@ export default function EarlyYears() {
                             "Demonstrated the robot at the school district's science fair",
                         ],
                         icon: <IconFish />,
-                        img: "/early/chs-fish-robot.jpg",
+                        img: "/early/chs-fish-robot.JPG",
                     },
                     {
                         title: "World Robotics Olympiad",
@@ -111,7 +111,7 @@ export default function EarlyYears() {
                             "Traveled to Hungary to compete in the international competition",
                         ],
                         icon: <IconTrophyFilled />,
-                        img: "/early/wro-2019.jpeg",
+                        img: "/early/wro-2019.JPEG",
                     },
                     {
                         title: "High School",
