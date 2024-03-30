@@ -7,12 +7,12 @@ import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { useEffect, useState } from "react";
 import { IconFish, IconFunctionFilled, IconSchool, IconTrophyFilled } from "@tabler/icons-react";
 import EarlyYearsTimeLine from "./EarlyYearsTimeline";
-import GMR2014 from "/public/early/gmr-2014.png";
-import Vex2015 from "/public/early/vex-2015.jpg";
-import Vex2016 from "/public/early/vex-2016.jpg";
-import WRO2019 from "/public/early/wro-2019.jpeg";
-import CHSFish from "/public/early/chs-fish-robot.jpg";
-import CHSLogo from "/public/early/chs.png";
+import GMR2014 from "/early/gmr-2014.png";
+import Vex2015 from "/early/vex-2015.jpg";
+import Vex2016 from "/early/vex-2016.jpg";
+import WRO2019 from "/early/wro-2019.jpeg";
+import CHSFish from "/early/chs-fish-robot.jpg";
+import CHSLogo from "/early/chs.png";
 
 export default function EarlyYears() {
     const [windowSize, setWindowSize] = useState(0);

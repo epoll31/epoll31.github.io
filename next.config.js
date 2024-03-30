@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // reactStrictMode: true,
-  // basePath: '',
+  basePath: '',
   output: 'export',
-  // images: {
-  //   unoptimized: false
-  // },
+  images: {
+    unoptimized: false
+  },
   // future: { webpack5: true }
 }
 
