@@ -123,7 +123,7 @@ export default function EarlyYearsTimeLine({
                                     </div>
                                     {/* <div className=' flex justify-center items-center'> */}
                                     {/* </div> */}
-                                    <Image src={info.img} alt="Ethan Pollack" className={`rounded-xl w-full`} />
+                                    <img src={info.img} alt="Ethan Pollack" className={`rounded-xl w-full`} />
                                 </CardBody>
                             </CardContainer>
                         </TimeLineItem>
