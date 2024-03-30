@@ -8,12 +8,12 @@ import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { useEffect, useState } from "react";
 import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFish, IconFunctionFilled, IconSchool, IconSchoolBell, IconTrophyFilled } from "@tabler/icons-react";
 import EarlyYearsTimeLine from "./EarlyYearsTimeline";
-import GMR2014 from "/public/images/early/gmr-2014.png";
-import Vex2015 from "/public/images/early/vex-2015.JPG";
-import Vex2016 from "/public/images/early/vex-2016.JPG";
-import WRO2019 from "/public/images/early/wro-2019.JPEG";
-import CHSFish from "/public/images/early/chs-fish-robot.JPG";
-import CHSLogo from "/public/images/early/chs.png";
+import GMR2014 from "/images/early/gmr-2014.png";
+import Vex2015 from "/images/early/vex-2015.JPG";
+import Vex2016 from "/images/early/vex-2016.JPG";
+import WRO2019 from "/images/early/wro-2019.JPEG";
+import CHSFish from "/images/early/chs-fish-robot.JPG";
+import CHSLogo from "/images/early/chs.png";
 
 export default function EarlyYears() {
     const [windowSize, setWindowSize] = useState(0);
