@@ -39,22 +39,24 @@ export default function WorkTimeline({
         return side;
     };
     const findFlexAlignment = (index: number) => {
-        if (itemsAlignment === "center") {
-            return "justify-center";
-        }
-        const alignment = findAlignment(index);
-        if (alignment === "left") {
-            if (itemsAlignment === "far") {
-                return "justify-start";
-            }
-            return "justify-end";
-        }
-        else {
-            if (itemsAlignment === "far") {
-                return "justify-end";
-            }
-            return "justify-start";
-        }
+        return "justify-start";
+
+        // if (itemsAlignment === "center") {
+        //     return "justify-center";
+        // }
+        // const alignment = findAlignment(index);
+        // if (alignment === "left") {
+        //     if (itemsAlignment === "far") {
+        //         return "justify-start";
+        //     }
+        //     return "justify-end";
+        // }
+        // else {
+        //     if (itemsAlignment === "far") {
+        //         return "justify-end";
+        //     }
+        //     return "justify-start";
+        // }
 
     }
 

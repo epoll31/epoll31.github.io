@@ -67,21 +67,29 @@ export default function Page({
     useEffect(() => {
         if (layout !== "Side") return;
 
+
         const sideChildren: React.ReactNode[] = [];
         const mainChildren: React.ReactNode[] = [];
         React.Children.forEach(children, (child) => {
             if (React.isValidElement(child)) {
-                if (child.type === PageMajor) {
-                    if (child.props.type === "Side") {
-                        sideChildren.push(child);
-                    } else {
-                        mainChildren.push(child);
-                    }
+                if (child.props.type === "Side") {
+                    sideChildren.push(child);
                 } else {
                     mainChildren.push(child);
                 }
+                // console.log(child.type);
+                // if (child.type === PageMajor) {
+                //     if (child.props.type === "Side") {
+                //         sideChildren.push(child);
+                //     } else {
+                //         mainChildren.push(child);
+                //     }
+                // } else {
+                //     mainChildren.push(child);
+                // }
             }
         });
+
         setSideChildren(sideChildren);
         setMainChildren(mainChildren);
     }, [children, layout]);

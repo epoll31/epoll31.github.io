@@ -9,20 +9,6 @@ export default async function Home() {
     {
       lines: [
         {
-          text: "Education",
-          size: 1,
-        },
-        {
-          text: "BS in CS",
-          size: 2,
-        },
-      ],
-      years: [],
-      redirect: "/education",
-    },
-    {
-      lines: [
-        {
           text: "Work",//TODO: ask about "Working"
           size: 1,
         },
@@ -51,12 +37,26 @@ export default async function Home() {
     {
       lines: [
         {
-          text: "Early",
+          text: "Education",
           size: 1,
         },
         {
-          text: "Years",
+          text: "BSCS from WPI",
           size: 2,
+        },
+      ],
+      years: [],
+      redirect: "/education",
+    },
+    {
+      lines: [
+        {
+          text: "Early Years",
+          size: 1,
+        },
+        {
+          text: "Robotics | CS | Competitions",
+          size: 3,
         }
       ],
       years: [],

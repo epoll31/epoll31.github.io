@@ -6,9 +6,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { useEffect, useState } from "react";
-import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFunctionFilled, IconSchool, IconSchoolBell, IconTrophyFilled } from "@tabler/icons-react";
+import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFish, IconFunctionFilled, IconSchool, IconSchoolBell, IconTrophyFilled } from "@tabler/icons-react";
 import EarlyYearsTimeLine from "./EarlyYearsTimeline";
-
+import GMR2014 from "/public/images/early/gmr-2014.png";
+import Vex2015 from "/public/images/early/vex-2015.jpg";
+import Vex2016 from "/public/images/early/vex-2016.jpg";
+import WRO2019 from "/public/images/early/wro-2019.jpeg";
+import CHSFish from "/public/images/early/chs-fish-robot.jpg";
+import CHSLogo from "/public/images/early/chs.png";
 
 export default function EarlyYears() {
     const [windowSize, setWindowSize] = useState(0);
@@ -32,9 +37,9 @@ export default function EarlyYears() {
                 <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
                     <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
                         <h1 className="font-lilita text-6xl md:text-8xl transition-all">Early Years</h1>
-                        <p>
+                        {/* <p>
                             put some stuff here maybe
-                        </p>
+                        </p> */}
                     </div>
                 </div>
 
@@ -49,23 +54,34 @@ export default function EarlyYears() {
                             "Completed missions to refine my skills",
                         ],
                         icon: <IconFunctionFilled />,
+                        img: GMR2014,
                     },
                     {
-                        title: "Robotics Competitions",
-                        subtitle: "Great Minds Robotics",
+                        title: "VexIQ",
+                        subtitle: "Won 1st Place in State and Nationals",
                         startDate: "2015",
-                        endDate: "2016",
                         bullets: [
                             "Competed in VexIQ competitions",
-                            "Placed first at local qualifiers in including the State and National Championships",
-                            "Placed 9th in the World Championship",
+                            "Placed in top 100 in the World Championship",
                         ],
                         icon: <IconTrophyFilled />,
+                        img: Vex2015,
                     },
                     {
-                        title: "Learned Advanced Programming",
-                        subtitle: "Great Minds Robotics",
+                        title: "Vex IQ",
+                        subtitle: "Won 1st Place in State and Nationals | 9th in the World",
                         startDate: "2016",
+                        bullets: [
+                            "Learned many new skills and techniques in robotics, programming, and team work",
+                        ],
+                        icon: <IconTrophyFilled />,
+                        img: Vex2016,
+                    },
+                    {
+                        title: "Advanced Programming Classes",
+                        subtitle: "Great Minds Robotics",
+                        startDate: "2015",
+                        endDate: "2020",
                         bullets: [
                             "Languages such as C#, Java, C++, and more",
                             "Tools including Unity, Git, and other industry standard tools",
@@ -73,6 +89,30 @@ export default function EarlyYears() {
                             "Algorithms and data structures",
                             "Math skills such as geometry, trigonometry, calculus, and physics",
                         ],
+                        img: GMR2014,
+                    },
+                    {
+                        title: "Fish Controlled Robot",
+                        subtitle: "Robotics Project @ CHS",
+                        startDate: "2017",
+                        bullets: [
+                            "Built and programmed a robot that was controlled by a fish",
+                            "Used a fish tank and a camera to control the robot",
+                            "Demonstrated the robot at the school district's science fair",
+                        ],
+                        icon: <IconFish />,
+                        img: CHSFish,
+                    },
+                    {
+                        title: "World Robotics Olympiad",
+                        subtitle: "Placed 1st in Local and State Qualifiers",
+                        startDate: "2019",
+                        bullets: [
+                            "Competed in the World Robotics Olympiad",
+                            "Traveled to Hungary to compete in the international competition",
+                        ],
+                        icon: <IconTrophyFilled />,
+                        img: WRO2019,
                     },
                     {
                         title: "High School",
@@ -80,6 +120,7 @@ export default function EarlyYears() {
                         startDate: "2016",
                         endDate: "2020",
                         bullets: [
+                            "Graduated with Honors and as Salutatorian",
                             "Took many AP classes including AP Computer Science, AP Calculus BC, AP Physics, and more",
                             "Learned many different subjects including history, english, and more",
                             "Participated in many clubs and organizations",
@@ -87,7 +128,8 @@ export default function EarlyYears() {
                             "Tutored in Math and Computer Science"
                         ],
                         icon: <IconSchool />,
-                    }
+                        img: CHSLogo,
+                    },
                 ]} />
             </div>
         </div>

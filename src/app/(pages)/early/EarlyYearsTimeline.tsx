@@ -3,7 +3,7 @@ import TimeLine, { TimeLineItem } from '@/app/components/TimeLine/TimeLine';
 import useMediaSizes, { lgOrSmaller, mdOrLarger, mdOrSmaller, smOrSmaller } from '@/app/utils/useMediaSizes';
 import { IconBriefcase, IconBriefcaseFilled } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import headshot from "/public/tutor/headshot.png";
 
 export interface SectionInfo {
@@ -13,6 +13,7 @@ export interface SectionInfo {
     endDate?: string;
     bullets: string[];
     icon?: React.ReactNode;
+    img: StaticImageData;
 }
 
 export default function EarlyYearsTimeLine({
@@ -88,12 +89,12 @@ export default function EarlyYearsTimeLine({
                             }}
                         >
                             <CardContainer className='bg-foreground text-black rounded-2xl font-k2d' containerClassName={`py-0 w-full ${findFlexAlignment(index)}`}>
-                                <CardBody className=' h-fit w-fit flex flex-col-reverse items-center p-2'>
+                                <CardBody className=' h-fit w-fit flex flex-col items-center p-2 gap-3'>
                                     {/* <Image src={headshot} alt="Ethan Pollack" className={`rounded-xl bg-auto w-full md:absolute md:top-0 md:h-20 md:w-20 md:-translate-y-1/4 md:right-0 md:-translate-x-1/4`} /> */}
-                                    <Image src={headshot} alt="Ethan Pollack" className={`rounded-xl  ${alternate ? 'w-1/2' : 'w-full'}`} />
+
 
                                     <div className='w-full flex-1'>
-                                        <h1 className='text-xl w-2/3'>{info.title}</h1>
+                                        <h1 className='text-xl w-2/3 font-bold'>{info.title}</h1>
                                         <h2 className='text-nowrap text-rg'>{info.subtitle}</h2>
                                         <ul className='text-sm list-disc pl-4 pt-2 text-pretty'>
                                             {
@@ -106,23 +107,23 @@ export default function EarlyYearsTimeLine({
                                         </ul>
                                         {
                                             info.startDate && info.endDate && (
-                                                <p className='text-nowrap text-md text-right'>{info.startDate} - {info.endDate}</p>
+                                                <p className=' font-bold text-nowrap text-lg text-right absolute top-0 right-0'>{info.startDate} - {info.endDate}</p>
                                             )
                                         }
                                         {
                                             info.startDate && !info.endDate && (
-                                                <p className='text-nowrap text-md text-right'>{info.startDate}</p>
+                                                <p className='font-bold text-nowrap text-lg text-right absolute top-0 right-0'>{info.startDate}</p>
                                             )
                                         }
                                         {
                                             !info.startDate && info.endDate && (
-                                                <p className='text-nowrap text-md text-right'>{info.endDate}</p>
+                                                <p className='font-bold text-nowrap text-lg text-right absolute top-0 right-0'>{info.endDate}</p>
                                             )
                                         }
                                     </div>
                                     {/* <div className=' flex justify-center items-center'> */}
                                     {/* </div> */}
-
+                                    <Image src={info.img} alt="Ethan Pollack" className={`rounded-xl w-full`} />
                                 </CardBody>
                             </CardContainer>
                         </TimeLineItem>

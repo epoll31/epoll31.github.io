@@ -39,7 +39,7 @@ const Section = React.forwardRef((
                 onMouseLeave={onMouseLeave}
                 ref={mergeRefs(ref, myRef)}
             >
-                <Link className="  origin-right cursor-none select-none h-full w-full flex flex-col justify-center items-end"
+                <Link className="  origin-right select-none h-full w-full flex flex-col justify-center items-end "//" cursor-none
                     style={{
                         transformStyle: "preserve-3d",
                         transform: `rotateY(${isHovered ? -20 : -30}deg)`,

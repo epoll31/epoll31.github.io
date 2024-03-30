@@ -26,9 +26,9 @@ export default function FrontLayer() {
                 <p className="font-k2d text-sm sm:text-lg md:text-2xl transition-all duration-150">
                     Software Developer and Designer
                 </p>
-                <p className="font-k2d text-xs sm:text-md md:text-xl transition-all duration-150">
+                {/* <p className="font-k2d text-xs sm:text-md md:text-xl transition-all duration-150">
                     Personal website made by <span className="font-bold text-nowrap whitespace-nowrap">Ethan Pollack</span>
-                </p>
+                </p> */}
                 {/* <CursorLock as="p" className="w-fit font-k2d text-sm sm:text-md md:text-xl transition-all duration-150" cursorLockedClassName="h-1 w-[4rem] sm:w-[5rem] md:w-[14.2rem] rounded-full bg-foreground translate-y-1 sm:translate-y-2 md:translate-y-3 z-30">
                     <Link href="./tutor" className="hover:font-bold text-nowrap whitespace-nowrap ">
                         Need help in CS or Math?
