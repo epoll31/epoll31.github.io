@@ -18,7 +18,7 @@ export default function WorkPage() {
           <PageMajor type="Side" className={` mt-10 `} >
             <CardContainer containerClassName="p-0" className="overflow-hidden drop-shadow-2xl">
               <Link href="https://raw.githubusercontent.com/epoll31/Resume/main/resume.pdf" className="w-full h-fit">
-                <Image src="/images/resume-color.png" alt="resume" width={200} height={200} className="w-full" />
+                <img src="/images/resume-color.png" alt="resume" width={200} height={200} className="w-full" />
               </Link>
             </CardContainer>
           </PageMajor>

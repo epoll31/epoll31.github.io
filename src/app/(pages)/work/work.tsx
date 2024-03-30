@@ -37,7 +37,7 @@ export default function Work() {
                             smOrSmaller(mediaSize) && (
                                 <div className="overflow-hidden rounded-xl">
                                     <Link href="https://raw.githubusercontent.com/epoll31/Resume/main/resume.pdf" className="w-full h-fit">
-                                        <Image src="/images/resume-color.png" alt="resume" width={200} height={200} className="w-full" />
+                                        <img src="/images/resume-color.png" alt="resume" width={200} height={200} className="w-full" />
                                     </Link>
                                 </div>
                             )
