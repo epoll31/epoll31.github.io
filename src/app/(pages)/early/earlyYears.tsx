@@ -1,18 +1,17 @@
 "use client";
 
 import { CursorLock } from "@/app/components/CursorFollower";
-import CustomButton from "@/app/components/CustomButton/CustomButton";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
 import { useEffect, useState } from "react";
-import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFish, IconFunctionFilled, IconSchool, IconSchoolBell, IconTrophyFilled } from "@tabler/icons-react";
+import { IconFish, IconFunctionFilled, IconSchool, IconTrophyFilled } from "@tabler/icons-react";
 import EarlyYearsTimeLine from "./EarlyYearsTimeline";
 import GMR2014 from "/public/images/early/gmr-2014.png";
-import Vex2015 from "/public/images/early/vex-2015.JPG";
-import Vex2016 from "/public/images/early/vex-2016.JPG";
-import WRO2019 from "/public/images/early/wro-2019.JPEG";
-import CHSFish from "/public/images/early/chs-fish-robot.JPG";
+import Vex2015 from "/public/images/early/vex-2015.jpg";
+import Vex2016 from "/public/images/early/vex-2016.jpg";
+import WRO2019 from "/public/images/early/wro-2019.jpeg";
+import CHSFish from "/public/images/early/chs-fish-robot.jpg";
 import CHSLogo from "/public/images/early/chs.png";
 
 export default function EarlyYears() {
