@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/',
+  basePath: '',
   output: 'export',
   images: {
-    unoptimized: false
+    unoptimized: false,
+    remotePatterns: ['/public'],
   },
 }
 
