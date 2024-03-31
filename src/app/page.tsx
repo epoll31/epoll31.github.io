@@ -18,7 +18,7 @@ export default async function Home() {
         }
       ],
       years: [],
-      redirect: "/work",
+      redirect: "../work",
     },
     {
       lines: [
@@ -46,7 +46,7 @@ export default async function Home() {
         },
       ],
       years: [],
-      redirect: "/education",
+      redirect: "../education",
     },
     {
       lines: [
@@ -60,7 +60,7 @@ export default async function Home() {
         }
       ],
       years: [],
-      redirect: "./early",
+      redirect: "../early",
     }
   ]
 
