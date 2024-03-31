@@ -4,7 +4,7 @@ const nextConfig = {
   basePath: '',
   output: 'export',
   images: {
-    unoptimized: false
+    unoptimized: false,
   },
   // future: { webpack5: true }
 }
