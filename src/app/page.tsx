@@ -9,7 +9,7 @@ export default async function Home() {
     {
       lines: [
         {
-          text: "Work",//TODO: ask about "Working"
+          text: "Work",
           size: 1,
         },
         {
@@ -18,7 +18,7 @@ export default async function Home() {
         }
       ],
       years: [],
-      redirect: "../work",
+      redirect: "https://epoll31.github.io/work",
     },
     {
       lines: [
@@ -46,7 +46,7 @@ export default async function Home() {
         },
       ],
       years: [],
-      redirect: "../education",
+      redirect: "https://epoll31.github.io/education",
     },
     {
       lines: [
@@ -60,7 +60,7 @@ export default async function Home() {
         }
       ],
       years: [],
-      redirect: "../early",
+      redirect: "https://epoll31.github.io/early",
     }
   ]
 

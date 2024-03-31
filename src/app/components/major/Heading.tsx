@@ -15,12 +15,12 @@ export type Tab = TabProps | "Education" | "Work" | "Projects" | "Early Years";
 const defaultTabs: TabProps[] = [
     {
         title: "Education",
-        link: "../education",
+        link: "https://epoll31.github.io/education",
         width: "w-[5rem]"
     },
     {
         title: "Work",
-        link: "../work",
+        link: "https://epoll31.github.io/work",
         width: "w-[2.3rem]"
     },
     {
@@ -30,7 +30,7 @@ const defaultTabs: TabProps[] = [
     },
     {
         title: "Early Years",
-        link: "../early",
+        link: "https://epoll31.github.io/early",
         width: "w-[5rem]"
     },
 ];
