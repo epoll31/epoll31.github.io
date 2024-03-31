@@ -25,11 +25,13 @@ const Section = React.forwardRef((
     ref: React.ForwardedRef<HTMLLIElement>) => {
     const myRef = useRef<HTMLLIElement>(null);
     const { isHovered, onMouseEnter, onMouseLeave } = useHover();
-    const dispatch = useAppDispatch();
-    const router = useRouter();
 
     return (
-        <>
+        <Link href={section.redirect}
+            style={{
+                transformStyle: "preserve-3d",
+            }}
+        >
             <li
                 className="w-full h-fit text-foreground hover:text-background font-lilita text-right ease-in-out snap-always snap-center -z-20 hover:-z-10 m-4"
                 style={{
@@ -39,7 +41,7 @@ const Section = React.forwardRef((
                 onMouseLeave={onMouseLeave}
                 ref={mergeRefs(ref, myRef)}
             >
-                <a className="  origin-right select-none h-full w-full flex flex-col justify-center items-end "//" cursor-none
+                <div className="origin-right select-none h-full w-full flex flex-col justify-center items-end "//" cursor-none
                     style={{
                         transformStyle: "preserve-3d",
                         transform: `rotateY(${isHovered ? -20 : -30}deg)`,
@@ -47,7 +49,6 @@ const Section = React.forwardRef((
                         willChange: "transform",
                         transition: "transform 1.5s cubic-bezier(0.075, 0.82, 0.165, 1), color 0.25s ease-in-out",
                     }}
-                    href={section.redirect}
                 >
                     {
                         section.lines.map((line, i) => {
@@ -56,8 +57,6 @@ const Section = React.forwardRef((
                                     "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
 
                             const color = `${line.size == 1 ? "foreground" : "foreground-100"}`;
-                            // line.size == 2 ? "foreground-100" :
-                            //     "foreground-200"}`;
 
                             return (
                                 <p key={i} className={`${size} w-fit relative uppercase text-nowrap`}
@@ -102,9 +101,9 @@ const Section = React.forwardRef((
                             )
                         })
                     }
-                </a>
+                </div>
             </li>
-        </>
+        </Link>
     );
 });
 
