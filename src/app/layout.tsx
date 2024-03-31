@@ -18,10 +18,6 @@ export default function RootLayout({
   return (
     <StoreProvider >
       <html lang="en">
-        <script
-          src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"
-          strategy="beforeInteractive"
-        />
         <body className="bg-background">
           {children}
         </body>
