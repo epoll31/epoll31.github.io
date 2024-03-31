@@ -39,7 +39,7 @@ const Section = React.forwardRef((
                 onMouseLeave={onMouseLeave}
                 ref={mergeRefs(ref, myRef)}
             >
-                <Link className="  origin-right select-none h-full w-full flex flex-col justify-center items-end "//" cursor-none
+                <a className="  origin-right select-none h-full w-full flex flex-col justify-center items-end "//" cursor-none
                     style={{
                         transformStyle: "preserve-3d",
                         transform: `rotateY(${isHovered ? -20 : -30}deg)`,
@@ -49,62 +49,60 @@ const Section = React.forwardRef((
                     }}
                     href={section.redirect}
                 >
-                    <a>
-                        {
-                            section.lines.map((line, i) => {
-                                const size = line.size == 1 ? "text-6xl md:text-[8rem] lg:text-[10rem] xl:text-[16rem]" :
-                                    line.size == 2 ? "text-3xl md:text-[4rem] lg:text-[6rem] xl:text-[8rem]" :
-                                        "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
+                    {
+                        section.lines.map((line, i) => {
+                            const size = line.size == 1 ? "text-6xl md:text-[8rem] lg:text-[10rem] xl:text-[16rem]" :
+                                line.size == 2 ? "text-3xl md:text-[4rem] lg:text-[6rem] xl:text-[8rem]" :
+                                    "text-2xl md:text-[2.5rem] lg:text-[3.2rem] xl:text-[5rem]";
 
-                                const color = `${line.size == 1 ? "foreground" : "foreground-100"}`;
-                                // line.size == 2 ? "foreground-100" :
-                                //     "foreground-200"}`;
+                            const color = `${line.size == 1 ? "foreground" : "foreground-100"}`;
+                            // line.size == 2 ? "foreground-100" :
+                            //     "foreground-200"}`;
 
-                                return (
-                                    <p key={i} className={`${size} w-fit relative uppercase text-nowrap`}
-                                        style={{
-                                            transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out",
-                                            color: `var(--${isHovered ? 'background' : color})`,
-                                            WebkitTextStroke: `${isHovered ? "2px" : "0px"} var(--${color})`,
-                                        }}
-                                    >
-                                        {
-                                            i !== 0 ? <></> :
-                                                <>
-                                                    {
-                                                        <span className={`text-${color} text-xl absolute text-left top-1 md:top-3 lg:top-5 xl:top-7 -left-[4rem] xl:-left-20 flex flex-col`}
-                                                            aria-hidden="true"
-                                                            style={{
-                                                                WebkitTextStroke: "0px",
-                                                                transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
-                                                            }}
-                                                        >
-                                                            {
-                                                                section.years.map((year, j) => {
-                                                                    return (
-                                                                        <span key={j} className="">
-                                                                            {year}
-                                                                        </span>
-                                                                    )
-                                                                })
-                                                            }
-                                                        </span>
-                                                    }
-                                                    <span className={`bg-${color} w-[4px] h-[3.5rem] md:h-[6.5rem] lg:h-[8.2rem] xl:h-[13rem] top-1 md:top-3 xl:top-5 -left-3 md:-left-4 xl:-left-6 absolute -skew-x-12`}
+                            return (
+                                <p key={i} className={`${size} w-fit relative uppercase text-nowrap`}
+                                    style={{
+                                        transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out",
+                                        color: `var(--${isHovered ? 'background' : color})`,
+                                        WebkitTextStroke: `${isHovered ? "2px" : "0px"} var(--${color})`,
+                                    }}
+                                >
+                                    {
+                                        i !== 0 ? <></> :
+                                            <>
+                                                {
+                                                    <span className={`text-${color} text-xl absolute text-left top-1 md:top-3 lg:top-5 xl:top-7 -left-[4rem] xl:-left-20 flex flex-col`}
+                                                        aria-hidden="true"
                                                         style={{
-                                                            // transformStyle: "preserve-3d",
-                                                            // translate: `0 0 20px`,
+                                                            WebkitTextStroke: "0px",
                                                             transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
-                                                        }} />
-                                                </>
-                                        }
-                                        {line.text}
-                                    </p>
-                                )
-                            })
-                        }
-                    </a>
-                </Link>
+                                                        }}
+                                                    >
+                                                        {
+                                                            section.years.map((year, j) => {
+                                                                return (
+                                                                    <span key={j} className="">
+                                                                        {year}
+                                                                    </span>
+                                                                )
+                                                            })
+                                                        }
+                                                    </span>
+                                                }
+                                                <span className={`bg-${color} w-[4px] h-[3.5rem] md:h-[6.5rem] lg:h-[8.2rem] xl:h-[13rem] top-1 md:top-3 xl:top-5 -left-3 md:-left-4 xl:-left-6 absolute -skew-x-12`}
+                                                    style={{
+                                                        // transformStyle: "preserve-3d",
+                                                        // translate: `0 0 20px`,
+                                                        transition: "font-size 0.5s ease-in-out, top 0.5s ease-in-out, left 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out",
+                                                    }} />
+                                            </>
+                                    }
+                                    {line.text}
+                                </p>
+                            )
+                        })
+                    }
+                </a>
             </li>
         </>
     );
