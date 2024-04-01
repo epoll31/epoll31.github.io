@@ -18,6 +18,22 @@ const config: Config = {
       fontFamily: {
         lilita: ["Lilita One", "sans-serif"],
         k2d: ["K2D", "sans-serif"],
+        serif: ["Noto Serif", "serif"],
+        sans: ["Noto Sans", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+      },
+      keyframes: {
+        underline: {
+          '0%, 100%': {
+            textUnderlineOffset: '2px',
+          },
+          '50%': {
+            textUnderlineOffset: '4px',
+          },
+        },
+      },
+      animation: {
+        underline: 'underline 1.5s infinite',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -57,7 +73,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [addVariablesForColors],
+  plugins: [
+    addVariablesForColors,
+    require('@tailwindcss/typography'),
+  ],
 }
 function addVariablesForColors({ addBase, theme }: any) {
   let allColors = flattenColorPalette(theme("colors"));
