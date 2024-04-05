@@ -5,6 +5,12 @@ author: 'Ethan Pollack'
 ---
 
 # Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+###### Heading 6
+####### Heading 7
 
 <!-- comment test -->
 
@@ -13,7 +19,12 @@ line
 comment 
 test -->
 
-## Contents
+### This is a really long title, it's going to continue for a while
+
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ## Links
 
@@ -21,7 +32,7 @@ test -->
 
 https://epoll31.github.io
 
-## Doc
+# Doc
  
 test
 1. test
@@ -59,6 +70,7 @@ test
 test
 ```
 
+## Python
 ``` python
 def generateStaticParams():
     articles = path.resolve(process.cwd(), 'public', 'articles')
@@ -66,6 +78,15 @@ def generateStaticParams():
     return folders.map(folder => { return { slug: folder } });
 ```
 
+## Text
+``` text
+def generateStaticParams():
+    articles = path.resolve(process.cwd(), 'public', 'articles')
+    folders = fs.readdirSync(articles)
+    return folders.map(folder => { return { slug: folder } });
+```
+
+## Unspecified
 ```
 def generateStaticParams():
     articles = path.resolve(process.cwd(), 'public', 'articles')
@@ -119,11 +140,25 @@ test
 
 test
 
+# Another Heading 1
+
 ##### Heading 5
 
 test
 
 ###### Heading 6
+
+test
+
+#### Second Heading 4
+
+test
+
+##### Second Heading 5
+
+test
+
+###### Second Heading 6
 
 test
 

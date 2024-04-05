@@ -6,6 +6,11 @@ import { twMerge } from "tailwind-merge";
 import React, { useEffect } from "react";
 import { Heading, Tab } from "./Heading";
 
+
+
+export type Theme = "light" | "dark" | "red";
+export type PageMajorType = "Main" | "Side";
+
 function Side({
     className,
     children,
@@ -24,7 +29,6 @@ function Side({
         </div>
     );
 }
-export type PageMajorType = "Main" | "Side";
 
 export function PageMajor({
     as: Tag = "div",
@@ -45,13 +49,23 @@ export function PageMajor({
 
 export type PageLayout = "Side" | "Main";
 
+export interface PageInfo {
+    theme: Theme;
+    layout: PageLayout;
+}
+
+export const PageContext = React.createContext<PageInfo>({ theme: "red", layout: "Side" });
+
 export default function Page({
+    theme = "red",
+    layout = "Side",
     children,
     customButtonType,
     tabs,
-    layout = "Side"
 }:
     {
+        theme?: Theme;
+        className?: string;
         children?: React.ReactNode;
         customButtonType?: CustomButtonType;
         tabs?: Tab[];
@@ -63,10 +77,23 @@ export default function Page({
     const [sideChildren, setSideChildren] = React.useState<React.ReactNode[]>([]);
     const [mainChildren, setMainChildren] = React.useState<React.ReactNode[]>([]);
     const [layoutClassName, setLayoutClassName] = React.useState<string>("");
+    const [pageContext, setPageContext] = React.useState<PageInfo>({ theme, layout });
+
+    const [themedClassName, setThemedClassName] = React.useState("text-black");
+    useEffect(() => {
+        if (theme === "light") {
+            setThemedClassName("bg-foreground text-black");
+        }
+        else if (theme === "dark") {
+            setThemedClassName("bg-black text-foreground");
+        }
+        else if (theme === "red") {
+            setThemedClassName("bg-background text-black");
+        }
+    }, [theme]);
 
     useEffect(() => {
         if (layout !== "Side") return;
-
 
         const sideChildren: React.ReactNode[] = [];
         const mainChildren: React.ReactNode[] = [];
@@ -77,16 +104,6 @@ export default function Page({
                 } else {
                     mainChildren.push(child);
                 }
-                // console.log(child.type);
-                // if (child.type === PageMajor) {
-                //     if (child.props.type === "Side") {
-                //         sideChildren.push(child);
-                //     } else {
-                //         mainChildren.push(child);
-                //     }
-                // } else {
-                //     mainChildren.push(child);
-                // }
             }
         });
 
@@ -103,8 +120,8 @@ export default function Page({
     }, [layout]);
 
     return (
-        <>
-            <main className={twMerge("fixed w-full h-full flex flex-col overflow-x-hidden overflow-y-scroll", layoutClassName)}>
+        <PageContext.Provider value={pageContext}>
+            <main className={twMerge("fixed w-full h-full flex flex-col overflow-x-hidden overflow-y-scroll", layoutClassName, themedClassName)}>
                 <Fade />
                 {layout === "Side" &&
                     <>
@@ -130,6 +147,7 @@ export default function Page({
                 <CustomButton type={customButtonType} />
             </main >
             {/* <CursorFollower /> */}
-        </>
+        </PageContext.Provider>
     );
 }
+

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { CursorLock } from "@/app/components/CursorFollower";
 import React, { useEffect } from "react";
+import { PageContext } from "./Page";
+import { twMerge } from "tailwind-merge";
 
 export interface TabProps {
     title: string;
@@ -41,6 +43,20 @@ export function Heading({
     tabs?: Tab[];
 }) {
     const [usableTabs, setUsableTabs] = React.useState(defaultTabs);
+    const pageInfo = React.useContext(PageContext);
+    const [themedClassName, setThemedClassName] = React.useState("text-black");
+    useEffect(() => {
+        if (pageInfo.theme === "light") {
+            setThemedClassName("text-black");
+        }
+        else if (pageInfo.theme === "dark") {
+            setThemedClassName("text-foreground");
+        }
+        else if (pageInfo.theme === "red") {
+            setThemedClassName("text-black");
+        }
+    }, [pageInfo.theme]);
+
 
     useEffect(() => {
         if (tabs) {
@@ -64,13 +80,13 @@ export function Heading({
     }, [tabs]);
 
     return (
-        <div className="flex flex-col w-min text-black mt-5">
+        <div className={twMerge(`flex flex-col w-min mt-5`, themedClassName)}>
             <Link href={"./"} className="text-nowrap md:text-wrap font-lilita text-5xl md:text-8xl">
                 <h1>
                     Ethan Pollack
                 </h1>
             </Link>
-            <div className="text-black  flex flex-row justify-between flex-wrap gap-1">
+            <div className="flex flex-row justify-between flex-wrap gap-1">
                 {usableTabs.map((tab, i) => {
                     return (
                         // <CursorLock className="underline hover:no-underline" cursorLockedClassName={` hidden sm:[display:inherit] h-1 ${tab.width} rounded-full bg-foreground translate-y-2 z-40`} key={i}>

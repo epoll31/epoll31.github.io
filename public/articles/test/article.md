@@ -1,7 +1,7 @@
 ---
 title: 'This is a Test Title'
-    date: '2024-03-31'`
-    author: 'Ethan Pollack'`
+date: '2024-03-31'
+author: 'Ethan Pollack'
 ---
 
 # Markdown: Syntax
