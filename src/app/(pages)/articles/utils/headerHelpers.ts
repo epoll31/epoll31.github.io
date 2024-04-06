@@ -1,11 +1,45 @@
+
+
 export interface HeaderNode {
     text: string;
     level: number;
     children: HeaderNode[];
     parent?: HeaderNode;
+    uid: number;
+    id: string;
 }
 
-export default function generateTableOfContents(markdown: string, maxLevel: number = 6): HeaderNode[] {
+export function headerTextToID(header: string) {
+    return header.toLowerCase();
+    //return header.toLowerCase().replaceAll(' ', '-');
+}
+
+export function getHeader(headers: HeaderNode[], id: string): HeaderNode | undefined {
+    for (const header of headers) {
+        if (header.id === id) {
+            return header;
+        }
+        const child = getHeader(header.children, id);
+        if (child) {
+            return child;
+        }
+    }
+    return undefined;
+}
+
+export function containsHeader(headers: HeaderNode[], id: string): boolean {
+    for (const header of headers) {
+        if (header.id === id) {
+            return true;
+        }
+        if (containsHeader(header.children, id)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export function generateHeaders(markdown: string, maxLevel: number = 6): HeaderNode[] {
     const lines = markdown.split('\n');
 
     const allHeaders: {
@@ -28,6 +62,7 @@ export default function generateTableOfContents(markdown: string, maxLevel: numb
     }
 
     const headers: HeaderNode[] = [];
+    let uid = 0;
     let currentParent: HeaderNode | undefined = undefined;
     for (let i = 0; i < allHeaders.length; i++) {
         const header = allHeaders[i];
@@ -42,6 +77,8 @@ export default function generateTableOfContents(markdown: string, maxLevel: numb
             level: header.level,
             children: [],
             parent: parentNode,
+            uid: uid++,
+            id: headerTextToID(header.text),
         };
 
         if (parentNode !== undefined) {
@@ -57,6 +94,7 @@ export default function generateTableOfContents(markdown: string, maxLevel: numb
 
     return headers;
 }
+
 
 
 // export interface HeaderNode {

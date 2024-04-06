@@ -11,23 +11,23 @@ export default function CustomButton({
 }: {
     type?: CustomButtonType;
 }) {
-    const pageInfo = useContext(PageContext);
+    const pageContext = useContext(PageContext);
     const [themedClassName, setThemedClassName] = useState("text-black");
     const [themedInnerClassName, setThemedInnerClassName] = useState("bg-black");
     useEffect(() => {
-        if (pageInfo.theme === "light") {
+        if (pageContext.pageInfo.theme === "light") {
             setThemedClassName("bg-background");
             setThemedInnerClassName("bg-black");
         }
-        else if (pageInfo.theme === "dark") {
+        else if (pageContext.pageInfo.theme === "dark") {
             setThemedClassName("bg-foreground");
             setThemedInnerClassName("bg-black");
         }
-        else if (pageInfo.theme === "red") {
+        else if (pageContext.pageInfo.theme === "red") {
             setThemedClassName("bg-foreground");
             setThemedInnerClassName("bg-black");
         }
-    }, [pageInfo.theme]);
+    }, [pageContext.pageInfo.theme]);
 
     return (
         <Link className={twMerge(`fixed top-0 right-0 menu ${type} m-2 w-10 h-10 sm:m-10 sm:w-14 sm:h-14 rounded-full transition-all drop-shadow-md z-40`, themedClassName)} href="./">

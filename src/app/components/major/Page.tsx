@@ -3,13 +3,14 @@
 import CustomButton, { CustomButtonType } from "@/app/components/CustomButton/CustomButton";
 import Fade from "./Fade";
 import { twMerge } from "tailwind-merge";
-import React, { useEffect } from "react";
+import React, { forwardRef, useEffect } from "react";
 import { Heading, Tab } from "./Heading";
+import NavBar from "./NavBar";
 
 
 
 export type Theme = "light" | "dark" | "red";
-export type PageMajorType = "Main" | "Side";
+export type PageMajorType = "main" | "side" | "article";
 
 function Side({
     className,
@@ -32,7 +33,7 @@ function Side({
 
 export function PageMajor({
     as: Tag = "div",
-    type = "Main",
+    type = "main",
     children,
     ...props
 }:
@@ -47,21 +48,51 @@ export function PageMajor({
     );
 }
 
-export type PageLayout = "Side" | "Main";
+export type PageLayout = "side" | "main" | "article";
 
 export interface PageInfo {
     theme: Theme;
     layout: PageLayout;
 }
 
-export const PageContext = React.createContext<PageInfo>({ theme: "red", layout: "Side" });
+export const PageContext = React.createContext<{
+    pageInfo: PageInfo;
+    setTheme: (theme: Theme) => void;
+}>({
+    pageInfo: { theme: "red", layout: "side" },
+    setTheme: (theme: Theme) => { },
+});
 
-export default function Page({
-    theme = "red",
-    layout = "Side",
+function getTheme(theme?: Theme) {
+    if (theme) {
+        return theme;
+    }
+
+    // check local storage
+    if (typeof window !== 'undefined') {
+        const local = localStorage.getItem("prefTheme");
+        if (local) {
+            return local as Theme;
+        }
+
+        // check system theme
+        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    else {
+        console.log("window is undefined");
+    }
+
+    // default to dark
+    return "dark";
+}
+
+const Page = forwardRef(function Page({
+    theme,
+    layout = "side",
     children,
     customButtonType,
     tabs,
+    className,
 }:
     {
         theme?: Theme;
@@ -70,30 +101,50 @@ export default function Page({
         customButtonType?: CustomButtonType;
         tabs?: Tab[];
         layout?: PageLayout;
-    }) {
+    }, ref: React.Ref<HTMLDivElement>) {
 
     // const sideChildren: React.ReactNode[] = [];
     // const mainChildren: React.ReactNode[] = [];
     const [sideChildren, setSideChildren] = React.useState<React.ReactNode[]>([]);
     const [mainChildren, setMainChildren] = React.useState<React.ReactNode[]>([]);
     const [layoutClassName, setLayoutClassName] = React.useState<string>("");
-    const [pageContext, setPageContext] = React.useState<PageInfo>({ theme, layout });
+    const [pageContext, setPageContext] = React.useState<{
+        pageInfo: PageInfo;
+        setTheme: (theme: Theme) => void;
+    }>({
+        pageInfo: {
+            theme: getTheme(theme),
+            layout
+        },
+        setTheme: (theme: Theme) => {
+            localStorage.setItem("prefTheme", theme);
+            setPageContext((prev) => {
+                return {
+                    ...prev,
+                    pageInfo: {
+                        ...prev.pageInfo,
+                        theme,
+                    },
+                };
+            });
+        },
+    });
 
-    const [themedClassName, setThemedClassName] = React.useState("text-black");
+    const [themedClassName, setThemedClassName] = React.useState("bg-black text-foreground");
     useEffect(() => {
-        if (theme === "light") {
+        if (pageContext.pageInfo.theme === "light") {
             setThemedClassName("bg-foreground text-black");
         }
-        else if (theme === "dark") {
+        else if (pageContext.pageInfo.theme === "dark") {
             setThemedClassName("bg-black text-foreground");
         }
-        else if (theme === "red") {
+        else if (pageContext.pageInfo.theme === "red") {
             setThemedClassName("bg-background text-black");
         }
-    }, [theme]);
+    }, [pageContext.pageInfo.theme]);
 
     useEffect(() => {
-        if (layout !== "Side") return;
+        if (layout !== "side") return;
 
         const sideChildren: React.ReactNode[] = [];
         const mainChildren: React.ReactNode[] = [];
@@ -112,18 +163,33 @@ export default function Page({
     }, [children, layout]);
 
     useEffect(() => {
-        if (layout === "Side") {
+        if (layout === "side") {
             setLayoutClassName("md:flex-row");
         } else {
             setLayoutClassName("items-center");
         }
     }, [layout]);
 
+    if (layout === "article") {
+        return (
+            <PageContext.Provider value={pageContext}>
+                <div className={twMerge("fixed w-full h-full flex flex-col overflow-hidden transition-colors", themedClassName)}>
+                    <NavBar />
+                    <main id="page" className="w-full h-full overflow-x-hidden overflow-y-scroll scroll-smooth">
+                        {children}
+                    </main>
+                </div>
+            </PageContext.Provider>
+        );
+    }
+
     return (
         <PageContext.Provider value={pageContext}>
-            <main className={twMerge("fixed w-full h-full flex flex-col overflow-x-hidden overflow-y-scroll", layoutClassName, themedClassName)}>
+            <div id="page" className={twMerge(className, "fixed w-full h-full flex flex-col overflow-x-hidden overflow-y-scroll transition-colors", layoutClassName, themedClassName)}
+                ref={ref}
+            >
                 <Fade />
-                {layout === "Side" &&
+                {layout === "side" &&
                     <>
                         <Side className="md:flex-1" tabs={tabs} >
                             <Heading tabs={tabs} />
@@ -133,21 +199,23 @@ export default function Page({
                             {...mainChildren}
                         </div>
                         <div className="md:flex-1" />
+                        <CustomButton type={customButtonType} />
                     </>
                 }
                 {
-                    layout === "Main" &&
+                    layout === "main" &&
                     <>
                         <Heading tabs={tabs} />
                         {children}
+                        <CustomButton type={customButtonType} />
                     </>
 
                 }
 
-                <CustomButton type={customButtonType} />
-            </main >
+            </div >
             {/* <CursorFollower /> */}
         </PageContext.Provider>
     );
-}
+});
 
+export default Page;

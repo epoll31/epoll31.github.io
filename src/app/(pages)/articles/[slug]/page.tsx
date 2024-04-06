@@ -6,7 +6,6 @@ import React from 'react'
 import Contents from '../components/Contents'
 import Article from '../components/Article'
 
-
 export const dynamicParams = false
 
 export function generateStaticParams() {
@@ -27,13 +26,13 @@ export default function ArticlePage({ params }: {
     const articlePath = `/articles/${params.slug}`;
 
     return (
-        <Page theme={"red"}>
-            <PageMajor type='Side'>
+        <Page layout="article" className='relative scroll-smooth'>
+            <PageMajor type='article'>
+                <Article articleJSON={JSON.stringify(article)} articlePath={articlePath} />
+            </PageMajor>
+            {/* <PageMajor type='side'>
                 <Contents markdown={article.content} maxLevel={2} />
-            </PageMajor>
-            <PageMajor type='Main'>
-                <Article article={article} articlePath={articlePath} />
-            </PageMajor>
+            </PageMajor> */}
         </Page >
     );
 }

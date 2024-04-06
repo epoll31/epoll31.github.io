@@ -45,10 +45,13 @@ const config: Config = {
           DEFAULT: '#F0F0C9',
           100: '#D9D9B8',
           200: '#C1C2A6',
+          300: '#AFB097'
         },
         'background': '#F15946',
         'black': {
           DEFAULT: '#32373B',
+          100: '#4B5258',
+
         },
         'blue': '#77B6EA',
         'orange': {

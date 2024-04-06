@@ -2,14 +2,14 @@
 import RawMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import getHeaderTag from "./utils/getHeaderTag";
 import Code from "./components/Code";
 import Link from "next/link";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import getImageMetaData from "./utils/getImageMetaData";
-import { Theme } from "@/app/components/major/Page";
-import { useEffect, useState } from "react";
+import { PageContext, Theme } from "@/app/components/major/Page";
+import { useContext, useEffect, useState } from "react";
+import { headerTextToID } from "../../utils/headerHelpers";
 
 export default function Markdown({
     children,
@@ -22,7 +22,7 @@ export default function Markdown({
 }) {
     return (
         <RawMarkdown
-            className={"pb-10"}
+            className={""}
             remarkPlugins={[
                 remarkGfm,
             ]}
@@ -31,12 +31,12 @@ export default function Markdown({
             ]}
             components={
                 {
-                    h1: ({ children }) => <h1 className={`text-2xl font-bold font-sans mb-3`} id={getHeaderTag(children?.toString())} style={{ color: theme === "red" ? "var(--foreground)" : "var(--background)" }}>{children}</h1>,
-                    h2: ({ children }) => <h2 className='text-xl font-bold font-sans mb-2' id={getHeaderTag(children?.toString())}>{children}</h2>,
-                    h3: ({ children }) => <h3 className='text-lg font-bold font-sans mb-1' id={getHeaderTag(children?.toString())}>{children}</h3>,
-                    h4: ({ children }) => <h4 className='text-md font-bold font-sans mb-1' id={getHeaderTag(children?.toString())}>{children}</h4>,
-                    h5: ({ children }) => <h5 className='text-sm font-bold font-sans mb-1' id={getHeaderTag(children?.toString())}>{children}</h5>,
-                    h6: ({ children }) => <h6 className='text-xs font-bold font-sans mb-1' id={getHeaderTag(children?.toString())}>{children}</h6>,
+                    h1: ({ children }) => <h1 className={`text-2xl font-bold font-sans mb-3`} id={headerTextToID(children?.toString() ?? "")} style={{ color: theme === "red" ? "var(--foreground)" : "var(--background)" }}>{children}</h1>,
+                    h2: ({ children }) => <h2 className='text-xl font-bold font-sans mb-2' id={headerTextToID(children?.toString() ?? "")}>{children}</h2>,
+                    h3: ({ children }) => <h3 className='text-lg font-bold font-sans mb-1' id={headerTextToID(children?.toString() ?? "")}>{children}</h3>,
+                    h4: ({ children }) => <h4 className='text-md font-bold font-sans mb-1' id={headerTextToID(children?.toString() ?? "")}>{children}</h4>,
+                    h5: ({ children }) => <h5 className='text-sm font-bold font-sans mb-1' id={headerTextToID(children?.toString() ?? "")}>{children}</h5>,
+                    h6: ({ children }) => <h6 className='text-xs font-bold font-sans mb-1' id={headerTextToID(children?.toString() ?? "")}>{children}</h6>,
                     p: ({ children }) => <p className='text-base font-normal font-serif mb-4'>{children}</p>,
                     ul: (props) => {
                         const tasks = props.className === 'contains-task-list';
@@ -111,14 +111,30 @@ export default function Markdown({
                             </span>
                         );
                     },
-                    table: ({ children }) => <table className={
-                        twMerge(
-                            'table-auto font-sans m-2 rounded-md overflow-hidden text-black', // table
-                            `[&>thead]:bg-${theme === "light" ? 'black' : 'foreground'} [&>thead]:text-${theme === "light" ? 'foreground' : 'black'} [&>thead>tr>th]:p-2`,// table header
-                            '[&>tbody>tr:nth-child(2n+1)]:bg-foreground-200 [&>tbody>tr:nth-child(2n)]:bg-foreground-100 [&>tbody>tr>td]:p-2',// alternating row colors 
-                            '[&>*>*>*:first-child]:pl-4 [&>*>*>*:last-child]:pr-4',// side padding
-                        )
-                    }>{children}</table>,
+                    table: ({ children }) => {
+                        const pageContext = useContext(PageContext);
+                        const [tHeadThemeClassName, setTHeadThemeClassName] = useState<string>("");
+                        useEffect(() => {
+                            if (pageContext.pageInfo.theme === "dark") {
+                                setTHeadThemeClassName("[&>thead]:bg-foreground [&>thead]:text-black");
+                            }
+                            else if (pageContext.pageInfo.theme === "light") {
+                                setTHeadThemeClassName("[&>thead]:bg-foreground-300 [&>thead]:text-black");
+                            }
+                            else if (pageContext.pageInfo.theme === "red") {
+                                setTHeadThemeClassName("[&>thead]:bg-background [&>thead]:text-black");
+                            }
+                        }, [pageContext.pageInfo.theme]);
+
+                        return (<table className={
+                            twMerge(
+                                'table-auto font-sans m-2 rounded-md overflow-hidden text-black', // table
+                                `[&>thead>tr>th]:p-2`, '[&>thead]:bg-foreground-300 [&>thead]:text-black', // table header
+                                '[&>tbody>tr:nth-child(2n)]:bg-foreground-200 [&>tbody>tr:nth-child(2n+1)]:bg-foreground-100 [&>tbody>tr>td]:p-2',// alternating row colors 
+                                '[&>*>*>*:first-child]:pl-4 [&>*>*>*:last-child]:pr-4',// side padding
+                            )
+                        }>{children}</table>);
+                    },
                 }
             }
         >

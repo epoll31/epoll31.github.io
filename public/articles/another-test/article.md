@@ -2,10 +2,11 @@
 title: 'This is a Another Test Title'
 date: '2024-03-31'
 author: 'Ethan Pollack'
+tableOfContents: 'visible'
 ---
 
 # Heading 1
-## Heading 2
+## Heading 2 really long title, extremely long title
 ### Heading 3
 #### Heading 4
 ##### Heading 5

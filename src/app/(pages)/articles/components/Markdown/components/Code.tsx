@@ -28,6 +28,8 @@ export default function Code(props: any) {
                 gruvboxDark
             }
             language={lang}
+            wrapLines
+            wrapLongLines
             {...rest}
         >
             {String(children ?? "").replace(/\n$/, "")}
