@@ -22,6 +22,9 @@ const config: Config = {
         sans: ["Noto Sans", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
+      transitionProperty: {
+        colorsAndOpacity: 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity',
+      },
       keyframes: {
         underline: {
           '0%, 100%': {
@@ -79,6 +82,7 @@ const config: Config = {
   plugins: [
     addVariablesForColors,
     require('@tailwindcss/typography'),
+    require('tailwind-scrollbar'),
   ],
 }
 function addVariablesForColors({ addBase, theme }: any) {

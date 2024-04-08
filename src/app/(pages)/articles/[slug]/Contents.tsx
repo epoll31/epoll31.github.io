@@ -1,17 +1,12 @@
 import Link from "next/link";
 import { HeaderNode } from "./utils/headerHelpers";
-import { PageContext } from "@/app/components/major/Page";
 import { CSSProperties, useContext, useEffect, useState } from "react";
 import { ArticleContext } from "./Article";
+import { ThemeContext } from "@/app/utils/ThemeContext";
 
-export default function Contents({
-    headers
-}:
-    {
-        headers: HeaderNode[];
-    }
-) {
-    const pageContext = useContext(PageContext);
+export default function Contents({ headers }: { headers: HeaderNode[]; }) {
+
+    const themeContext = useContext(ThemeContext);
     const articleContext = useContext(ArticleContext);
 
     return (
@@ -22,20 +17,20 @@ export default function Contents({
                     const [style, setStyle] = useState<CSSProperties>({
                         fontSize: `${1 - (header.level - 1) * 0.1}rem`,
                         paddingLeft: `${header.level * 1.2}rem`,
-                        color: header.level === 1 ? "var(--foreground)" : "var(--foreground-200)"
+                        color: "transparent"
                     });
 
                     useEffect(() => {
                         let newStyle: CSSProperties;
 
-                        if (pageContext.pageInfo.theme === "light") {
+                        if (themeContext.theme === "light") {
                             newStyle = {
                                 fontSize: `${1 - (header.level - 1) * 0.1}rem`,
                                 paddingLeft: `${header.level * 1.2}rem`,
                                 color: header.level === 1 ? "var(--black)" : "var(--black-100)"
                             };
                         }
-                        else {// if (pageContext.pageInfo.theme === "dark") {
+                        else {// if (themeContext.theme === "dark") {
                             newStyle = {
                                 fontSize: `${1 - (header.level - 1) * 0.1}rem`,
                                 paddingLeft: `${header.level * 1.2}rem`,
@@ -50,7 +45,7 @@ export default function Contents({
                             };
                         }
                         setStyle(newStyle);
-                    }, [pageContext.pageInfo.theme, header.level, articleContext.activeHeader]);
+                    }, [themeContext.theme, header.level, articleContext.activeHeader]);
 
                     return (
                         <Link

@@ -1,11 +1,11 @@
 "use client";
 
-import { PageContext } from "@/app/components/major/Page";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useLayoutEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { HeaderNode, generateHeaders, getHeader } from "./utils/headerHelpers";
 import useWindowSize from "@/app/utils/useWindowSize";
 import Contents from "./Contents";
+import { ThemeContext } from "@/app/utils/ThemeContext";
 
 export interface ArticleMetaData {
     slug: string;
@@ -38,8 +38,8 @@ export default function Article({
 }: {
     article: ArticleData
 }) {
-    const pageContext = useContext(PageContext);
-    const [hrColor, setHRColor] = useState("");
+    const themeContext = useContext(ThemeContext);
+    const [themedClassName, setThemedClassName] = useState<string>("text-transparent bg-transparent opacity-0  scrollbar-thumb-transparent scrollbar-track-transparent");
     const { width } = useWindowSize();
     // const headers = generateHeaders(article.content, 2);
     const headers = generateHeaders(article, 2);
@@ -56,14 +56,14 @@ export default function Article({
     });
 
     useEffect(() => {
-        const pageDiv = document.getElementById("page");
+        const articleDiv = document.getElementById("article");
 
-        if (!pageDiv) {
+        if (!articleDiv) {
             return;
         }
 
         const handleScroll = () => {
-            const rawHeaders = pageDiv.querySelectorAll("h1, h2, h3, h4, h5, h6");
+            const rawHeaders = articleDiv.querySelectorAll("h1, h2, h3, h4, h5, h6");
             const target = 100;
             let minDistance = Infinity;
             let currentHeader = "";
@@ -90,39 +90,46 @@ export default function Article({
             }
         };
 
-        pageDiv.addEventListener("scroll", handleScroll);
+        articleDiv.addEventListener("scroll", handleScroll);
 
         return () => {
-            pageDiv.removeEventListener("scroll", handleScroll);
+            articleDiv.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
-    useEffect(() => {
-        if (pageContext.pageInfo.theme === "light") {
-            setHRColor("border-background");
+    useLayoutEffect(() => {
+        if (themeContext.theme === "light") {
+            setThemedClassName("bg-foreground text-black scrollbar-thumb-black-100 scrollbar-track-foreground");
         } else {
-            setHRColor("border-foreground");
+            setThemedClassName("bg-black text-foreground scrollbar-thumb-foreground-200 scrollbar-track-black");
         }
 
-    }, [pageContext.pageInfo.theme]);
+    }, [themeContext.theme]);
 
     return (
         <ArticleContext.Provider value={articleContext}>
-            <div className="flex w-full h-100% justify-center p-4">
-                <div className={`flex-grow max-w-[min(42.875rem,100%)] m-4 my-10 font-sans transition-colors`}>
+            <div
+                id="article"
+                className={twMerge(
+                    "p-4 flex justify-center transition-all",
+                    "w-full h-full overflow-x-hidden overflow-y-scroll scroll-smooth md:scrollbar scrollbar-thumb-rounded-x",
+                    themedClassName,
+                )}
+            >
+                <div className={`flex-grow max-w-[min(42.875rem,100%)] mb-10 font-sans`}>
                     <div className='my-5 flex flex-col gap-2'>
                         <h1 className='text-4xl font-bold font-sans'>{article.title}</h1>
                         <div className='flex flex-row justify-between '>
                             <p className='text-xl font-light'>{article.author}</p>
                             <p className='text-lg font-light'>{article.date}</p>
                         </div>
-                        <hr className={twMerge("transition-colors", hrColor)}></hr>
+                        <hr className={twMerge("transition-colors border-background")}></hr>
                     </div>
                     {article.mdx}
                 </div>
                 {
                     (width ? width > 850 : true) && article.showTOC &&
-                    <aside className="sticky top-[100px] w-fit h-fit ml-10">
+                    <aside className="sticky top-[0px] w-fit h-fit ml-10">
                         <Contents headers={headers} />
                     </aside>
                 }

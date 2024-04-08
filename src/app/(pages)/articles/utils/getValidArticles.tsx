@@ -34,3 +34,9 @@ export function getValidArticleMetaData(): ArticleMetaData[] {
 
     return valid;
 }
+
+export function getArticleMetaData(slug: string): ArticleMetaData {
+    const article = matter(fs.readFileSync(path.resolve(process.cwd(), 'public', 'articles', slug, 'article.mdx')).toString());
+
+    return article.data as ArticleMetaData;
+}

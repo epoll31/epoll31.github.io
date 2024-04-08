@@ -22,7 +22,7 @@ import Pre from '@/app/(pages)/articles/[slug]/mdxComponents/components/Pre'
 import Table from '@/app/(pages)/articles/[slug]/mdxComponents/components/Table'
 import UL from '@/app/(pages)/articles/[slug]/mdxComponents/components/UL'
 import Video from '@/app/(pages)/articles/[slug]/mdxComponents/components/Video'
-import { getValidArticleSlugs } from '../utils/getValidArticles'
+import { getArticleMetaData, getValidArticleSlugs } from '../utils/getValidArticles'
 
 export const dynamicParams = false
 
@@ -34,6 +34,14 @@ export interface ArticlePageProps {
     source: string;
     slug: string;
     folder: string;
+}
+
+export async function generateMetadata({ params }: { params: { slug: string; }; }) {
+    const article = getArticleMetaData(params.slug);
+    return {
+        title: article.title,
+        description: article.abstract,
+    }
 }
 
 export default async function ArticlePage({ params }: { params: { slug: string; }; }) {
@@ -75,8 +83,6 @@ export default async function ArticlePage({ params }: { params: { slug: string; 
     } as ArticleData;
 
     return (
-        <Page layout='article'>
-            <Article article={article} />
-        </Page >
+        <Article article={article} />
     );
 }
