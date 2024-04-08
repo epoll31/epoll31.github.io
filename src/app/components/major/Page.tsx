@@ -1,9 +1,9 @@
 
 "use client"
 import CustomButton, { CustomButtonType } from "@/app/components/CustomButton/CustomButton";
-import Fade from "./Fade";
-import { twMerge } from "tailwind-merge";
 import React, { forwardRef, useEffect } from "react";
+import { twMerge } from "tailwind-merge";
+import Fade from "./Fade";
 import { Heading, Tab } from "./Heading";
 import NavBar from "./NavBar";
 
@@ -103,8 +103,7 @@ const Page = forwardRef(function Page({
         layout?: PageLayout;
     }, ref: React.Ref<HTMLDivElement>) {
 
-    // const sideChildren: React.ReactNode[] = [];
-    // const mainChildren: React.ReactNode[] = [];
+
     const [sideChildren, setSideChildren] = React.useState<React.ReactNode[]>([]);
     const [mainChildren, setMainChildren] = React.useState<React.ReactNode[]>([]);
     const [layoutClassName, setLayoutClassName] = React.useState<string>("");
