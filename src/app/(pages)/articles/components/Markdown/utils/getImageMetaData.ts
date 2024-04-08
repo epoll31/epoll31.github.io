@@ -1,5 +1,22 @@
 import getImageSrc from "./getImageSrc";
 
+export interface ImageMetaData {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    isPriority?: boolean;
+    hasCaption: boolean;
+    caption?: string;
+    className?: string;
+    controls: boolean;
+    type: 'video' | 'image';
+    videoType?: string;
+    autoPlay: boolean;
+    muted: boolean;
+    loop: boolean;
+}
+
 export default function getImageMetaData(rawMetaData: string, rawSrc: string, articlePath: string) {
     const src = getImageSrc(rawSrc, articlePath);
     //type: 'video'(src is .mov/.mp4) | 'image'(otherwise)
@@ -21,5 +38,5 @@ export default function getImageMetaData(rawMetaData: string, rawSrc: string, ar
         autoPlay: rawMetaData.toLowerCase().includes('{autoplay}'),
         muted: rawMetaData.toLowerCase().includes('{muted}'),
         loop: rawMetaData.toLowerCase().includes('{loop}'),
-    };
+    } as ImageMetaData;
 }

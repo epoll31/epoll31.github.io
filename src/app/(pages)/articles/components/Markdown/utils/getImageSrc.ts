@@ -1,5 +1,5 @@
 
-export default function getImageSrc(src: string, articlePath: string): string {
+export default function getImageSrc(src: string, articleFolder: string): string {
     // If it is a URL, return src
     if (/^https?:\/\//.test(src)) {
         return src;
@@ -12,15 +12,15 @@ export default function getImageSrc(src: string, articlePath: string): string {
 
     // If it starts with './', replace the '.' with articlePath
     if (/^\.\//.test(src)) {
-        return src.replace(/^\.\//, articlePath + '/');
+        return src.replace(/^\.\//, articleFolder + '/');
     }
 
     // If it starts with '/', add articlePath to the front
     if (/^\//.test(src)) {
-        return articlePath + src;
+        return articleFolder + src;
     }
 
     // Else, add articlePath and '/' to the front
-    return articlePath + '/' + src;
+    return articleFolder + '/' + src;
 }
 

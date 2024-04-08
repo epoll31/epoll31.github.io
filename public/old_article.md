@@ -13,12 +13,7 @@ tableOfContents: 'visible'
 ###### Heading 6
 ####### Heading 7
 
-<!-- comment test -->
-
-<!-- multi
-line
-comment 
-test -->
+{/*test*/}
 
 ### This is a really long title, it's going to continue for a while
 
@@ -165,6 +160,7 @@ test
 
 ## images
 
+{/*
 ![public/tutor/headshot.png {className: w-full rounded-3xl}](public/tutor/headshot.png)
 ![/public/tutor/headshot.png {w: 100} {h:100}](/public/tutor/headshot.png)
 ![./public/tutor/headshot.png {caption: This is a test caption. this is a really really really really really really really long caption}](./public/tutor/headshot.png)
@@ -172,7 +168,7 @@ test
 ![./headshot.png {caption: test}](./headshot.png)
 ![/headshot.png](/headshot.png)
 ![headshot.png](headshot.png)
-
+*/}
 ## videos
 
 ![./video.mp4](./video.mp4)
@@ -181,10 +177,11 @@ test
 ![./video.mp4 {nocontrols} {muted} {autoplay} {loop}](./video.mp4)
 ![./video.webm {nocontrols} {muted} {autoplay} {loop}](./video.webm)
 
-<!-- ## comments
+{/* ## comments
 
 ![http image](http://help.websiteos.com/websiteos/htmlpage.jpg)
-![https image](https://www.columbia.edu/~fdc/picture-of-something.jpg) -->
+![https image](https://www.columbia.edu/~fdc/picture-of-something.jpg) 
+*/}
 
 
 
