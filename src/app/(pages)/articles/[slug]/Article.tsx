@@ -6,6 +6,7 @@ import { HeaderNode, generateHeaders, getHeader } from "./utils/headerHelpers";
 import useWindowSize from "@/app/utils/useWindowSize";
 import Contents from "./Contents";
 import { ThemeContext } from "@/app/utils/ThemeContext";
+import { PrismTheme, themes } from "prism-react-renderer";
 
 export interface ArticleMetaData {
     slug: string;
@@ -26,11 +27,13 @@ export interface ArticleData extends ArticleMetaData {
 export interface ArticleContextData {
     article: ArticleData;
     activeHeader: HeaderNode;
+    codeTheme: PrismTheme;
     setActiveHeader: (header: HeaderNode) => void;
 }
 export const ArticleContext = createContext<ArticleContextData>({
     article: {} as ArticleData,
     activeHeader: {} as HeaderNode,
+    codeTheme: {} as PrismTheme,
     setActiveHeader: () => { },
 });
 
@@ -48,6 +51,7 @@ export default function Article({
     const [articleContext, setArticleContext] = useState<ArticleContextData>({
         article: article,
         activeHeader: headers[0] as HeaderNode,
+        codeTheme: themes.oneDark,
         setActiveHeader: (header: HeaderNode) => {
             setArticleContext({
                 ...articleContext,

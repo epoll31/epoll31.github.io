@@ -23,12 +23,13 @@ import Table from '@/app/(pages)/articles/[slug]/mdxComponents/components/Table'
 import UL from '@/app/(pages)/articles/[slug]/mdxComponents/components/UL'
 import Video from '@/app/(pages)/articles/[slug]/mdxComponents/components/Video'
 import { getArticleMetaData, getValidArticleSlugs } from '../utils/getValidArticles'
+import MultiPageCode from './mdxComponents/components/MultiPageCode'
 
 export const dynamicParams = false
 
 export async function generateStaticParams() {
     const valid = getValidArticleSlugs();
-    console.log("valid", valid)
+    // console.log("valid", valid)
     return valid;
 }
 
@@ -68,6 +69,7 @@ export default async function ArticlePage({ params }: { params: { slug: string; 
             h6: H6,
             Image: Image,
             li: LI,
+            MultiPageCode: MultiPageCode,
             NextImage: NextImage,
             ol: OL,
             p: P,

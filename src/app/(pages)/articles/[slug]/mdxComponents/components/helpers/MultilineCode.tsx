@@ -1,40 +1,40 @@
 "use client";
-import { Highlight, PrismTheme } from "prism-react-renderer"
+import { useContext } from "react";
+import { ArticleContext } from "../../../Article";
+import CodeBlock from "./CodeBlock";
+import { IconClipboard } from "@tabler/icons-react";
+
+
 
 export default function MultilineCode({
     code,
     language,
-    theme
+    showLanguage = language !== "plaintext"
 }: {
     code: string;
     language: string;
-    theme: PrismTheme;
+    showLanguage?: boolean;
 }) {
+
+    const { codeTheme: theme } = useContext(ArticleContext);
+
     return (
-        <Highlight
-            code={code}
-            language={language}
-            theme={theme}
-        >
-            {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre
-                    className={className}
+        <span className="flex flex-col">
+            {
+                showLanguage &&
+                <span
+                    className={`w-fit self-end mr-5 px-3 py-1 text-sm`}
                     style={{
-                        ...style,
-                        padding: '1rem',
-                        marginBlock: '0.5rem',
-                        overflowX: 'auto',
-                        borderRadius: '0.5rem'
-                    }}>
-                    {tokens.map((line, i) => (
-                        <div {...getLineProps({ line, key: i })} key={i}>
-                            {line.map((token, key) => (
-                                <span {...getTokenProps({ token, key })} key={key} />
-                            ))}
-                        </div>
-                    ))}
-                </pre>
-            )}
-        </Highlight>
+                        backgroundColor: `${theme.plain.backgroundColor}`,
+                        color: theme.plain.color,
+                        borderTopRightRadius: '0.5rem',
+                        borderTopLeftRadius: '0.5rem',
+                    }}
+                >
+                    {language}
+                </span>
+            }
+            <CodeBlock code={code} language={language} theme={theme} />
+        </span>
     );
 }

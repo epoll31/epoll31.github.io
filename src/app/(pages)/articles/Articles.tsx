@@ -5,22 +5,65 @@ import { ArticleMetaData } from "./[slug]/Article";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { ThemeContext } from "@/app/utils/ThemeContext";
 import { twMerge } from "tailwind-merge";
+import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
+import { IconArrowRight } from "@tabler/icons-react";
 
 function ArticleCard({
     article
 }: {
     article: ArticleMetaData
 }) {
-    // console.log("article", article)
-    // console.log("href", `/articles/${article.slug}`)
+    const themeContext = useContext(ThemeContext);
+    const [themedClassName, setThemedClassName] = useState<string>("bg-transparent text-transparent opacity-0");
+    const [hrClassName, setHrClassName] = useState<string>("border-transparent");
+    useLayoutEffect(() => {
+        if (themeContext.theme === "light") {
+            setThemedClassName("bg-foreground-100 text-black");
+            setHrClassName("border-foreground-200");
+        } else {
+            setThemedClassName("bg-zinc-800 text-foreground");
+            setHrClassName("border-zinc-700");
+        }
+
+    }, [themeContext.theme]);
+
     return (
-        <Link
-            href={`/articles/${article.slugNoSpace}`}
-            className="bg-black-100 p-4 rounded-xl font-sans"
-        >
-            <h2>{article.title}</h2>
-            <p>{article.date}</p>
-            <p className="font-serif">{article.abstract}</p>
+        <Link href={`/articles/${article.slug}`}>
+            <CardContainer
+                className={twMerge("p-6 rounded-xl font-sans", themedClassName)}
+                containerClassName="group m-0 p-0 hover:scale-110 transition-transform [transition-timing-function:cubic-bezier(0.250, 0.250, 0.635, 1.565)]"
+            >
+                <CardBody className="flex flex-col items-start">
+                    <div className="w-full flex justify-between items-baseline">
+                        <CardItem
+                            as="h2"
+                            className="text-xl font-bold group-hover:text-background"
+                            translateZ={40}
+                        >{article.title}</CardItem>
+                        {/* <p>{article.date}</p> */}
+                        <CardItem
+                            as="p"
+                            className="text-sm"
+                            translateZ={20}
+                        >{article.date}</CardItem>
+                    </div>
+                    <hr className={twMerge("w-full mb-3 transition-colors", hrClassName)}></hr>
+
+                    {/* <p className="font-serif">{article.abstract}</p> */}
+                    <CardItem
+                        as="p"
+                        className="font-serif"
+                        translateZ={20}
+                    >{article.abstract}</CardItem>
+                    <CardItem
+                        className="text-sm mt-3 flex "
+                        translateZ={20}
+                    >
+                        <p>Read More</p>
+                        <IconArrowRight size={20} className="inline ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-background" />
+                    </CardItem>
+                </CardBody>
+            </CardContainer>
         </Link>
     );
 }
@@ -49,9 +92,9 @@ export default function Articles({
                 themedClassName
             )}
         >
-            <div className="w-full max-w-[min(1100px,100%)] flex justify-between items-baseline">
+            <div className="w-full max-w-[min(1100px,100%)] flex justify-between items-baseline text-sans">
                 <h1 className={"text-4xl "}>Latest Articles</h1>
-                <p className={""}>{articles.length} articles</p>
+                <p className={""}>{articles.length} Articles</p>
             </div>
             <div className="w-full max-w-[min(1100px,100%)] grid gap-10 grid-cols-articleCards">
                 {articles.map((article, i) => (

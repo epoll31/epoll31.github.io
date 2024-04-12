@@ -18,7 +18,7 @@ const config: Config = {
       fontFamily: {
         lilita: ["Lilita One", "sans-serif"],
         k2d: ["K2D", "sans-serif"],
-        serif: ["Noto Serif", "serif"],
+        serif: ["Noto Sans", "sans-serif"],
         sans: ["Noto Sans", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },

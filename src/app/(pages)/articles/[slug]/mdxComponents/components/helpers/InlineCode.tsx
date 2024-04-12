@@ -1,12 +1,14 @@
-import { PrismTheme } from "prism-react-renderer";
+"use client";
+
+import { useContext } from "react";
+import { ArticleContext } from "../../../Article";
 
 export default function InlineCode({
     code,
-    theme
 }: {
     code: string;
-    theme: PrismTheme
 }) {
+    const { codeTheme: theme } = useContext(ArticleContext);
 
     return (
         <code
