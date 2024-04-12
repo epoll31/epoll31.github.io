@@ -9,6 +9,7 @@ import { ThemeContext } from "@/app/utils/ThemeContext";
 
 export interface ArticleMetaData {
     slug: string;
+    slugNoSpace: string;
     folder: string;
     title: string;
     date: string;
@@ -112,7 +113,7 @@ export default function Article({
                 id="article"
                 className={twMerge(
                     "p-4 flex justify-center transition-all",
-                    "w-full h-full overflow-x-hidden overflow-y-scroll scroll-smooth md:scrollbar scrollbar-thumb-rounded-x",
+                    "w-full h-full overflow-x-hidden overflow-y-scroll scroll-smooth scrollbar-none md:scrollbar scrollbar-thumb-rounded-x",
                     themedClassName,
                 )}
             >

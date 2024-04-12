@@ -22,6 +22,9 @@ const config: Config = {
         sans: ["Noto Sans", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
+      gridTemplateColumns: {
+        articleCards: 'repeat(auto-fill, minmax(400px, 1fr))',
+      },
       transitionProperty: {
         colorsAndOpacity: 'color, background-color, border-color, text-decoration-color, fill, stroke, opacity',
       },

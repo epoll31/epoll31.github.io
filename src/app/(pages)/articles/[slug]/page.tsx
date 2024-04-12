@@ -27,7 +27,9 @@ import { getArticleMetaData, getValidArticleSlugs } from '../utils/getValidArtic
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-    return getValidArticleSlugs();
+    const valid = getValidArticleSlugs();
+    console.log("valid", valid)
+    return valid;
 }
 
 export interface ArticlePageProps {
@@ -38,6 +40,7 @@ export interface ArticlePageProps {
 
 export async function generateMetadata({ params }: { params: { slug: string; }; }) {
     const article = getArticleMetaData(params.slug);
+    // console.log("article", article)
     return {
         title: article.title,
         description: article.abstract,
@@ -47,7 +50,7 @@ export async function generateMetadata({ params }: { params: { slug: string; }; 
 export default async function ArticlePage({ params }: { params: { slug: string; }; }) {
 
     const { content: mdx, frontmatter } = await compileMDX<Omit<ArticleMetaData, "slug" | "folder">>({
-        source: fs.readFileSync(path.resolve(process.cwd(), 'public', 'articles', params.slug, 'article.mdx')).toString(),
+        source: fs.readFileSync(path.resolve(process.cwd(), 'public', 'articles', params.slug.replaceAll('%20', ' '), 'article.mdx')).toString(),
         options: {
             parseFrontmatter: true,
             mdxOptions: {
