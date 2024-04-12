@@ -2,7 +2,7 @@
 
 import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
 import { CursorLock } from "@/app/components/CursorFollower";
-import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
+import useMediaSizes from "@/app/utils/useMediaSizes";
 import Link from "next/link";
 import { HTMLAttributes, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -25,7 +25,7 @@ export default function ResearchCard({
     research: Research
 } & HTMLAttributes<HTMLDivElement>) {
 
-    const mediaSizes = useMediaSizes();
+    const { md } = useMediaSizes();
     const [readMore, setReadMode] = useState(false);
     const [showPDF, setShowPDF] = useState(false);
     const [minimized, setMinimized] = useState(false);
@@ -54,7 +54,7 @@ export default function ResearchCard({
                                 y: 25
                             }
             }
-            disabled={smOrSmaller(mediaSizes)}
+            disabled={!md}
             id={research.id}
             {...props}>
             <CardBody className="flex flex-col gap-2 w-full h-min overflow-x-hidden">

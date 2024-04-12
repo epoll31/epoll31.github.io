@@ -4,7 +4,7 @@ import { CourseType, selectCourseTypes } from "@/lib/features/courseFilters/cour
 import { useAppSelector } from "@/lib/hooks";
 import { CourseCard } from "./CourseCard";
 import { useEffect, useState } from "react";
-import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
+import useMediaSizes from "@/app/utils/useMediaSizes";
 import { Filters } from "./Filters";
 import ResearchCard from "../../components/major/ResearchCard";
 
@@ -403,7 +403,7 @@ export interface Research {
 }
 
 export default function WPI() {
-    const mediaSize = useMediaSizes();
+    const { md } = useMediaSizes();
     const toggled = useAppSelector(selectCourseTypes);
     const [filteredCourses, setFilteredCourses] = useState<Course[]>(courses.filter(course => toggled.length === 0 || toggled.includes(course.courseType)));
     useEffect(() => {
@@ -433,7 +433,7 @@ export default function WPI() {
                     </div>
 
                     {
-                        smOrSmaller(mediaSize) && (
+                        !md && (
                             <Filters className="px-10 sticky top-0 bg-background z-10" />
                         )
                     }

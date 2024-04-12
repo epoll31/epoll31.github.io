@@ -3,20 +3,14 @@
 import { CursorLock } from "@/app/components/CursorFollower";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
+import useMediaSizes from "@/app/utils/useMediaSizes";
 import { useEffect, useState } from "react";
 import { IconFish, IconFunctionFilled, IconSchool, IconTrophyFilled } from "@tabler/icons-react";
 import EarlyYearsTimeLine from "./EarlyYearsTimeline";
-// import GMR2014 from "/early/gmr-2014.png";
-// import Vex2015 from "/early/vex-2015.jpg";
-// import Vex2016 from "/early/vex-2016.jpg";
-// import WRO2019 from "/early/wro-2019.jpeg";
-// import CHSFish from "/early/chs-fish-robot.jpg";
-// import CHSLogo from "/early/chs.png";
 
 export default function EarlyYears() {
     const [windowSize, setWindowSize] = useState(0);
-    const mediaSize = useMediaSizes();
+    const { md } = useMediaSizes();
 
     useEffect(() => {
         function update() {
@@ -31,7 +25,7 @@ export default function EarlyYears() {
         <div className="w-full h-fit text-black flex flex-col items-center md:mt-10">
             <div className={`h-fit pb-10 max-w-[400px] lg:max-w-[900px] transition-all duration-75`}
                 style={{
-                    width: `${windowSize - (smOrSmaller(mediaSize) ? 50 : 400)}px`,
+                    width: `${windowSize - (!md ? 50 : 400)}px`,
                 }}>
                 <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
                     <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">

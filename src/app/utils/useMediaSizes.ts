@@ -1,62 +1,60 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export type MediaSizes = undefined | "sm" | "md" | "lg" | "xl" | "xxl";
+const defaultBreakpoints: MediaBreakpoints = {
+    sm: 640,
+    md: 768,
+    lg: 1024,
+    xl: 1280,
+};
 
-export function smOrLarger(size: MediaSizes) {
-    return size == "sm" || size == "md" || size == "lg" || size == "xl" || size == "xxl";
-}
-export function mdOrLarger(size: MediaSizes) {
-    return size == "md" || size == "lg" || size == "xl" || size == "xxl";
-}
-export function lgOrLarger(size: MediaSizes) {
-    return size == "lg" || size == "xl" || size == "xxl";
-}
-export function xlOrLarger(size: MediaSizes) {
-    return size == "xl" || size == "xxl";
+export interface MediaBreakpoints {
+    [name: string]: number;
 }
 
-export function smOrSmaller(size: MediaSizes) {
-    return size == "sm" || size == undefined;
-}
-export function mdOrSmaller(size: MediaSizes) {
-    return size == "sm" || size == undefined || size == "md";
-}
-export function lgOrSmaller(size: MediaSizes) {
-    return size == "sm" || size == undefined || size == "md" || size == "lg";
-}
-export function xlOrSmaller(size: MediaSizes) {
-    return size == "sm" || size == undefined || size == "md" || size == "lg" || size == "xl";
+export interface MediaSizes {
+    [name: string]: boolean;
 }
 
-export default function useMediaSizes() {
-    const [size, setSize] = useState<MediaSizes>(undefined);
+const breakpointsToSizes = (breakpoints: MediaBreakpoints) => Object.keys(breakpoints).reduce(
+    (acc, key) => ({
+        ...acc,
+        [key]: window.innerWidth > breakpoints[key],
+    }), {}
+);
+
+const debounce = <F extends (...args: any[]) => any>(func: F, wait: number) => {
+    let timeout: string | number | NodeJS.Timeout | undefined;
+    return (...args: any) => {
+        if (timeout) {
+            clearTimeout(timeout);
+        }
+        timeout = setTimeout(() => func(args), wait);
+    }
+}
+
+export default function useMediaSizes(customBreakpoints?: MediaBreakpoints): MediaSizes {
+    const breakpoints = useMemo(() => ({
+        ...defaultBreakpoints,
+        ...customBreakpoints,
+    }), [customBreakpoints]);
+
+
+    const [sizes, setSizes] = useState<MediaSizes>(window && breakpointsToSizes(breakpoints));
 
     useEffect(() => {
-        function update() {
-            if (window.innerWidth > 1536) {
-                setSize("xxl");
-            }
-            else if (window.innerWidth > 1280) {
-                setSize("xl");
-            }
-            else if (window.innerWidth > 1024) {
-                setSize("lg");
-            }
-            else if (window.innerWidth > 768) {
-                setSize("md");
-            }
-            else if (window.innerWidth > 640) {
-                setSize("sm");
-            }
-            else {
-                setSize(undefined);
-            }
-
+        if (!window) {
+            return;
         }
-        window.addEventListener("resize", update);
-        update();
-        return () => window.removeEventListener("resize", update);
-    }, []);
 
-    return size;
+        function handleResize() {
+            setSizes(breakpointsToSizes(breakpoints));
+        }
+
+        const debouncedHandleResize = debounce(handleResize, 100);
+        window.addEventListener("resize", debouncedHandleResize);
+        return () => window.removeEventListener("resize", debouncedHandleResize);
+    }, [breakpoints]);
+
+    return sizes;
 }
+

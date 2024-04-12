@@ -3,16 +3,16 @@
 import WPI from "./wpi";
 import Page, { PageMajor } from "@/app/components/major/Page";
 import { Filters } from "./Filters";
-import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
+import useMediaSizes from "@/app/utils/useMediaSizes";
 
 export default function WPIPage() {
-  const mediaSize = useMediaSizes();
+  const { md } = useMediaSizes();
 
   return (
     <Page customButtonType="home" tabs={["Work", "Projects", "Early Years"]}>
       {
-        !smOrSmaller(mediaSize) && (
-          <PageMajor type="Side">
+        !md && (
+          <PageMajor type="side">
             <Filters />
           </PageMajor>
         )

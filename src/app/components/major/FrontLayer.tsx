@@ -6,16 +6,11 @@ import GitHub from "/public/images/github.svg";
 import LinkedIn from "/public/images/linkedin.svg";
 import { CursorLock } from "@/app/components/CursorFollower";
 import { PiChalkboardTeacherFill } from "react-icons/pi";
-import useMediaSizes, { lgOrLarger, mdOrLarger, smOrSmaller } from "@/app/utils/useMediaSizes";
-import { useEffect } from "react";
+import useMediaSizes from "@/app/utils/useMediaSizes";
 
 
 export default function FrontLayer() {
-    const mediaSize = useMediaSizes();
-
-    useEffect(() => {
-        console.log(mediaSize);
-    }, [mediaSize]);
+    const { sm } = useMediaSizes();
 
     return (
         <>
@@ -42,7 +37,7 @@ export default function FrontLayer() {
                         cursorLockedClassName=" w-10 h-10 sm:w-44 md:w-72 md:h-20 backdrop-invert rounded-full z-10"
                     >
                         {
-                            (mediaSize == undefined)
+                            (!sm)
                                 ? (<PiChalkboardTeacherFill size={24} />)
                                 : (<p className="text-nowrap px-3 md:px-6">Need CS or Math Help?</p>)
                         }

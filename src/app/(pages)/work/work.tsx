@@ -2,7 +2,7 @@
 
 import WorkTimeline from "./WorkTimeline";
 import { useEffect, useState } from "react";
-import useMediaSizes, { smOrSmaller } from "@/app/utils/useMediaSizes";
+import useMediaSizes from "@/app/utils/useMediaSizes";
 import { IconBriefcaseFilled, IconDeviceHeartMonitorFilled, IconFunctionFilled, } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function Work() {
     const [windowSize, setWindowSize] = useState(0);
-    const mediaSize = useMediaSizes();
+    const { md } = useMediaSizes();
 
     useEffect(() => {
         function update() {
@@ -25,7 +25,7 @@ export default function Work() {
         <div className="w-full h-fit text-black flex flex-col items-center md:mt-10">
             <div className={`h-fit pb-10 max-w-[400px] lg:max-w-[900px] transition-all duration-75`}
                 style={{
-                    width: `${windowSize - (smOrSmaller(mediaSize) ? 50 : 400)}px`,
+                    width: `${windowSize - (md ? 400 : 50)}px`,
                 }}>
                 <div className="flex-grow flex flex-row justify-around m-5 gap-5 md:m-10 md:gap-10">
                     <div className="flex-1 font-k2d flex flex-col text-wrap gap-3">
@@ -34,7 +34,7 @@ export default function Work() {
                             put some stuff here maybe
                         </p> */}
                         {
-                            smOrSmaller(mediaSize) && (
+                            !md && (
                                 <div className="overflow-hidden drop-shadow-2xl">
                                     <Link href="https://raw.githubusercontent.com/epoll31/Resume/main/resume.pdf" className="w-full h-fit">
                                         <img src="/images/resume-color.png" alt="resume" width={200} height={200} className="w-full" />

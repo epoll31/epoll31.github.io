@@ -1,7 +1,7 @@
-import { CardBody, CardContainer, CardItem } from '@/app/components/3d-card';
+import { CardBody, CardContainer } from '@/app/components/3d-card';
 import TimeLine, { TimeLineItem } from '@/app/components/TimeLine/TimeLine';
-import useMediaSizes, { lgOrSmaller, mdOrLarger, mdOrSmaller, smOrSmaller } from '@/app/utils/useMediaSizes';
-import { IconBriefcase, IconBriefcaseFilled } from '@tabler/icons-react';
+import useMediaSizes from '@/app/utils/useMediaSizes';
+import { IconBriefcaseFilled } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
 export interface WorkInfo {
@@ -21,13 +21,11 @@ export default function WorkTimeline({
 }) {
     const [side, setSide] = useState<"left" | "right">("left");
     const [itemsAlignment, setItemsAlignment] = useState<"close" | "center" | "far">("close");
-    const mediaSize = useMediaSizes();
+    const { lg } = useMediaSizes();
     const [alternate, setAlternate] = useState(true);
     useEffect(() => {
-        const alternating = !mdOrSmaller(mediaSize)
-        setAlternate(alternating);
-
-    }, [mediaSize]);
+        setAlternate(lg);
+    }, [lg]);
 
     const findAlignment = (index: number) => {
         if (alternate) {
