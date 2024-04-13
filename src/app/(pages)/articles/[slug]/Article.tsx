@@ -1,12 +1,11 @@
 "use client";
 
-import { createContext, useContext, useEffect, useLayoutEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { HeaderNode, generateHeaders, getHeader } from "./utils/headerHelpers";
 import useWindowSize from "@/app/utils/useWindowSize";
 import Contents from "./Contents";
 import { ThemeContext } from "@/app/utils/ThemeContext";
-import { PrismTheme, themes } from "prism-react-renderer";
 
 export interface ArticleMetaData {
     slug: string;
@@ -27,13 +26,11 @@ export interface ArticleData extends ArticleMetaData {
 export interface ArticleContextData {
     article: ArticleData;
     activeHeader: HeaderNode;
-    codeTheme: PrismTheme;
     setActiveHeader: (header: HeaderNode) => void;
 }
 export const ArticleContext = createContext<ArticleContextData>({
     article: {} as ArticleData,
     activeHeader: {} as HeaderNode,
-    codeTheme: {} as PrismTheme,
     setActiveHeader: () => { },
 });
 
@@ -42,16 +39,14 @@ export default function Article({
 }: {
     article: ArticleData
 }) {
-    const themeContext = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const [themedClassName, setThemedClassName] = useState<string>("text-transparent bg-transparent opacity-0  scrollbar-thumb-transparent scrollbar-track-transparent");
     const { width } = useWindowSize();
-    // const headers = generateHeaders(article.content, 2);
     const headers = generateHeaders(article, 2);
 
     const [articleContext, setArticleContext] = useState<ArticleContextData>({
         article: article,
         activeHeader: headers[0] as HeaderNode,
-        codeTheme: themes.oneDark,
         setActiveHeader: (header: HeaderNode) => {
             setArticleContext({
                 ...articleContext,
@@ -102,14 +97,20 @@ export default function Article({
         };
     }, []);
 
-    useLayoutEffect(() => {
-        if (themeContext.theme === "light") {
+    useEffect(() => {
+        if (theme === "light") {
             setThemedClassName("bg-foreground text-black scrollbar-thumb-black-100 scrollbar-track-foreground");
+            setArticleContext({
+                ...articleContext,
+            });
         } else {
             setThemedClassName("bg-black text-foreground scrollbar-thumb-foreground-200 scrollbar-track-black");
+            setArticleContext({
+                ...articleContext,
+            });
         }
 
-    }, [themeContext.theme]);
+    }, [theme]);
 
     return (
         <ArticleContext.Provider value={articleContext}>

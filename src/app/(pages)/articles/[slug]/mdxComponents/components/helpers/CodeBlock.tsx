@@ -7,12 +7,13 @@ import { twMerge } from "tailwind-merge";
 export default function CodeBlock({
     code,
     language,
-    theme
+    theme,
 }: {
     code: string;
     language: string;
     theme: PrismTheme;
 }) {
+
     return (
         <div className="relative group">
             <Highlight

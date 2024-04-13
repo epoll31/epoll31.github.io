@@ -1,6 +1,7 @@
-import { themes } from "prism-react-renderer";
+
 import InlineCode from "./helpers/InlineCode";
 import MultilineCode from "./helpers/MultilineCode";
+import gruvboxDarkTheme from "./helpers/gruvboxDarkTheme";
 
 
 export default function Code({
@@ -12,6 +13,7 @@ export default function Code({
     forceMode?: "inline" | "multiline";
     showLanguage?: boolean;
 }) {
+    const theme = gruvboxDarkTheme;
 
     const code = rawCode?.toString().replace(/\n$/, "") ?? ""; // remove trailing newline
     const inline = forceMode ? forceMode === "inline" : code.search(/\n/) === -1;
@@ -40,8 +42,8 @@ export default function Code({
     // );
 
     return inline ? (
-        <InlineCode code={code} />
+        <InlineCode code={code} theme={theme} />
     ) : (
-        <MultilineCode code={code} language={lang} showLanguage={showLanguage} />
+        <MultilineCode code={code} language={lang} showLanguage={showLanguage} theme={theme} />
     );
 }

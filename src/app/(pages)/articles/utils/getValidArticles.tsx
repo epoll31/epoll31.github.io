@@ -9,7 +9,6 @@ export function getValidArticleSlugs(): { slug: string; }[] {
 
     const valid = [];
     for (const slug of slugs) {
-        // console.log("slug", slug.replaceAll(' ', '%20'))
         const article = matter(fs.readFileSync(path.resolve(articles, slug, 'article.mdx')).toString());
 
         if (article.data.published) {

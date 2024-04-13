@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, createContext } from "react";
+import { useState, createContext } from "react";
 
 export type Theme = "light" | "dark" | "red";
 
@@ -14,25 +14,28 @@ export const ThemeContext = createContext<ThemeContextData>({
     setTheme: () => { },
 });
 
+function getClientTheme(forceTheme?: Theme): "light" | "dark" | "red" {
+
+    if (forceTheme) {
+        return forceTheme;
+    }
+
+    if (typeof window === 'undefined') {
+        return "dark";
+    }
+
+    const local = localStorage.getItem("prefTheme");
+    if (local) {
+        return local as Theme;
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
 export default function ThemeContextProvider({ children, forceTheme }: {
     children: React.ReactNode;
     forceTheme?: Theme;
 }) {
-    const [theme, setTheme] = useState<Theme>(() => {
-        if (forceTheme) {
-            return forceTheme;
-        }
-
-        if (typeof window === 'undefined') {
-            return "dark";
-        }
-
-        const local = localStorage.getItem("prefTheme");
-        if (local) {
-            return local as Theme;
-        }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    });
+    const [theme, setTheme] = useState<Theme>(getClientTheme(forceTheme));
 
     function setThemeAndStore(theme: Theme) {
         localStorage.setItem("prefTheme", theme);

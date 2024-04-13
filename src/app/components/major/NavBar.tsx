@@ -2,7 +2,7 @@
 
 import { IconMoonFilled, IconSunFilled } from "@tabler/icons-react";
 import Link from "next/link";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ThemeContext } from "@/app/utils/ThemeContext";
 
@@ -60,7 +60,7 @@ export default function NavBar() {
     //     return "opacity-100 w-[24px] h-[24px] top-0 left-0";
     // });
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (themeContext.theme === "light") {
             setMainClassName("bg-foreground text-black");
             setThemeToggleClassName("text-black-100 hover:text-black");

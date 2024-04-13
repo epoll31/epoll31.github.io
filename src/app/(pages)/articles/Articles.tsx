@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArticleMetaData } from "./[slug]/Article";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "@/app/utils/ThemeContext";
 import { twMerge } from "tailwind-merge";
 import { CardBody, CardContainer, CardItem } from "@/app/components/3d-card";
@@ -16,7 +16,7 @@ function ArticleCard({
     const themeContext = useContext(ThemeContext);
     const [themedClassName, setThemedClassName] = useState<string>("bg-transparent text-transparent opacity-0");
     const [hrClassName, setHrClassName] = useState<string>("border-transparent");
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (themeContext.theme === "light") {
             setThemedClassName("bg-foreground-100 text-black");
             setHrClassName("border-foreground-200");
@@ -75,7 +75,7 @@ export default function Articles({
 }) {
     const themeContext = useContext(ThemeContext);
     const [themedClassName, setThemedClassName] = useState<string>("text-transparent bg-transparent opacity-0  scrollbar-thumb-transparent scrollbar-track-transparent");
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (themeContext.theme === "light") {
             setThemedClassName("bg-foreground text-black scrollbar-thumb-black-100 scrollbar-track-foreground");
         } else {

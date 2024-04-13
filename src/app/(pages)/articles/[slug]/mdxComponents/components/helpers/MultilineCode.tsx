@@ -1,22 +1,18 @@
-"use client";
-import { useContext } from "react";
-import { ArticleContext } from "../../../Article";
+// "use client";
 import CodeBlock from "./CodeBlock";
-import { IconClipboard } from "@tabler/icons-react";
-
-
+import { PrismTheme } from "prism-react-renderer";
 
 export default function MultilineCode({
     code,
     language,
-    showLanguage = language !== "plaintext"
+    showLanguage = language !== "plaintext",
+    theme,
 }: {
     code: string;
     language: string;
     showLanguage?: boolean;
+    theme: PrismTheme;
 }) {
-
-    const { codeTheme: theme } = useContext(ArticleContext);
 
     return (
         <span className="flex flex-col">
