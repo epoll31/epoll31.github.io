@@ -1,0 +1,14 @@
+{
+  "name": "epoll31.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate_redirects.js",
+  "scripts": {
+    "generate": "node generate_redirects.js"
+    
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "Ethan Pollack",
+  "license": "ISC"
+}
