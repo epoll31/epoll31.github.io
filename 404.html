@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+  const pathname = window.location.pathname;
+  const newPath = `https://epoll31.com${pathname}`;
+  window.location.href = newPath;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const meta = document.createElement('meta');
+    meta.httpEquiv = 'refresh';
+    meta.content = `0; url=${newPath}`;
+    document.head.appendChild(meta);
+
+    document.body.innerHTML = `<p>If you are not redirected automatically, follow this <a href="${newPath}">link to the new page</a>.</p>`;
+  });
+  </script>
+</head>
+<body>
+</body>
+</html>
+  
